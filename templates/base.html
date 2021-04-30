@@ -8,6 +8,10 @@
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet"
         type="text/css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Indie+Flower&display=swap"
+        rel="stylesheet" type="text/css">
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
@@ -23,7 +27,7 @@
             <!-- Container wrapper -->
             <div class="container-fluid">
                 <!-- Navbar Brand -->
-                <a class="navbar-brand" href="{{ url_for('home') }}">Veggie Visionaries</a>
+                <a class="navbar-brand" href="{{ url_for('home') }}"><h1>Veggie Visionaries</h1></a>
                 <!-- Toggle button -->
                 <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
                     data-mdb-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false"
@@ -36,16 +40,16 @@
                     <!-- Left links -->
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                            <a class="nav-link" href="{{ url_for('home') }}"><p>Home</p></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('get_recipes') }}">Recipes</a>
+                            <a class="nav-link" href="{{ url_for('get_recipes') }}"><p>Recipes</p></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+                            <a class="nav-link" href="{{ url_for('register') }}"><p>Register</p></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('login') }}">Log In</a>
+                            <a class="nav-link" href="{{ url_for('login') }}"><p>Log In</p></a>
                         </li>
                     </ul>
                     <!-- Left links -->
@@ -58,13 +62,13 @@
 
     <section>
         {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="row flashes">
-                        <h3 class="text-center">{{ message }}</h3>
-                    </div>
-                {% endfor %}
-            {% endif %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="row flashes">
+            <h3 class="text-center">{{ message }}</h3>
+        </div>
+        {% endfor %}
+        {% endif %}
         {% endwith %}
     </section>
 
