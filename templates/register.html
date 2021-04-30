@@ -3,6 +3,12 @@
 
 <h2 class="text-center">Register</h2>
 
+<div class="row">
+    <p class="text-center">
+        Already have an account with us? Login <a href="{{ url_for('login') }}">Here</a>
+    </p>
+</div>
+
 <div class="row mt-5">
     <form class="col-8 mx-auto" method="POST" action="{{ url_for('register') }}">
         <div class="card">
@@ -31,7 +37,7 @@
                 <div class="form-helper"></div>
             </div>
             <div class="form-outline mb-4">
-                <input type="password" id="passwordconfirm" name="passwordconfirm" class="form-control" required />
+                <input type="password" id="passwordconfirm" name="passwordconfirm" class="form-control" />
                 <label class="form-label" for="passwordconfirm">Confirm</label>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Register</button>
