@@ -23,7 +23,7 @@
             <!-- Container wrapper -->
             <div class="container-fluid">
                 <!-- Navbar Brand -->
-                <a class="navbar-brand" href="#">Veggie Visionaries</a>
+                <a class="navbar-brand" href="{{ url_for('home') }}">Veggie Visionaries</a>
                 <!-- Toggle button -->
                 <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
                     data-mdb-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false"
@@ -36,7 +36,7 @@
                     <!-- Left links -->
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="{{ url_for('home') }}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('get_recipes') }}">Recipes</a>

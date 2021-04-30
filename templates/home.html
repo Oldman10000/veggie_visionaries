@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid home-main">
+    <div class="row">
+        <div class="col-12 col-md-8 g-2">
+            <div class="row">
+                <div class="col-12 g-2">
+                    <div class="card light-green-back">
+                        <h2 class="text-center card-header">Why Go Veggie?</h2>
+                        <div class="card-text veggie-info">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Eu facilisis sed odio morbi quis. Enim tortor at
+                                auctor urna nunc. Imperdiet nulla malesuada pellentesque elit eget gravida cum sociis
+                                natoque. Nunc eget lorem dolor sed viverra. Ut lectus arcu bibendum at varius. Rhoncus
+                                aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant. Tellus
+                                orci ac auctor augue mauris augue neque. Sit amet facilisis magna etiam tempor orci. Mi
+                                tempus imperdiet nulla malesuada. Nulla facilisi morbi tempus iaculis urna id volutpat.
+                                Vestibulum lorem sed risus ultricies tristique nulla.
+                            </p>
+                            <p>
+                                Consequat interdum varius sit amet mattis. Vitae turpis massa sed elementum tempus
+                                egestas sed sed risus. Facilisi etiam dignissim diam quis enim lobortis scelerisque.
+                                Nunc sed augue lacus viverra vitae. Consequat nisl vel pretium lectus quam id leo in
+                                vitae. Cras sed felis eget velit aliquet sagittis. Pellentesque adipiscing commodo elit
+                                at imperdiet dui accumsan sit amet. Placerat duis ultricies lacus sed turpis tincidunt.
+                                Viverra accumsan in nisl nisi scelerisque. Duis ut diam quam nulla porttitor massa id
+                                neque aliquam. Adipiscing bibendum est ultricies integer quis. Imperdiet proin fermentum
+                                leo vel orci. Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam.
+                                Ridiculus mus mauris vitae ultricies leo integer malesuada. Netus et malesuada fames ac
+                                turpis egestas maecenas pharetra. Donec massa sapien faucibus et molestie ac feugiat
+                                sed. Urna cursus eget nunc scelerisque viverra mauris in aliquam. Penatibus et magnis
+                                dis parturient montes nascetur ridiculus mus. Vel eros donec ac odio tempor orci. Semper
+                                viverra nam libero justo laoreet sit.
+                            </p>
+                            <p>
+                                Consequat interdum varius sit amet mattis. Vitae turpis massa sed elementum tempus
+                                egestas sed sed risus. Facilisi etiam dignissim diam quis enim lobortis scelerisque.
+                                Nunc sed augue lacus viverra vitae. Consequat nisl vel pretium lectus quam id leo in
+                                vitae. Cras sed felis eget velit aliquet sagittis. Pellentesque adipiscing commodo elit
+                                at imperdiet dui accumsan sit amet. Placerat duis ultricies lacus sed turpis tincidunt.
+                                Viverra accumsan in nisl nisi scelerisque. Duis ut diam quam nulla porttitor massa id
+                                neque aliquam. Adipiscing bibendum est ultricies integer quis. Imperdiet proin fermentum
+                                leo vel orci. Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam.
+                                Ridiculus mus mauris vitae ultricies leo integer malesuada. Netus et malesuada fames ac
+                                turpis egestas maecenas pharetra. Donec massa sapien faucibus et molestie ac feugiat
+                                sed. Urna cursus eget nunc scelerisque viverra mauris in aliquam. Penatibus et magnis
+                                dis parturient montes nascetur ridiculus mus. Vel eros donec ac odio tempor orci. Semper
+                                viverra nam libero justo laoreet sit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 g-2">
+                    <div class="card light-green-back">
+                        <h2 class="text-center">Log In</h2>
+
+                        <div class="row">
+                            <p class="text-center">
+                                Don't have an account with us yet? Register <a href="{{ url_for('register') }}">Here</a>
+                            </p>
+                        </div>
+
+                        <div class="row">
+                            <form class="col-8 mx-auto" method="POST" action="{{ url_for('login') }}">
+                                <div class="card">
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="username" name="username" class="form-control"
+                                            required />
+                                        <label class="form-label" for="username">Username</label>
+                                        <div class="form-helper"></div>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <input type="password" id="password" name="password" class="form-control"
+                                            required />
+                                        <label class="form-label" for="password">Password</label>
+                                        <div class="form-helper"></div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6 g-2">
+                    <div class="card light-green-back">
+                        <h2 class="text-center card-header">Search For Recipe</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 g-2">
+            <div class="ratings card light-green-back m-2">
+                <h2 class="text-center card-header">Top Rated</h2>
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <div class="card dark-green-back">
+                            <h3 class="card-header">Vegetarian Fajitas</h3>
+                            <div class="rating p-3">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="card dark-green-back">
+                            <h3 class="card-header">Vegetarian Fajitas</h3>
+                            <div class="rating p-3">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="card dark-green-back">
+                            <h3 class="card-header">Vegetarian Fajitas</h3>
+                            <div class="rating p-3">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="card dark-green-back">
+                            <h3 class="card-header">Vegetarian Fajitas</h3>
+                            <div class="rating p-3">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="card dark-green-back">
+                            <h3 class="card-header">Vegetarian Fajitas</h3>
+                            <div class="rating p-3">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -25,3 +25,13 @@ a {
 .flashes h3 {
     line-height: 2;
 }
+
+.rating > i {
+    font-size: 1.5em;
+    color: gold;
+}
+
+.veggie-info {
+    overflow: hidden;
+    height: 50vh;
+}
