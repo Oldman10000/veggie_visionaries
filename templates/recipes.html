@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
+{% include 'navbar.html' %}
+
+<main>
     {% for recipe in recipes %}
         <h2>{{ recipe.name }}</h2>
         {{ recipe.difficulty }}<br>
         {{ recipe.prep_time }}<br>
     {% endfor %}
+</main>
 
 {% endblock %}

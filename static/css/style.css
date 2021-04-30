@@ -40,6 +40,9 @@ a {
 }
 
 .veggie-info {
-    overflow: hidden;
     height: 50vh;
+}
+
+.hero {
+    height: 100vh;
 }

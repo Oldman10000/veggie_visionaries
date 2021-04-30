@@ -1,0 +1,46 @@
+<header>
+    <nav class="navbar sticky-top navbar-expand-lg dark-green-back light-text text-shadow">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Navbar Brand -->
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <h1>Veggie Visionaries</h1>
+            </a>
+            <!-- Toggle button -->
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbar-content"
+                aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbar-content">
+                <!-- Left links -->
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">
+                            <p>Home</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('get_recipes') }}">
+                            <p>Recipes</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('register') }}">
+                            <p>Register</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}">
+                            <p>Log In</p>
+                        </a>
+                    </li>
+                </ul>
+                <!-- Left links -->
+            </div>
+            <!-- Collapsible wrapper -->
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+</header>
