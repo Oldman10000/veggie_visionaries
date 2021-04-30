@@ -7,27 +7,31 @@
     <form class="col-8 mx-auto" method="POST" action="{{ url_for('register') }}">
         <div class="card">
             <div class="form-outline mb-4">
-                <input type="text" id="fname" name="fname" class="form-control" />
+                <input type="text" id="fname" name="fname" class="form-control" pattern="^[a-zA-Z]{0,20}$" required />
                 <label class="form-label" for="fname">First Name</label>
             </div>
             <div class="form-outline mb-4">
-                <input type="text" id="lname" name="lname" class="form-control" />
+                <input type="text" id="lname" name="lname" class="form-control" pattern="^[a-zA-Z]{0,20}$" required />
                 <label class="form-label" for="lname">Last Name</label>
             </div>
             <div class="form-outline mb-4">
-                <input type="email" id="email" name="email" class="form-control" />
+                <input type="email" id="email" name="email" class="form-control" required />
                 <label class="form-label" for="email">Email Address</label>
             </div>
             <div class="form-outline mb-4">
-                <input type="text" id="username" name="username" class="form-control" />
+                <input type="text" id="username" name="username" class="form-control" data-mdb-showcounter="true"
+                    minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required />
                 <label class="form-label" for="username">Username</label>
+                <div class="form-helper"></div>
             </div>
             <div class="form-outline mb-4">
-                <input type="password" id="password" name="password" class="form-control" />
+                <input type="password" id="password" name="password" class="form-control" data-mdb-showcounter="true"
+                    minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required />
                 <label class="form-label" for="password">Password</label>
+                <div class="form-helper"></div>
             </div>
             <div class="form-outline mb-4">
-                <input type="password" id="passwordconfirm" name="passwordconfirm" class="form-control" />
+                <input type="password" id="passwordconfirm" name="passwordconfirm" class="form-control" required />
                 <label class="form-label" for="passwordconfirm">Confirm</label>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Register</button>

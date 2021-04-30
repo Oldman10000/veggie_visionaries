@@ -26,8 +26,8 @@
                 <a class="navbar-brand" href="#">Veggie Visionaries</a>
                 <!-- Toggle button -->
                 <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
-                    data-mdb-target="#navbar-content" aria-controls="navbar-content"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                    data-mdb-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
 
@@ -56,9 +56,24 @@
         </nav>
     </header>
 
-    {% block content %}
-    {% endblock %}
+    <section>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="row flashes">
+                        <h3 class="text-center">{{ message }}</h3>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
 
+    <main class="container">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
