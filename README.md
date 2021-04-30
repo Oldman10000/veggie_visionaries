@@ -24,5 +24,42 @@ I am a first time visitor and I want:
 
 I am a returning visitor/member and I want:
 
-1. To be able to easily access saved recipes
-2. To be able to easily add my own recipes
+1. To be able to save my favourite recipes to my account
+2. To be able to easily access saved recipes
+3. To be able to easily add my own recipes
+4. To be able to edit and delete my added recipes
+5. To be able to see which recipes are highly rated/well reviewed
+6. To be able to review recipes
+
+I am the website owner and I want:
+
+1. To encourage first time visitors to return to the site
+2. To encourage visitors to consider a vegetarian diet
+
+### Scope
+
+#### Strategy Trade Off Table
+
+Opportunity/Problem | Importance | Viability
+--------------------|------------|-----------
+Display recipes to users | 5 | 5
+Allow users to create account | 5 | 5
+Allow logged in users full CRUD functionality in terms of creating, reading, updating and deleting their own recipes | 5 | 5
+Create an admin account which has full control over all added recipes | 4 | 5
+Add information to encourage users to go Vegetarian | 4 | 4
+Allow logged in users to leave a review | 4 | 4
+Display nutritional information for each dish | 3 | 2
+
+The website is built as a Minimum Viable Product, but with room for expansion.
+
+### Structure
+
+### Skeleton
+
+[Wireframe for Mobile](documentation/wireframes/Mobile_Wireframes.pdf)
+
+[Wireframe for Tablet](documentation/wireframes/Tablet_Wireframes.pdf)
+
+[Wireframe for Desktop](documentation/wireframes/Desktop_Wireframes.pdf)
+
+### Surface
