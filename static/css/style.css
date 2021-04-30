@@ -1,0 +1,15 @@
+.dark-green-back {
+    background-color: #008100;
+}
+
+.light-text {
+    color: #F0EBEF !important;
+}
+
+a {
+    color: inherit;
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+}
