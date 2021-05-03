@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar sticky-top navbar-expand-lg dark-green-back light-text text-shadow">
+    <nav id="nav" class="navbar sticky-top navbar-expand-lg dark-green-back light-text text-shadow">
         <!-- Container wrapper -->
         <div class="container-fluid">
             <!-- Navbar Brand -->
@@ -16,6 +16,28 @@
             <div class="collapse navbar-collapse" id="navbar-content">
                 <!-- Left links -->
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    {% if session.user %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('loggedin', username=session['user']) }}">
+                            <p>Home</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('get_recipes') }}">
+                            <p>Recipes</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('add_recipe') }}">
+                            <p>Add Recipe</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('logout') }}">
+                            <p>Log Out</p>
+                        </a>
+                    </li>
+                    {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('index') }}">
                             <p>Home</p>
@@ -36,6 +58,7 @@
                             <p>Log In</p>
                         </a>
                     </li>
+                    {% endif %}
                 </ul>
                 <!-- Left links -->
             </div>

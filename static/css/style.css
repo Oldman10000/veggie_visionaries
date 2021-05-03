@@ -186,3 +186,7 @@ a {
 .card {
     padding: 20px;
 }
+
+.fa-plus {
+    text-align: right;
+}
