@@ -55,6 +55,9 @@ a {
 .hero {
     min-height: 100%;
     min-height: 100vh;
+}
+
+.centered-items {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,6 +70,13 @@ a {
 
 .home-veg {
     height: 150px;
+}
+
+.home-button {
+    background: #AAFFB4;
+    font-family: 'Amatic SC', cursive;
+    font-weight: 700;
+    font-size: 2em;
 }
 
 /* bouncing 'next section button' */
