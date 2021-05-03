@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-12 g-2">
                     <div class="card light-green-back">
-                        <h2 class="text-center card-header">Why Go Veggie?</h2>
+                        <h2 class="text-center card-header">Welecome {{ username }}</h2>
                         <div class="card-text veggie-info overflow-hidden">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                                 ut labore et dolore magna aliqua. Eu facilisis sed odio morbi quis. Enim tortor at
@@ -55,70 +55,96 @@
                 </div>
                 <div class="col-12 col-lg-6 g-2">
                     <div class="card light-green-back">
-                        <h2 class="text-center">My Saved Recipes</h2>
-                        </div>
-                    </div>
+                        <h2 class="text-center">Log In</h2>
 
-                    <div class="col-12 col-lg-6 g-2">
-                        <div class="card light-green-back">
-                            <h2 class="text-center card-header">Search For Recipe</h2>
+                        <div class="row">
+                            <p class="text-center">
+                                Don't have an account with us yet? Register <a href="{{ url_for('register') }}">Here</a>
+                            </p>
+                        </div>
+
+                        <div class="row">
+                            <form class="col-8 mx-auto" method="POST" action="{{ url_for('login') }}">
+                                <div class="card">
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="username" name="username" class="form-control"
+                                            required />
+                                        <label class="form-label" for="username">Username</label>
+                                        <div class="form-helper"></div>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <input type="password" id="password" name="password" class="form-control"
+                                            required />
+                                        <label class="form-label" for="password">Password</label>
+                                        <div class="form-helper"></div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
+
+                <div class="col-12 col-lg-6 g-2">
+                    <div class="card light-green-back">
+                        <h2 class="text-center card-header">Search For Recipe</h2>
+                    </div>
+                </div>
             </div>
-            <div class="col-12 col-md-4 g-4">
-                <div class="row">
-                    <div class="ratings card light-green-back g-2">
-                        <h2 class="text-center card-header">Top Rated</h2>
-                        <div class="col-12 mb-4">
-                            <div class="card dark-green-back">
-                                <h3 class="card-header">Vegetarian Fajitas</h3>
-                                <div class="rating p-3">
-                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                        class="fas fa-star"></i><i class="fas fa-star"></i>
-                                </div>
+        </div>
+        <div class="col-12 col-md-4 g-4">
+            <div class="row">
+                <div class="ratings card light-green-back g-2">
+                    <h2 class="text-center card-header">Top Rated</h2>
+                    <div class="col-12 mb-4">
+                        <div class="card dark-green-back">
+                            <h3 class="card-header">Vegetarian Fajitas</h3>
+                            <div class="rating p-3">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
                             </div>
                         </div>
-                        <div class="col-12 mb-4">
-                            <div class="card dark-green-back">
-                                <h3 class="card-header">Vegetarian Fajitas</h3>
-                                <div class="rating p-3">
-                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                        class="fas fa-star"></i><i class="fas fa-star"></i>
-                                </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="card dark-green-back">
+                            <h3 class="card-header">Vegetarian Fajitas</h3>
+                            <div class="rating p-3">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
                             </div>
                         </div>
-                        <div class="col-12 mb-4">
-                            <div class="card dark-green-back">
-                                <h3 class="card-header">Vegetarian Fajitas</h3>
-                                <div class="rating p-3">
-                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                        class="fas fa-star"></i><i class="fas fa-star"></i>
-                                </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="card dark-green-back">
+                            <h3 class="card-header">Vegetarian Fajitas</h3>
+                            <div class="rating p-3">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
                             </div>
                         </div>
-                        <div class="col-12 mb-4">
-                            <div class="card dark-green-back">
-                                <h3 class="card-header">Vegetarian Fajitas</h3>
-                                <div class="rating p-3">
-                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                        class="fas fa-star"></i><i class="fas fa-star"></i>
-                                </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="card dark-green-back">
+                            <h3 class="card-header">Vegetarian Fajitas</h3>
+                            <div class="rating p-3">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
                             </div>
                         </div>
-                        <div class="col-12 mb-4">
-                            <div class="card dark-green-back">
-                                <h3 class="card-header">Vegetarian Fajitas</h3>
-                                <div class="rating p-3">
-                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                        class="fas fa-star"></i><i class="fas fa-star"></i>
-                                </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="card dark-green-back">
+                            <h3 class="card-header">Vegetarian Fajitas</h3>
+                            <div class="rating p-3">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </main>
 
 {% endblock %}
