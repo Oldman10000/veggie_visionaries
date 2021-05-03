@@ -68,3 +68,87 @@ a {
 .home-veg {
     height: 150px;
 }
+
+/* bouncing 'next section button' */
+/* code copied and adapted from
+   https://forum.squarespace.com/topic/62680-how-can-i-create-a-bouncing-down-arrow/ */
+
+.bounce {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    margin-top: -25px;
+    margin-left: -25px;
+    height: 50px;
+    width: 50px;
+    -webkit-animation: bounce 1.5s infinite;
+    -moz-animation: bounce 1.5s infinite;
+    -o-animation: bounce 1.5s infinite;
+    animation: bounce 1.5s infinite;
+}
+
+.bounce i {
+    font-size: 1.5em;
+}
+
+@-webkit-keyframes bounce {
+    0% {
+        bottom: 0px;
+    }
+
+    50% {
+        bottom: 15px;
+    }
+
+    100% {
+        bottom: 30;
+    }
+}
+
+@-moz-keyframes bounce {
+    0% {
+        bottom: 0px;
+    }
+
+    50% {
+        bottom: 15px;
+    }
+
+    100% {
+        bottom: 30;
+    }
+}
+
+@-o-keyframes bounce {
+    0% {
+        bottom: 0px;
+    }
+
+    50% {
+        bottom: 15px;
+    }
+
+    100% {
+        bottom: 30;
+    }
+}
+
+@keyframes bounce {
+    0% {
+        bottom: 0px;
+    }
+
+    50% {
+        bottom: 15px;
+    }
+
+    100% {
+        bottom: 30;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .bounce {
+      display: none;
+    }
+  }
