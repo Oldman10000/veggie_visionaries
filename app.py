@@ -72,8 +72,6 @@ def login():
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
-                    flash("Welcome, {}".format(
-                        request.form.get("username")))
                     return redirect(url_for(
                         "loggedin", username=session["user"]))
             else:
@@ -87,15 +85,15 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/loggedin/<username>", methods=["GET", "POST"])
+@app.route("/index/<username>", methods=["GET", "POST"])
 def loggedin(username):
     # grabs session users username
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
     if session["user"]:
-        return render_template("loggedin.html", username=username)
-    
+        return render_template("index.html", username=username)
+
     return redirect(url_for("login"))
 
 

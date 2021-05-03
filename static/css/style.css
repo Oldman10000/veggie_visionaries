@@ -17,18 +17,25 @@ label,
 
 .dark-green-back {
     background-color: #008100;
+    color: #F0EBEF;
 }
 
 .light-green-back {
     background-color: #87B679;
-}
-
-.light-text {
-    color: #F0EBEF;
+    color: #1D261E;
 }
 
 a {
     color: inherit;
+}
+
+.internal-link {
+    color: #1D261E;
+    font-weight: 800;
+}
+
+.internal-link:hover {
+    color: #F0EBEF;
 }
 
 .text-shadow {
@@ -68,6 +75,12 @@ a {
     letter-spacing: 10px;
 }
 
+.title {
+    font-size: 3em;
+    letter-spacing: 5px;
+    font-weight: 700;
+}
+
 .home-veg {
     height: 150px;
 }
@@ -77,6 +90,13 @@ a {
     font-family: 'Amatic SC', cursive;
     font-weight: 700;
     font-size: 2em;
+}
+
+.submit-button {
+    background: #AAFFB4;
+    font-family: 'Amatic SC', cursive;
+    font-weight: 700;
+    font-size: 1.5em;
 }
 
 /* bouncing 'next section button' */
@@ -159,6 +179,10 @@ a {
 
 @media only screen and (max-width: 992px) {
     .bounce {
-      display: none;
+        display: none;
     }
-  }
+}
+
+.card {
+    padding: 20px;
+}
