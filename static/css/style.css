@@ -1,8 +1,17 @@
-h1, h2, h3, h4, h5, h6, button {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
     font-family: 'Amatic SC', cursive;
 }
 
-p, input, label, .form-helper {
+p,
+input,
+label,
+.form-helper {
     font-family: 'Indie Flower', cursive;
 }
 
@@ -15,7 +24,7 @@ p, input, label, .form-helper {
 }
 
 .light-text {
-    color: #F0EBEF !important;
+    color: #F0EBEF;
 }
 
 a {
@@ -23,7 +32,7 @@ a {
 }
 
 .text-shadow {
-    text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
 .card {
@@ -34,7 +43,7 @@ a {
     line-height: 2;
 }
 
-.rating > i {
+.rating>i {
     font-size: 1.5em;
     color: gold;
 }
@@ -44,5 +53,18 @@ a {
 }
 
 .hero {
-    height: 100vh;
+    min-height: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#main-title {
+    font-size: 5em;
+    letter-spacing: 10px;
+}
+
+.home-veg {
+    height: 150px;
 }
