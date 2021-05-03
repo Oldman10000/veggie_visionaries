@@ -4,11 +4,44 @@
 {% include 'navbar.html' %}
 
 <main>
-    {% for recipe in recipes %}
-        <h2>{{ recipe.name }}</h2>
-        {{ recipe.difficulty }}<br>
-        {{ recipe.prep_time }}<br>
-    {% endfor %}
-</main>
 
+    {% for recipe in recipes %}
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center">{{ recipe.name }}</h3>
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="card-text">
+                                Difficulty: {{ recipe.difficulty }}
+                            </p>
+                            <p class="card-text">
+                                Prep Time: {{ recipe.prep_time }}
+                            </p>
+                            <p class="card-text">
+                                Cook Time: {{ recipe.cook_time }}
+                            </p>
+                            <p class="card-text">
+                                Serves: {{ recipe.serves }}
+                            </p>
+                            <p class="card-text">
+                                {{ recipe.description }}
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            {% if recipe.image %}
+                            {% else %}
+
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</main>
 {% endblock %}
