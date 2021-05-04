@@ -27,7 +27,7 @@
         {% if messages %}
         {% for message in messages %}
         <div class="row flashes">
-            <h3 class="text-center">{{ message }}</h3>
+            <h2 class="text-center">{{ message }}</h2>
         </div>
         {% endfor %}
         {% endif %}
@@ -36,6 +36,38 @@
 
     {% block content %}
     {% endblock %}
+
+    <footer class="mt-4">
+        <div class="row d-flex justify-content-evenly text-center gx-2" id="footer-links">
+            {% if session.user %}
+            <a href="{{ url_for('get_recipes') }}" class="col-3">
+                <i class="fas fa-utensils"></i>
+            </a>
+            <a href="{{ url_for('add_recipe') }}" class="col-3">
+                <i class="fas fa-plus"></i>
+            </a>
+            <a href="#" class="col-3">
+                <i class="far fa-save"></i>
+            </a>
+            <a href="{{ url_for('logout') }}" class="col-3">
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+            {% else %}
+            <a href="{{ url_for('get_recipes') }}" class="col-4">
+                <i class="fas fa-utensils"></i>
+            </a>
+            <a href="{{ url_for('register') }}" class="col-4">
+                <i class="fas fa-user-plus"></i>
+            </a>
+            <a href="{{ url_for('login') }}" class="col-4">
+                <i class="fas fa-sign-in-alt"></i>
+            </a>
+            {% endif %}
+        </div>
+        <div class="text-center dark-green-back">
+            Patrick Oldman 2021
+        </div>
+    </footer>
 
     <!-- MDB -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
