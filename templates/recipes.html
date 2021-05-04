@@ -41,7 +41,8 @@
                                 <i class="fas fa-camera-retro fa-5x"></i>
                                 {% endif %}
                             </div>
-                            <a href="{{ url_for('showrecipe', recipe_id=recipe._id) }}" class="btn internal-link submit-button">See more</a>
+                            <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}" class="btn internal-link submit-button">See more</a>
+                            <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="btn internal-link submit-button">Edit</a>
                         </div>
                     </div>
                 </div>
