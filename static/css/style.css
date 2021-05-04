@@ -27,6 +27,11 @@ label,
     color: #1D261E;
 }
 
+.light-back {
+    background-color: #F0EBEF;
+    color: #1D261E;
+}
+
 a {
     color: inherit;
 }
