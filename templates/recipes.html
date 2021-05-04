@@ -34,18 +34,18 @@
                                     {{ recipe.description }}
                                 </p>
                             </div>
-                            <div class="col-6  d-flex align-items-center justify-content-center">
+                            <div class="col-6 d-flex align-items-center justify-content-center">
                                 {% if recipe.image %}
                                 <img src="#" alt="{{ recipe.name }} Photo">
                                 {% else %}
                                 <i class="fas fa-camera-retro fa-5x"></i>
                                 {% endif %}
                             </div>
-                            {% if session.user|lower == recipe.created_by|lower %}
                             <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}"
-                                class="btn internal-link submit-button">See more</a>
+                                class="btn internal-link my-button">See more</a>
+                            {% if session.user|lower == recipe.created_by|lower %}
                             <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}"
-                                class="btn internal-link submit-button">Edit</a>
+                                class="btn internal-link my-button">Edit</a>
                             {% endif %}
                         </div>
                     </div>

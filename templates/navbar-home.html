@@ -1,6 +1,6 @@
 <header>
-    <div class="hero dark-green-back">
-        <div class="text-center">
+    <div class="hero dark-green-back d-flex align-items-center">
+        <div class="container-xxl text-center mt-4">
             <div class="row gy-4">
                 <div class="col-6 text-center">
                     <img src="../static/svg/pepper.svg" alt="pepper" class="home-veg" id="pepper">
@@ -12,51 +12,43 @@
                     <h1 id="main-title" class="light-text text-shadow text-center">Veggie Visionaries</h1>
                 </div>
                 <div class="light-text text-shadow col-6 offset-3">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore
-                        et dolore magna aliqua. Volutpat lacus laoreet non curabitur. Magna sit amet purus gravida quis
-                        blandit. Justo nec ultrices dui sapien eget mi proin sed libero. Purus non enim praesent
-                        elementum.
-                        Ut morbi tincidunt augue interdum velit euismod. Lectus sit amet est placerat in egestas. In
-                        pellentesque massa placerat duis ultricies lacus. Neque ornare aenean euismod elementum nisi
-                        quis
-                        eleifend. Mauris a diam maecenas sed enim. Sed pulvinar proin gravida hendrerit lectus a. At
-                        auctor
-                        urna nunc id cursus metus.
+                    <p>A place to share your favourite veggie meals!
                     </p>
                 </div>
+                {% if session.user %}
+                <h2 class="text-center welcome text-shadow">Welcome {{ username }}</h2>
+                {% endif %}
+            </div>
+            <div class="row mt-5 d-flex justify-content-evenly g-2" id="home-buttons">
+                <a href="{{ url_for('get_recipes') }}" class="btn col-8 col-lg-3 my-button">
+                    Browse Recipes
+                </a>
+                {% if session.user %}
+                <a href="{{ url_for('add_recipe') }}" class="btn col-8 col-lg-3 my-button">
+                    Add New Recipe
+                </a>
+                {% else %}
+                <a href="{{ url_for('register') }}" class="btn col-8 col-lg-3 my-button">
+                    Register
+                </a>
+                {% endif %}
+                {% if session.user %}
+                <a href="{{ url_for('logout') }}" class="btn col-8 col-lg-3 my-button">
+                    Log Out
+                </a>
+                {% else %}
+                <a href="{{ url_for('login') }}" class="btn col-8 col-lg-3 my-button">
+                    Log In
+                </a>
+                {% endif %}
+            </div>
+            <div class="row mt-5">
                 <div class="col-6 text-center">
                     <img src="../static/svg/onion.svg" alt="onion" class="home-veg" id="onion">
                 </div>
                 <div class="col-6 text-center">
                     <img src="../static/svg/aubergine.svg" alt="aubergine" class="home-veg" id="aubergine">
                 </div>
-            </div>
-            {% if session.user %}
-            <h2 class="text-center title text-shadow">Welcome {{ username }}</h2>
-            {% endif %}
-            <div class="row mt-5 d-flex justify-content-evenly gy-2" id="home-buttons">
-                <a href="{{ url_for('get_recipes') }}" class="btn col-8 col-lg-3 home-button">
-                    Browse Recipes
-                </a>
-                {% if session.user %}
-                <a href="{{ url_for('add_recipe') }}" class="btn col-8 col-lg-3 home-button">
-                    Add New Recipe
-                </a>
-                {% else %}
-                <a href="{{ url_for('register') }}" class="btn col-8 col-lg-3 home-button">
-                    Register
-                </a>
-                {% endif %}
-                {% if session.user %}
-                <a href="{{ url_for('logout') }}" class="btn col-8 col-lg-3 home-button">
-                    Log Out
-                </a>
-                {% else %}
-                <a href="{{ url_for('login') }}" class="btn col-8 col-lg-3 home-button">
-                    Log In
-                </a>
-                {% endif %}
             </div>
             <div class="bounce">
                 <a href="#nav"><i class="fas fa-chevron-down light-text"></i></a>

@@ -1,3 +1,5 @@
+/* global styling */
+
 h1,
 h2,
 h3,
@@ -42,8 +44,10 @@ a {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
-.card {
-    padding: 10px;
+.my-button {
+    background: #AAFFB4;
+    font-family: 'Amatic SC', cursive;
+    font-weight: 700;
 }
 
 .flashes h3 {
@@ -59,44 +63,31 @@ a {
     height: 50vh;
 }
 
+/* home hero section */
+
 .hero {
     min-height: 100%;
     min-height: 100vh;
 }
 
-.centered-items {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 #main-title {
-    font-size: 5em;
     letter-spacing: 10px;
+    font-weight: 700;
 }
 
-.title {
-    font-size: 3em;
+.welcome {
     letter-spacing: 5px;
     font-weight: 700;
 }
 
 .home-veg {
-    height: 150px;
+    height: 50px;
 }
 
-.home-button {
-    background: #AAFFB4;
-    font-family: 'Amatic SC', cursive;
-    font-weight: 700;
-    font-size: 2em;
-}
-
-.submit-button {
-    background: #AAFFB4;
-    font-family: 'Amatic SC', cursive;
-    font-weight: 700;
-    font-size: 1.5em;
+@media only screen and (min-width: 768px) {
+    .home-veg {
+        height: 75px;
+    }
 }
 
 /* bouncing 'next section button' */
@@ -109,8 +100,8 @@ a {
     bottom: 0;
     margin-top: -25px;
     margin-left: -25px;
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
     -webkit-animation: bounce 1.5s infinite;
     -moz-animation: bounce 1.5s infinite;
     -o-animation: bounce 1.5s infinite;
@@ -118,7 +109,7 @@ a {
 }
 
 .bounce i {
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 
 @-webkit-keyframes bounce {
@@ -185,8 +176,4 @@ a {
 
 .card {
     padding: 20px;
-}
-
-.fa-plus {
-    text-align: right;
 }
