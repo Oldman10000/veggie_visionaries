@@ -4,7 +4,7 @@
 {% include 'navbar.html' %}
 
 <main>
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <form class="col-8 mx-auto" method="POST" action="{{ url_for('add_recipe') }}">
             <div class="card dark-green-back">
                 <h2 class="text-center title text-shadow">Add Recipe</h2>
@@ -50,7 +50,7 @@
                         <label class="form-label" for="ingredient1">Ingredient</label>
                     </div>
                 </div>
-                <div class="add_ingredient_button btn submit-button mb-4" title="Add field">
+                <div class="add_ingredient_button btn my-button mb-4" title="Add field">
                     <i class="fas fa-plus"></i> Add Another Ingredient
                 </div>
                 <div class="instruction_field_wrapper wrapper">
@@ -59,7 +59,7 @@
                         <label class="form-label" for="instruction1">Instruction 1</label>
                     </div>
                 </div>
-                <div class="add_instruction_button btn submit-button mb-4" title="Add field">
+                <div class="add_instruction_button btn my-button mb-4" title="Add field">
                     <i class="fas fa-plus"></i> Add Further Instructions
                 </div>
                 <div class="mb-4">
