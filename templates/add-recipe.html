@@ -5,7 +5,7 @@
 
 <main>
     <div class="container mt-5">
-        <form class="col-8 mx-auto" method="POST" action="{{ url_for('login') }}">
+        <form class="col-8 mx-auto" method="POST" action="{{ url_for('add_recipe') }}">
             <div class="card dark-green-back">
                 <h2 class="text-center title text-shadow">Add Recipe</h2>
                 <div class="row">
@@ -19,13 +19,13 @@
                 </div>
                 <p>Difficulty</p>
                 <div class="btn-group mb-4">
-                    <input type="radio" class="btn-check" name="difficulty" id="easy" autocomplete="off" checked />
+                    <input type="radio" class="btn-check" name="difficulty" id="easy" value="easy" autocomplete="off" checked />
                     <label class="btn btn-success" for="easy">Easy</label>
 
-                    <input type="radio" class="btn-check" name="difficulty" id="medium" autocomplete="off" />
+                    <input type="radio" class="btn-check" name="difficulty" id="medium" value="medium" autocomplete="off" />
                     <label class="btn btn-success" for="medium">Medium</label>
 
-                    <input type="radio" class="btn-check" name="difficulty" id="hard" autocomplete="off" />
+                    <input type="radio" class="btn-check" name="difficulty" id="hard" value="hard" autocomplete="off" />
                     <label class="btn btn-success" for="hard">Hard</label>
                 </div>
                 <div class="form-outline form-white mb-4">
@@ -46,7 +46,7 @@
                 </div>
                 <div class="ingredient_field_wrapper wrapper">
                     <div class="form-outline form-white mb-4">
-                        <input type="text" name="ingredient1" id="ingredient1" class="form-control" required />
+                        <input type="text" name="ingredient" id="ingredient1" class="form-control" required />
                         <label class="form-label" for="ingredient1">Ingredient</label>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="instruction_field_wrapper wrapper">
                     <div class="form-outline form-white mb-4">
-                        <input type="text" name="instruction1" id="instruction1" class="form-control" required />
+                        <input type="text" name="instruction" id="instruction1" class="form-control" required />
                         <label class="form-label" for="instruction1">Instruction 1</label>
                     </div>
                 </div>

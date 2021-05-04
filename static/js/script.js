@@ -13,7 +13,7 @@ $(document).ready(function () {
             ingredientInputs++; //Increment field counter
             $('.ingredient_field_wrapper').append(`
             <div class="form-outline form-white mb-4">
-                <input type="text" name="ingredient${ingredientInputs}" id="ingredient${ingredientInputs}" class="form-control" required />
+                <input type="text" name="ingredient" id="ingredient${ingredientInputs}" class="form-control" required />
                 <label class="form-label" for="ingredient${ingredientInputs}">Ingredient</label>
                 <a href="javascript:void(0);" class="remove_button" title="Add field"><i class="fas fa-minus"></i></a>
             </div>
@@ -31,8 +31,8 @@ $(document).ready(function () {
             instructionInputs++; //Increment field counter
             $('.instruction_field_wrapper').append(`
             <div class="form-outline form-white mb-4">
-                <input type="text" name="instruction${ingredientInputs}" id="instruction${ingredientInputs}" class="form-control" required />
-                <label class="form-label" for="instruction${ingredientInputs}">Instruction ${ingredientInputs}</label>
+                <input type="text" name="instruction" id="instruction${instructionInputs}" class="form-control" required />
+                <label class="form-label" for="instruction${instructionInputs}">Instruction ${instructionInputs}</label>
                 <a href="javascript:void(0);" class="remove_button" title="Add field"><i class="fas fa-minus"></i></a>
             </div>
             `)

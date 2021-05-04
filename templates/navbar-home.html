@@ -40,7 +40,7 @@
                     Browse Recipes
                 </a>
                 {% if session.user %}
-                <a href="#" class="btn col-8 col-lg-3 home-button">
+                <a href="{{ url_for('add_recipe') }}" class="btn col-8 col-lg-3 home-button">
                     Add New Recipe
                 </a>
                 {% else %}
