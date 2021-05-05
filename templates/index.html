@@ -109,7 +109,23 @@
                     {% endif %}
                     <div class="col-12 col-lg-6">
                         <div class="card light-back">
-                            <h2 class="text-center card-header">Search For Recipe</h2>
+                            <h2 class="text-center mb-2 card-header">Search For Recipe</h2>
+                            <p class="text-center card-subtitle text-muted">Search by dish/ingredient etc</p>
+                            <div class="row">
+                                <form action="{{ url_for('search') }}" method="post" class="col-12">
+                                    <div class="row justify-content-center">
+                                        <div class="form-outline col-9 m-3">
+                                            <input type="text" id="query" name="query" class="form-control" required />
+                                            <label class="form-label" for="query">Search</label>
+                                        </div>
+                                        <div class="col-9 mb-3 text-center">
+                                            <button type="submit" class="btn internal-link my-button">
+                                                Search
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -175,6 +191,6 @@
             </div>
         </div>
     </div>
-</main>
+    </main>
 
-{% endblock %}
+    {% endblock %}
