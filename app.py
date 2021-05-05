@@ -21,24 +21,28 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+# index page
 @app.route("/")
 @app.route("/index")
 def index():
     return render_template("index.html")
 
 
+# gets all recipes template
 @app.route("/get_recipes")
 def get_recipes():
     recipes = mongo.db.recipes.find()
     return render_template("recipes.html", recipes=recipes)
 
 
+# gets specific recipe as selected by user
 @app.route("/recipe/<recipe_id>")
 def show_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template("recipe.html", recipe=recipe)
 
 
+# allows user to edit recipe
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     if request.method == "POST":
@@ -61,6 +65,15 @@ def edit_recipe(recipe_id):
     return render_template("edit_recipe.html", recipe=recipe)
 
 
+# allows user to delete recipe
+@app.route("/delete_recipe/<recipe_id>")
+def delete_recipe(recipe_id):
+    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    flash("Recipe Deleted")
+    return redirect(url_for("get_recipes"))
+
+
+# allows uer to register
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -88,6 +101,7 @@ def register():
     return render_template("register.html")
 
 
+# allows user to login
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -113,6 +127,7 @@ def login():
     return render_template("login.html")
 
 
+# redirects logged in user to homepage
 @app.route("/index/<username>", methods=["GET", "POST"])
 def loggedin(username):
     # grabs session users username
@@ -125,6 +140,7 @@ def loggedin(username):
     return redirect(url_for("login"))
 
 
+# logs out user
 @app.route("/logout")
 def logout():
     # remove user from session cookies
@@ -133,6 +149,7 @@ def logout():
     return redirect(url_for("login"))
 
 
+# allows user to add recipe
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
@@ -154,6 +171,7 @@ def add_recipe():
     return render_template("add_recipe.html")
 
 
+# runs application
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

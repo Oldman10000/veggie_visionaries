@@ -65,6 +65,10 @@ a {
     letter-spacing: 10px;
 }
 
+.card {
+    padding: 20px;
+}
+
 .my-button {
     background: #AAFFB4;
     font-family: 'Amatic SC', cursive;
@@ -196,6 +200,14 @@ a {
     }
 }
 
-.card {
-    padding: 20px;
+/* Recipes page */
+
+#edit-button {
+    background: blue;
+    font-weight: 700;
+}
+
+.delete-button {
+    background: red;
+    font-weight: 700;
 }
