@@ -39,7 +39,8 @@ p,
 input,
 label,
 .form-helper,
-textarea {
+textarea,
+li {
     font-family: 'Indie Flower', cursive;
 }
 

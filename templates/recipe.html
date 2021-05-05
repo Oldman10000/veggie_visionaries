@@ -4,14 +4,21 @@
 {% include 'navbar.html' %}
 
 <main>
-    <div class="container">
-        <h2 class="text-center title text-shadow">{{ recipe.name }}</h2>
-        <div class="row justify-content-center">
+    <div class="container mt-4 mb-4">
+        <h2 class="text-center title text-shadow mb-4">{{ recipe.name }}</h2>
+        <div class="row justify-content-center g-2">
             <div class="col-12">
-                <div class="card">
-                    <div class="card-body light-green-back">
+                <div class="card light-back">
+                    <div class="card-body">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12 col-md-6 order-md-2 d-flex align-items-center justify-content-center">
+                                {% if recipe.image %}
+                                <img src="#" alt="{{ recipe.name }} Photo">
+                                {% else %}
+                                <i class="fas fa-camera-retro fa-5x"></i>
+                                {% endif %}
+                            </div>
+                            <div class="col-12 col-md-6">
                                 <p class="card-text">
                                     Created by {{ recipe.created_by }}
                                 </p>
@@ -31,20 +38,13 @@
                                     {{ recipe.description }}
                                 </p>
                             </div>
-                            <div class="col-6  d-flex align-items-center justify-content-center">
-                                {% if recipe.image %}
-                                <img src="#" alt="{{ recipe.name }} Photo">
-                                {% else %}
-                                <i class="fas fa-camera-retro fa-5x"></i>
-                                {% endif %}
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-10 col-md-6">
-                <div class="card">
-                    <div class="card-body light-green-back">
+                <div class="card light-back">
+                    <div class="card-body">
                         <h3 class="card-title">Ingredients</h3>
                         <ul>
                             {% for ingredient in recipe.ingredients %}
@@ -55,8 +55,8 @@
                 </div>
             </div>
             <div class="col-10 col-md-6">
-                <div class="card">
-                    <div class="card-body light-green-back">
+                <div class="card light-back">
+                    <div class="card-body">
                         <h3 class="card-title">Instructions</h3>
                         <ol>
                             {% for instruction in recipe.instructions %}
