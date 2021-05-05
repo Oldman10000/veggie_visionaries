@@ -1,12 +1,28 @@
 /* global styling */
 
-html,body
-{
-    width: 100%;
-    height: 100%;
+body {
     margin: 0px;
     padding: 0px;
-    overflow-x: hidden; 
+    padding-bottom: 60px;
+}
+
+footer {
+    height: 60px;
+}
+
+#footer-links a {
+    font-size: 1.1em;
+    padding: 5px;
+}
+
+@media only screen and (min-width: 992px) {
+    #footer-links {
+        display: none;
+    }
+
+    footer {
+        height: 25px;
+    }
 }
 
 h1,

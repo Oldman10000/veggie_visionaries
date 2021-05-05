@@ -1,6 +1,6 @@
-// Dynamic input function taken and adapted from https://www.codexworld.com/add-remove-input-fields-dynamically-using-jquery/
-
 $(document).ready(function () {
+
+    // Dynamic input function taken and adapted from https://www.codexworld.com/add-remove-input-fields-dynamically-using-jquery/
     const maxFieldIngredients = 15; //Input fields increment limitation
     const maxFieldInstructions = 10; //Input fields increment limitation
     let ingredientInputs = $(".ingredient").length; //Initial field counter is amount of nodes
@@ -54,5 +54,16 @@ $(document).ready(function () {
         e.preventDefault();
         $(this).parent('div').remove(); //Remove field html
         instructionInputs--; //Decrement field counter
+    });
+
+    // hides footer until scroll down
+    $("footer").hide();
+
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 1) {
+            $("footer").show();
+        } else {
+            $("footer").hide();
+        }
     });
 });

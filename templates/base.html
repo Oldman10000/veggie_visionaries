@@ -37,35 +37,41 @@
     {% block content %}
     {% endblock %}
 
-    <footer class="mt-4">
-        <div class="row d-flex justify-content-evenly text-center gx-2" id="footer-links">
+    <footer class="fixed-bottom mt-4">
+        <div class="row justify-content-evenly text-center" id="footer-links">
             {% if session.user %}
-            <a href="{{ url_for('get_recipes') }}" class="col-3">
+            <a href="{{ url_for('get_recipes') }}" class="internal-link my-button col-2">
                 <i class="fas fa-utensils"></i>
             </a>
-            <a href="{{ url_for('add_recipe') }}" class="col-3">
+            <a href="{{ url_for('add_recipe') }}" class="internal-link my-button col-2">
                 <i class="fas fa-plus"></i>
             </a>
-            <a href="#" class="col-3">
+            <a href="{{ url_for('add_recipe') }}" class="internal-link my-button col-4">
+                <i class="fas fa-home"></i>
+            </a>
+            <a href="#" class="internal-link my-button col-2">
                 <i class="far fa-save"></i>
             </a>
-            <a href="{{ url_for('logout') }}" class="col-3">
+            <a href="{{ url_for('logout') }}" class="internal-link my-button col-2">
                 <i class="fas fa-sign-out-alt"></i>
             </a>
             {% else %}
-            <a href="{{ url_for('get_recipes') }}" class="col-4">
+            <a href="{{ url_for('get_recipes') }}" class="internal-link my-button col-3">
                 <i class="fas fa-utensils"></i>
             </a>
-            <a href="{{ url_for('register') }}" class="col-4">
+            <a href="{{ url_for('register') }}" class="internal-link my-button col-3">
                 <i class="fas fa-user-plus"></i>
             </a>
-            <a href="{{ url_for('login') }}" class="col-4">
+            <a href="{{ url_for('register') }}" class="internal-link my-button col-3">
+                <i class="fas fa-home"></i>
+            </a>
+            <a href="{{ url_for('login') }}" class="internal-link my-button col-3">
                 <i class="fas fa-sign-in-alt"></i>
             </a>
             {% endif %}
         </div>
         <div class="text-center dark-green-back">
-            Patrick Oldman 2021
+            <p>Patrick Oldman 2021</p>
         </div>
     </footer>
 
