@@ -202,11 +202,6 @@ a {
 
 /* Recipes page */
 
-#edit-button {
-    background: blue;
-    font-weight: 700;
-}
-
 .delete-button {
     background: red;
     font-weight: 700;
