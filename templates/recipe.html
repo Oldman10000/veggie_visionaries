@@ -5,6 +5,9 @@
 
 <main>
     <div class="container mt-4 mb-4">
+        <a href="{{ url_for('get_recipes') }}" class="btn internal-link my-button btn-floating mb-4">
+            <i class="fas fa-arrow-left"></i>
+        </a>
         <h2 class="text-center title text-shadow mb-4">{{ recipe.name }}</h2>
         <div class="row justify-content-center g-2">
             <div class="col-12">
@@ -42,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-10 col-md-6">
+            <div class="col-12 col-md-6">
                 <div class="card light-back">
                     <div class="card-body">
                         <h3 class="card-title">Ingredients</h3>
@@ -54,7 +57,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-10 col-md-6">
+            <div class="col-12 col-md-6">
                 <div class="card light-back">
                     <div class="card-body">
                         <h3 class="card-title">Instructions</h3>
