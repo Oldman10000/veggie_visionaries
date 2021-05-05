@@ -4,7 +4,7 @@
 {% include 'navbar.html' %}
 
 <main>
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <form class="col-8 mx-auto" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
             <div class="card dark-green-back">
                 <h2 class="text-center title text-shadow">Edit Recipe</h2>
@@ -74,35 +74,46 @@
                         required>{{ recipe.description }}</textarea>
                     <label class="form-label" for="description">Description</label>
                 </div>
+                <p>Add Ingredients</p>
                 <div class="ingredient_field_wrapper wrapper">
                     {% for ingredient in recipe.ingredients %}
                     <div class="form-outline form-white mb-4">
                         <input type="text" name="ingredient" id="ingredient1" class="form-control ingredient"
                             value="{{ ingredient }}" required />
                         <label class="form-label" for="ingredient1">Ingredient</label>
+                        <a href="javascript:void(0);" class="remove_button" title="Add field"><i
+                                class="fas fa-minus"></i></a>
                     </div>
                     {% endfor %}
                 </div>
-                <div class="add_ingredient_button btn submit-button mb-4" title="Add field">
+                <div class="add_ingredient_button btn my-button mb-4" title="Add field">
                     <i class="fas fa-plus"></i> Add Another Ingredient
                 </div>
+                <p>Add Instructions</p>
                 <div class="instruction_field_wrapper wrapper">
                     {% for instruction in recipe.instructions %}
                     <div class="form-outline form-white mb-4">
-                        <input type="text" name="instruction" id="instruction1" class="form-control instruction"
-                            value="{{ instruction }}" required />
+                        <textarea name="instruction" id="instruction1" class="form-control instruction" rows=4
+                            required>{{ instruction }}</textarea>
                         <label class="form-label" for="instruction1">Instruction {{ loop.index }}</label>
+                        <a href="javascript:void(0);" class="remove_button" title="Add field"><i
+                                class="fas fa-minus"></i></a>
                     </div>
                     {% endfor %}
                 </div>
-                <div class="add_instruction_button btn submit-button mb-4" title="Add field">
+                <div class="delete_instruction_button btn my-button mb-4" title="Add field">
+                    <i class="fas fa-plus"></i> Remove Last Instruction
+                </div>
+                <div class="add_instruction_button btn my-button mb-4" title="Add field">
                     <i class="fas fa-plus"></i> Add Further Instructions
                 </div>
                 <div class="mb-4">
                     <label class="form-label" for="photo" id="photo">Add Your photo here (optional)</label>
                     <input type="file" class="form-control" id="photo" />
                 </div>
-                <button type="submit" class="btn my-button">Edit</button>
+                <button type="submit" class="btn my-button mb-3">Edit</button>
+                <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}"
+                    class="btn internal-link my-button">Cancel</a>
             </div>
         </form>
     </div>

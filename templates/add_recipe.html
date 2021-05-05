@@ -19,10 +19,12 @@
                 </div>
                 <p>Difficulty</p>
                 <div class="btn-group mb-4">
-                    <input type="radio" class="btn-check" name="difficulty" id="easy" value="easy" autocomplete="off" checked />
+                    <input type="radio" class="btn-check" name="difficulty" id="easy" value="easy" autocomplete="off"
+                        checked />
                     <label class="btn btn-success" for="easy">Easy</label>
 
-                    <input type="radio" class="btn-check" name="difficulty" id="medium" value="medium" autocomplete="off" />
+                    <input type="radio" class="btn-check" name="difficulty" id="medium" value="medium"
+                        autocomplete="off" />
                     <label class="btn btn-success" for="medium">Medium</label>
 
                     <input type="radio" class="btn-check" name="difficulty" id="hard" value="hard" autocomplete="off" />
@@ -44,20 +46,27 @@
                     <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
                     <label class="form-label" for="description">Description</label>
                 </div>
+                <p>Add Ingredients</p>
                 <div class="ingredient_field_wrapper wrapper">
                     <div class="form-outline form-white mb-4">
-                        <input type="text" name="ingredient" id="ingredient1" class="form-control" required />
+                        <input type="text" name="ingredient" id="ingredient1" class="form-control ingredient"
+                            required />
                         <label class="form-label" for="ingredient1">Ingredient</label>
                     </div>
                 </div>
                 <div class="add_ingredient_button btn my-button mb-4" title="Add field">
                     <i class="fas fa-plus"></i> Add Another Ingredient
                 </div>
+                <p>Add Instructions</p>
                 <div class="instruction_field_wrapper wrapper">
                     <div class="form-outline form-white mb-4">
-                        <input type="text" name="instruction" id="instruction1" class="form-control" required />
+                        <textarea name="instruction" id="instruction1" class="form-control instruction" rows=4
+                            required></textarea>
                         <label class="form-label" for="instruction1">Instruction 1</label>
                     </div>
+                </div>
+                <div class="delete_instruction_button btn my-button mb-4" title="Add field">
+                    <i class="fas fa-plus"></i> Remove Last Instruction
                 </div>
                 <div class="add_instruction_button btn my-button mb-4" title="Add field">
                     <i class="fas fa-plus"></i> Add Further Instructions

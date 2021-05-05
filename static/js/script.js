@@ -18,6 +18,7 @@ $(document).ready(function () {
                 <a href="javascript:void(0);" class="remove_button" title="Add field"><i class="fas fa-minus"></i></a>
             </div>
             `)
+            ingredientInputs = $(".ingredient").length;
             document.querySelectorAll('.form-outline').forEach((formOutline) => {
                 new mdb.Input(formOutline).init();
             });
@@ -31,28 +32,28 @@ $(document).ready(function () {
             instructionInputs++; //Increment field counter
             $('.instruction_field_wrapper').append(`
             <div class="form-outline form-white mb-4">
-                <input type="text" name="instruction" id="instruction${instructionInputs}" class="form-control instruction" required />
+                <textarea name="instruction" id="instruction${instructionInputs}" class="form-control instruction" rows=4 required></textarea>
                 <label class="form-label" for="instruction${instructionInputs}">Instruction ${instructionInputs}</label>
-                <a href="javascript:void(0);" class="remove_button" title="Add field"><i class="fas fa-minus"></i></a>
             </div>
             `)
+            instructionInputs = $(".instruction").length;
             document.querySelectorAll('.form-outline').forEach((formOutline) => {
                 new mdb.Input(formOutline).init();
             });
         }
     });
 
-    //Once remove button is clicked
-    $(".ingredient_field_wrapper").on('click', '.remove_button', function (e) {
+    //Once remove ingredient button is clicked
+    $(".ingredient_field_wrapper").click(function (e) {
         e.preventDefault();
         $(this).parent('div').remove(); //Remove field html
-        ingredientInputs--; //Decrement field counter
+        ingredientInputs = $(".ingredient").length;
     });
 
-    //Once remove button is clicked
-    $(".instruction_field_wrapper").on('click', '.remove_button', function (e) {
+    //Once remove instruciton button is clicked
+    $(".delete_instruction_button").click(function (e) {
         e.preventDefault();
-        $(this).parent('div').remove(); //Remove field html
-        instructionInputs--; //Decrement field counter
+        $(this).prev().children().last().remove(); //Remove field html
+        instructionInputs = $(".instruction").length;
     });
 });
