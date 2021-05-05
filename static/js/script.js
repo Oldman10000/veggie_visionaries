@@ -55,15 +55,4 @@ $(document).ready(function () {
         $(this).parent('div').remove(); //Remove field html
         instructionInputs--; //Decrement field counter
     });
-
-    // hides footer until scroll down
-    $("footer").hide();
-
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 1) {
-            $("footer").show();
-        } else {
-            $("footer").hide();
-        }
-    });
 });
