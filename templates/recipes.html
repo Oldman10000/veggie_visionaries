@@ -36,6 +36,9 @@
             </form>
         </div>
 
+        {{ pagination.links }}
+        {{ pagination.info }}
+
         {% if recipes|length > 0 %}
         {% for recipe in recipes %}
         <div class="row justify-content-center">

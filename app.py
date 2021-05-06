@@ -3,6 +3,7 @@ from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
+from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 import cloudinary
@@ -28,11 +29,44 @@ def index():
     return render_template("index.html")
 
 
+# amount of items per page for pagination feature
+PER_PAGE = 5
+
+
+"""
+    Pagination copied and adapted from
+    https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
+"""
+
+
+def paginated(recipes):
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    offset = page * PER_PAGE - PER_PAGE
+
+    return recipes[offset: offset + PER_PAGE]
+
+
+def pagination_args(recipes):
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    total = len(recipes)
+
+    return Pagination(page=page,
+                      per_page=PER_PAGE,
+                      total=total,
+                      css_framework="bootstrap4")
+
+
 # gets all recipes template
 @app.route("/get_recipes")
 def get_recipes():
     recipes = list(mongo.db.recipes.find())
-    return render_template("recipes.html", recipes=recipes)
+    recipes_paginated = paginated(recipes)
+    pagination = pagination_args(recipes)
+    return render_template("recipes.html",
+                           recipes=recipes_paginated,
+                           pagination=pagination)
 
 
 # allows user to search for recipe
