@@ -74,14 +74,22 @@ def get_recipes():
 def search():
     query = request.form.get("query")
     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
-    return render_template("recipes.html", recipes=recipes)
+    recipes_paginated = paginated(recipes)
+    pagination = pagination_args(recipes)
+    return render_template("recipes.html",
+                           recipes=recipes_paginated,
+                           pagination=pagination)
 
 
 # sorts recipes alphabetically
 @app.route("/a-z", methods=["GET", "POST"])
 def a_z():
     recipes = list(mongo.db.recipes.find().sort("name"))
-    return render_template("recipes.html", recipes=recipes)
+    recipes_paginated = paginated(recipes)
+    pagination = pagination_args(recipes)
+    return render_template("recipes.html",
+                           recipes=recipes_paginated,
+                           pagination=pagination)
 
 
 # gets specific recipe as selected by user
