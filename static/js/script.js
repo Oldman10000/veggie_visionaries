@@ -15,7 +15,6 @@ $(document).ready(function () {
             <div class="form-outline form-white mb-4">
                 <input type="text" name="ingredient" id="ingredient${ingredientInputs}" class="form-control ingredient" required />
                 <label class="form-label" for="ingredient${ingredientInputs}">Ingredient</label>
-                <a href="javascript:void(0);" class="remove_button" title="Add field"><i class="fas fa-minus"></i></a>
             </div>
             `)
             ingredientInputs = $(".ingredient").length;
@@ -44,9 +43,9 @@ $(document).ready(function () {
     });
 
     //Once remove ingredient button is clicked
-    $(".ingredient_field_wrapper").click(function (e) {
+    $(".delete_ingredient_button").click(function (e) {
         e.preventDefault();
-        $(this).parent('div').remove(); //Remove field html
+        $(this).prev().children().last().remove(); //Remove field html
         ingredientInputs = $(".ingredient").length;
     });
 

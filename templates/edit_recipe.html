@@ -81,10 +81,11 @@
                         <input type="text" name="ingredient" id="ingredient1" class="form-control ingredient"
                             value="{{ ingredient }}" required />
                         <label class="form-label" for="ingredient1">Ingredient</label>
-                        <a href="javascript:void(0);" class="remove_button" title="Add field"><i
-                                class="fas fa-minus"></i></a>
                     </div>
                     {% endfor %}
+                </div>
+                <div class="delete_ingredient_button btn my-button mb-4" title="Add field">
+                    <i class="fas fa-plus"></i> Remove Last Ingredient
                 </div>
                 <div class="add_ingredient_button btn my-button mb-4" title="Add field">
                     <i class="fas fa-plus"></i> Add Another Ingredient
@@ -96,8 +97,6 @@
                         <textarea name="instruction" id="instruction1" class="form-control instruction" rows=4
                             required>{{ instruction }}</textarea>
                         <label class="form-label" for="instruction1">Instruction {{ loop.index }}</label>
-                        <a href="javascript:void(0);" class="remove_button" title="Add field"><i
-                                class="fas fa-minus"></i></a>
                     </div>
                     {% endfor %}
                 </div>
