@@ -55,4 +55,20 @@ $(document).ready(function () {
         $(this).prev().children().last().remove(); //Remove field html
         instructionInputs = $(".instruction").length;
     });
+
+
+    // cloudinary widget
+    $(".photo-widget").click(e => {
+        e.preventDefault();
+        cloudinary.openUploadWidget({
+            cloud_name: 'dljklwibk',
+            upload_preset: 'veggie',
+            sources: ['local', 'url', 'google_drive', 'dropbox', 'shutterstock', 'instagram']
+        }, (error, result) => {
+            if (!error && result && result.event === "success") {
+                console.log(result.info.secure_url);
+                $("#image_submit").val(result.info.secure_url);
+            }
+        })
+    });
 });

@@ -106,10 +106,11 @@
                 <div class="add_instruction_button btn my-button mb-4" title="Add field">
                     <i class="fas fa-plus"></i> Add Further Instructions
                 </div>
-                <div class="mb-4">
-                    <label class="form-label" for="photo" id="photo">Add Your photo here (optional)</label>
-                    <input type="file" class="form-control" id="photo" />
+                <div class="btn my-button photo-widget mb-4">
+                    Add Photo (Optional)
                 </div>
+                <input type="text" id="image_submit" name="image_submit" />
+                <label for="image_submit">Image Submit</label>
                 <button type="submit" class="btn my-button mb-3">Edit</button>
                 <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}"
                     class="btn internal-link my-button">Cancel</a>

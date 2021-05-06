@@ -6,9 +6,6 @@ from flask_pymongo import PyMongo
 from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 if os.path.exists("env.py"):
     import env
 
@@ -129,6 +126,7 @@ def edit_recipe(recipe_id):
             "serves": request.form.get("serves"),
             "description": request.form.get("description"),
             "ingredients": request.form.getlist("ingredient"),
+            "image": request.form.get("image_submit"),
             "instructions": request.form.getlist("instruction"),
             "created_by": session["user"]
         }
@@ -237,6 +235,7 @@ def add_recipe():
             "description": request.form.get("description"),
             "ingredients": request.form.getlist("ingredient"),
             "instructions": request.form.getlist("instruction"),
+            "image": request.form.get("image_submit"),
             "created_by": session["user"]
         }
         mongo.db.recipes.insert_one(recipe)
