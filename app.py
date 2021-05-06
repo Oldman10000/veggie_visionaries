@@ -58,15 +58,20 @@ def pagination_args(recipes):
                       css_framework="bootstrap4")
 
 
-# gets all recipes template
-@app.route("/get_recipes")
-def get_recipes():
-    recipes = list(mongo.db.recipes.find())
+# general recipes page template
+def show_recipes(recipes):
     recipes_paginated = paginated(recipes)
     pagination = pagination_args(recipes)
     return render_template("recipes.html",
                            recipes=recipes_paginated,
                            pagination=pagination)
+
+
+# shows all recipes
+@app.route("/recipes")
+def all_recipes():
+    recipes = list(mongo.db.recipes.find())
+    return show_recipes(recipes)
 
 
 # allows user to search for recipe
@@ -74,22 +79,35 @@ def get_recipes():
 def search():
     query = request.form.get("query")
     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
-    recipes_paginated = paginated(recipes)
-    pagination = pagination_args(recipes)
-    return render_template("recipes.html",
-                           recipes=recipes_paginated,
-                           pagination=pagination)
+    return show_recipes(recipes)
 
 
 # sorts recipes alphabetically
-@app.route("/a-z", methods=["GET", "POST"])
+@app.route("/recipes/a-z", methods=["GET", "POST"])
 def a_z():
     recipes = list(mongo.db.recipes.find().sort("name"))
-    recipes_paginated = paginated(recipes)
-    pagination = pagination_args(recipes)
-    return render_template("recipes.html",
-                           recipes=recipes_paginated,
-                           pagination=pagination)
+    return show_recipes(recipes)
+
+
+# gets easy recipes
+@app.route("/recipes/easy", methods=["GET", "POST"])
+def easy():
+    recipes = list(mongo.db.recipes.find({"difficulty": "easy"}))
+    return show_recipes(recipes)
+
+
+# gets medium recipes
+@app.route("/recipes/medium", methods=["GET", "POST"])
+def medium():
+    recipes = list(mongo.db.recipes.find({"difficulty": "medium"}))
+    return show_recipes(recipes)
+
+
+# gets hard recipes
+@app.route("/recipes/hard", methods=["GET", "POST"])
+def hard():
+    recipes = list(mongo.db.recipes.find({"difficulty": "hard"}))
+    return show_recipes(recipes)
 
 
 # gets specific recipe as selected by user
@@ -127,7 +145,7 @@ def edit_recipe(recipe_id):
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
     flash("Recipe Deleted")
-    return redirect(url_for("get_recipes"))
+    return redirect(url_for("all_recipes"))
 
 
 # allows uer to register
@@ -223,7 +241,7 @@ def add_recipe():
         }
         mongo.db.recipes.insert_one(recipe)
         flash("Recipe Successfully Added")
-        return redirect(url_for("get_recipes"))
+        return redirect(url_for("all_recipes"))
 
     return render_template("add_recipe.html")
 

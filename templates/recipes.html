@@ -18,7 +18,7 @@
                         <button type="submit" class="btn internal-link my-button">
                             Search
                         </button>
-                        <a href="{{ url_for('get_recipes') }}" class="btn internal-link my-button">Reset</a>
+                        <a href="{{ url_for('all_recipes') }}" class="btn internal-link my-button">Reset</a>
                         <div class="dropdown d-inline">
                             <button class="btn internal-link my-button dropdown-toggle" type="button"
                                 id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
@@ -26,9 +26,19 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <li><a class="dropdown-item" href="{{ url_for('a_z') }}">A-Z</a></li>
-                                <li><a class="dropdown-item" href="#">Difficulty</a></li>
                                 <li><a class="dropdown-item" href="#">Time</a></li>
                                 <li><a class="dropdown-item" href="#">Rating</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown d-inline">
+                            <button class="btn internal-link my-button dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+                                Difficulty
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" href="{{ url_for('easy') }}">Easy</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('medium') }}">Medium</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('hard') }}">Hard</a></li>
                             </ul>
                         </div>
                     </div>
