@@ -7,18 +7,30 @@
     <div class="container">
         <h2 class="text-center title text-shadow p-3">Recipes</h2>
 
-        <div class="row">
-            <form action="{{ url_for('search') }}" method="post" class="col-12">
-                <div class="row justify-content-center">
-                    <div class="form-outline form-white col-9 mb-3">
+        <div class="row justify-content-center">
+            <form action="{{ url_for('search') }}" method="post" class="col">
+                <div class="row mb-3 justify-content-center">
+                    <div class="form-outline form-white col-11 col-xxl-9 mb-3">
                         <input type="text" id="query" name="query" class="form-control" required />
-                        <label class="form-label" for="query">Search</label>
+                        <label class="form-label" for="query">Enter Recipe Name/Ingredient/Creator</label>
                     </div>
-                    <div class="col-9 mb-3">
-                        <a href="{{ url_for('get_recipes') }}" class="btn internal-link my-button">Reset</a>
+                    <div class="col-12 col-xxl-3">
                         <button type="submit" class="btn internal-link my-button">
                             Search
                         </button>
+                        <a href="{{ url_for('get_recipes') }}" class="btn internal-link my-button">Reset</a>
+                        <div class="dropdown d-inline">
+                            <button class="btn internal-link my-button dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+                                Sort By
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" href="{{ url_for('a_z') }}">A-Z</a></li>
+                                <li><a class="dropdown-item" href="#">Difficulty</a></li>
+                                <li><a class="dropdown-item" href="#">Time</a></li>
+                                <li><a class="dropdown-item" href="#">Rating</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -27,7 +39,7 @@
         {% if recipes|length > 0 %}
         {% for recipe in recipes %}
         <div class="row justify-content-center">
-            <div class="col-10">
+            <div class="col">
                 <div class="card light-back mb-4">
                     <div class="card-body">
                         <h3 class="card-title text-center mb-4">{{ recipe.name }}</h3>
@@ -61,7 +73,8 @@
                                 </p>
                             </div>
                             {% else %}
-                            <div class="col-12 col-md-6 order-md-2 d-flex align-items-center justify-content-center mb-2">
+                            <div
+                                class="col-12 col-md-6 order-md-2 d-flex align-items-center justify-content-center mb-2">
                                 {% if recipe.image %}
                                 <img src="#" alt="{{ recipe.name }} Photo">
                                 {% else %}

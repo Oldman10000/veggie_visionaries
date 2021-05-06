@@ -43,6 +43,13 @@ def search():
     return render_template("recipes.html", recipes=recipes)
 
 
+# sorts recipes alphabetically
+@app.route("/a-z", methods=["GET", "POST"])
+def a_z():
+    recipes = list(mongo.db.recipes.find().sort("name"))
+    return render_template("recipes.html", recipes=recipes)
+
+
 # gets specific recipe as selected by user
 @app.route("/recipe/<recipe_id>")
 def show_recipe(recipe_id):
