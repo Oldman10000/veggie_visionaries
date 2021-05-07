@@ -70,6 +70,50 @@
                 </div>
             </div>
         </div>
+        {% if session.user %}
+        {% if session.user|lower != recipe.created_by|lower %}
+        <div class="row justify-content-center g2">
+            <h3>Leave a Review!</h3>
+            <form class="review" method="POST" action="{{ url_for('show_recipe', recipe_id=recipe._id) }}">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rating" id="rating1"
+                        value="1" />
+                    <label class="form-check-label" for="rating1">1 Star</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rating" id="rating2"
+                        value="2" />
+                    <label class="form-check-label" for="rating2">2 Stars</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rating" id="rating3"
+                        value="3" />
+                    <label class="form-check-label" for="rating3">3 Stars</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rating" id="rating4"
+                        value="4" />
+                    <label class="form-check-label" for="rating4">4 Stars</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rating" id="rating5"
+                        value="5" />
+                    <label class="form-check-label" for="rating5">5 Stars</label>
+                </div>
+                <div class="form-outline form-white mb-4">
+                    <textarea class="form-control" id="description" name="description" rows="4"></textarea>
+                    <label class="form-label" for="description">Review</label>
+                </div>
+                <button type="submit" class="btn my-button">Submit Review</button>
+            </form>
+        </div>
+        {% else %}
+        <p>This is your recipe!!</p>
+        {% endif %}
+        {% else %}
+        <p>Please <a href="{{ url_for('login') }}" class="internal-link">Log In</a> or <a
+                href="{{ url_for('register') }}" class="internal-link">Register</a> to leave a review</p>
+        {% endif %}
     </div>
 </main>
 {% endblock %}

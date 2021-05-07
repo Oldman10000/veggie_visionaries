@@ -108,9 +108,20 @@ def hard():
 
 
 # gets specific recipe as selected by user
-@app.route("/recipe/<recipe_id>")
+@app.route("/recipe/<recipe_id>", methods=["GET", "POST"])
 def show_recipe(recipe_id):
+    # review submission
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    if request.method == "POST":
+        review = {
+            "recipe": recipe._id,
+            "rating": request.form.get("rating"),
+            "review": request.form.get("review"),
+            "created_by": session["user"]
+        }
+        mongo.db.reviews.insert_one(review)
+        return render_template("recipe.html", recipe=recipe)
+
     return render_template("recipe.html", recipe=recipe)
 
 
