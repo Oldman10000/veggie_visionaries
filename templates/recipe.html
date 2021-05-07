@@ -101,8 +101,8 @@
                     <label class="form-check-label" for="rating5">5 Stars</label>
                 </div>
                 <div class="form-outline form-white mb-4">
-                    <textarea class="form-control" id="description" name="description" rows="4"></textarea>
-                    <label class="form-label" for="description">Review</label>
+                    <textarea class="form-control" id="review" name="review" rows="4"></textarea>
+                    <label class="form-label" for="review">Review</label>
                 </div>
                 <button type="submit" class="btn my-button">Submit Review</button>
             </form>
@@ -114,6 +114,9 @@
         <p>Please <a href="{{ url_for('login') }}" class="internal-link">Log In</a> or <a
                 href="{{ url_for('register') }}" class="internal-link">Register</a> to leave a review</p>
         {% endif %}
+        {% for review in reviews %}
+        <p><strong>{{ review.created_by }}</strong> {{ review.review }}</p>
+        {% endfor %}
     </div>
 </main>
 {% endblock %}
