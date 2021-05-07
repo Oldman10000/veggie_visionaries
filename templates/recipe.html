@@ -9,7 +9,7 @@
             <i class="fas fa-arrow-left"></i>
         </a>
         <h2 class="text-center title text-shadow mb-4">{{ recipe.name }}</h2>
-        <div class="row justify-content-center g-2">
+        <div class="row justify-content-center g-2 mb-4">
             <div class="col-12">
                 <div class="card light-back">
                     <div class="card-body">
@@ -72,32 +72,27 @@
         </div>
         {% if session.user %}
         {% if session.user|lower != recipe.created_by|lower %}
-        <div class="row justify-content-center g2">
+        <div class="row justify-content-center g2 mb-4">
             <h3>Leave a Review!</h3>
             <form class="review" method="POST" action="{{ url_for('show_recipe', recipe_id=recipe._id) }}">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="rating" id="rating1"
-                        value="1" />
+                    <input class="form-check-input" type="radio" name="rating" id="rating1" value="1" />
                     <label class="form-check-label" for="rating1">1 Star</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="rating" id="rating2"
-                        value="2" />
+                    <input class="form-check-input" type="radio" name="rating" id="rating2" value="2" />
                     <label class="form-check-label" for="rating2">2 Stars</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="rating" id="rating3"
-                        value="3" />
+                    <input class="form-check-input" type="radio" name="rating" id="rating3" value="3" />
                     <label class="form-check-label" for="rating3">3 Stars</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="rating" id="rating4"
-                        value="4" />
+                    <input class="form-check-input" type="radio" name="rating" id="rating4" value="4" />
                     <label class="form-check-label" for="rating4">4 Stars</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="rating" id="rating5"
-                        value="5" />
+                    <input class="form-check-input" type="radio" name="rating" id="rating5" value="5" />
                     <label class="form-check-label" for="rating5">5 Stars</label>
                 </div>
                 <div class="form-outline form-white mb-4">
@@ -114,9 +109,21 @@
         <p>Please <a href="{{ url_for('login') }}" class="internal-link">Log In</a> or <a
                 href="{{ url_for('register') }}" class="internal-link">Register</a> to leave a review</p>
         {% endif %}
+        <div class="row">
+            <h3>Reviews</h3>
         {% for review in reviews %}
-        <p><strong>{{ review.created_by }}</strong> {{ review.review }}</p>
+            <div class="col-12">
+                <div class="card light-back mt-4">
+                    <div class="card-body">
+                        <p class="card-title">{{ loop.index }}. {{ review.created_by }}</p>
+                        <p class="card-text">
+                            {{ review.review }}
+                        </p>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
+    </div>
     </div>
 </main>
 {% endblock %}
