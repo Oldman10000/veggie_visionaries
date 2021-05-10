@@ -108,6 +108,13 @@ def hard():
     return show_recipes(recipes)
 
 
+# allows user to delete review
+@app.route("/delete_review/<review_id>")
+def delete_review(review_id):
+    mongo.db.reviews.remove({"_id": ObjectId(review_id)})
+    return redirect(url_for("all_recipes"))
+
+
 # gets specific recipe as selected by user
 @app.route("/recipe/<recipe_id>", methods=["GET", "POST"])
 def show_recipe(recipe_id):
