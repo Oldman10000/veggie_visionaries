@@ -124,7 +124,7 @@ def show_recipe(recipe_id):
         date = datetime.datetime.now()
         review = {
             "recipe": recipe_id,
-            "rating": request.form.get("rating"),
+            "rating": int(request.form.get("rating")),
             "review": request.form.get("review"),
             "created_by": session["user"],
             "date": date.strftime("%x"),

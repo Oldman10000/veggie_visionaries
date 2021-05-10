@@ -88,6 +88,12 @@ a {
     letter-spacing: 10px;
 }
 
+.small-title {
+    font-size: 2em;
+    font-weight: 500;
+    letter-spacing: 8px;
+}
+
 .card {
     padding: 20px;
 }
