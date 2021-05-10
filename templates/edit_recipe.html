@@ -5,15 +5,15 @@
 
 <main>
     <div class="container mt-5 mb-5">
-        <form class="col-8 mx-auto" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
-            <div class="card dark-green-back">
+        <form class="col col-md-8 mx-auto" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
+            <div class="card light-back">
                 <h2 class="text-center title text-shadow">Edit Recipe</h2>
                 <div class="row">
                     <p class="text-center">
                         Please fill in all fields.
                     </p>
                 </div>
-                <div class="form-outline form-white mb-4">
+                <div class="form-outline mb-4">
                     <input type="text" id="rname" name="rname" class="form-control" value="{{ recipe.name }}"
                         required />
                     <label class="form-label" for="rname">Recipe Name</label>
@@ -54,22 +54,22 @@
                     <label class="btn btn-success" for="hard">Hard</label>
                     {% endif %}
                 </div>
-                <div class="form-outline form-white mb-4">
+                <div class="form-outline mb-4">
                     <input type="number" id="prep_time" name="prep_time" class="form-control"
                         value="{{ recipe.prep_time }}" required />
                     <label class="form-label" for="prep_time">Prep Time (minutes)</label>
                 </div>
-                <div class="form-outline form-white mb-4">
+                <div class="form-outline mb-4">
                     <input type="number" id="cook_time" name="cook_time" class="form-control"
                         value="{{ recipe.cook_time }}" required />
                     <label class="form-label" for="cook_time">Cook Time (minutes)</label>
                 </div>
-                <div class="form-outline form-white mb-4">
+                <div class="form-outline mb-4">
                     <input type="number" id="serves" name="serves" class="form-control" value="{{ recipe.serves }}"
                         required />
                     <label class="form-label" for="serves">Serves (How many)</label>
                 </div>
-                <div class="form-outline form-white mb-4">
+                <div class="form-outline mb-4">
                     <textarea class="form-control" id="description" name="description" rows="4"
                         required>{{ recipe.description }}</textarea>
                     <label class="form-label" for="description">Description</label>
@@ -77,7 +77,7 @@
                 <p>Add Ingredients</p>
                 <div class="ingredient_field_wrapper wrapper">
                     {% for ingredient in recipe.ingredients %}
-                    <div class="form-outline form-white mb-4">
+                    <div class="form-outline mb-4">
                         <input type="text" name="ingredient" id="ingredient1" class="form-control ingredient"
                             value="{{ ingredient }}" required />
                         <label class="form-label" for="ingredient1">Ingredient</label>
@@ -93,7 +93,7 @@
                 <p>Add Instructions</p>
                 <div class="instruction_field_wrapper wrapper">
                     {% for instruction in recipe.instructions %}
-                    <div class="form-outline form-white mb-4">
+                    <div class="form-outline mb-4">
                         <textarea name="instruction" id="instruction1" class="form-control instruction" rows=4
                             required>{{ instruction }}</textarea>
                         <label class="form-label" for="instruction1">Instruction {{ loop.index }}</label>

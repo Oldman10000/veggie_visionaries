@@ -6,23 +6,27 @@
 <main>
     <div class="container mt-5">
         <form class="col-8 mx-auto" method="POST" action="{{ url_for('login') }}">
-            <div class="card dark-green-back">
+            <div class="card light-back">
                 <h2 class="text-center title text-shadow">Log In</h2>
-                <div class="row">
-                    <p class="text-center">
-                        Don't have an account with us yet? Register <a href="{{ url_for('register') }}"
-                            class="internal-link">Here</a>
-                    </p>
-                </div>
-                <div class="form-outline form-white mb-4">
+                <p class=" text-center">
+                    Don't have an account with us yet? Register <a href="{{ url_for('register') }}"
+                        class="internal-link">Here</a>
+                </p>
+                <div class="form-outline mb-4">
                     <input type="text" id="username" name="username" class="form-control" required />
                     <label class="form-label" for="username">Username</label>
+                    <div class="form-helper"></div>
                 </div>
-                <div class="form-outline form-white mb-4">
+                <div class="form-outline mb-4">
                     <input type="password" id="password" name="password" class="form-control" required />
                     <label class="form-label" for="password">Password</label>
+                    <div class="form-helper"></div>
                 </div>
-                <button type="submit" class="btn my-button">Log In</button>
+                <div class="text-center">
+                    <button type="submit" class="btn internal-link my-button">
+                        Log In
+                    </button>
+                </div>
             </div>
         </form>
     </div>

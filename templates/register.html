@@ -5,49 +5,47 @@
 
 <main>
     <div class="container mt-5">
-        <form class="mx-auto md-form" method="POST" action="{{ url_for('register') }}">
-            <div class="card dark-green-back">
+        <form class="mx-auto col-8 md-form" method="POST" action="{{ url_for('register') }}">
+            <div class="card light-back">
                 <h2 class="text-center title text-shadow">Register</h2>
-                <div class="row">
-                    <p class="text-center">
-                        Already have an account with us? Login <a href="{{ url_for('login') }}"
-                            class="internal-link">Here</a>
-                    </p>
-                </div>
+                <p class="text-center">
+                    Already have an account with us? Login <a href="{{ url_for('login') }}"
+                        class="internal-link">Here</a>
+                </p>
                 <div class="row mb-4">
                     <div class="col">
-                        <div class="form-outline form-white">
+                        <div class="form-outline">
                             <input type="text" id="fname" name="fname" class="form-control" pattern="^[a-zA-Z]{0,20}$"
                                 required />
                             <label class="form-label" for="fname">First Name</label>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="form-outline form-white">
+                        <div class="form-outline">
                             <input type="text" id="lname" name="lname" class="form-control" pattern="^[a-zA-Z]{0,20}$"
                                 required />
                             <label class="form-label" for="lname">Last Name</label>
                         </div>
                     </div>
                 </div>
-                <div class="form-outline form-white mb-4">
+                <div class="form-outline mb-4">
                     <input type="email" id="email" name="email" class="form-control" required />
                     <label class="form-label" for="email">Email Address</label>
                 </div>
-                <div class="form-outline form-white mb-4">
+                <div class="form-outline mb-4">
                     <input type="text" id="username" name="username" class="form-control" data-mdb-showcounter="true"
                         minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required />
                     <label class="form-label" for="username">Username</label>
                     <div class="form-helper"></div>
                 </div>
-                <div class="form-outline form-white mb-4">
+                <div class="form-outline mb-4">
                     <input type="password" id="password" name="password" class="form-control"
                         data-mdb-showcounter="true" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$"
                         required />
                     <label class="form-label" for="password">Password</label>
                     <div class="form-helper"></div>
                 </div>
-                <div class="form-outline form-white mb-4">
+                <div class="form-outline mb-4">
                     <input type="password" id="passwordconfirm" name="passwordconfirm" class="form-control" />
                     <label class="form-label" for="passwordconfirm">Confirm</label>
                 </div>

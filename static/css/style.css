@@ -104,6 +104,46 @@ a {
     font-weight: 700;
 }
 
+/* overriding materialize for bootstrap input default outlines */
+.form-outline .form-control,
+.form-outline.form-white .form-control {
+    min-height: auto;
+    padding: .33em .75em;
+    border: 0;
+    background: whitesmoke;
+    -webkit-transition: all .2s linear;
+    transition: all .2s linear;
+}
+
+.form-outline .form-control~.form-notch div {
+    pointer-events: none;
+    border: 1px solid #008100;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background: transparent;
+}
+
+.form-outline .form-control:focus~.form-label {
+    color: #008100;
+}
+
+.form-outline .form-control:focus~.form-notch .form-notch-leading {
+    border-top: .125rem solid #008100;
+    border-bottom: .125rem solid #008100;
+    border-left: .125rem solid #008100;
+}
+
+.form-outline .form-control:focus~.form-notch .form-notch-middle {
+    border-bottom: .125rem solid;
+    border-color: #008100;
+}
+
+.form-outline .form-control:focus~.form-notch .form-notch-trailing {
+    border-top: .125rem solid #008100;
+    border-bottom: .125rem solid #008100;
+    border-right: .125rem solid #008100;
+}
+
 .flashes h3 {
     line-height: 2;
 }

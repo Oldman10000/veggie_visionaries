@@ -84,13 +84,11 @@
                     <div class="col-12 col-lg-6">
                         <form class="mx-auto" method="POST" action="{{ url_for('login') }}">
                             <div class="card light-back">
-                                <h2 class="text-center title text-shadow">Log In</h2>
-                                <div class="row">
-                                    <p class="text-center">
-                                        Don't have an account with us yet? Register <a href="{{ url_for('register') }}"
-                                            class="internal-link">Here</a>
-                                    </p>
-                                </div>
+                                <h2 class="text-center mb-4 card-header">Log In</h2>
+                                <p class="text-center">
+                                    Don't have an account with us yet? Register <a href="{{ url_for('register') }}"
+                                        class="internal-link">Here</a>
+                                </p>
                                 <div class="form-outline mb-4">
                                     <input type="text" id="username" name="username" class="form-control" required />
                                     <label class="form-label" for="username">Username</label>
@@ -102,30 +100,32 @@
                                     <label class="form-label" for="password">Password</label>
                                     <div class="form-helper"></div>
                                 </div>
-                                <button type="submit" class="btn my-button">Log In</button>
+                                <div class="text-center">
+                                    <button type="submit" class="btn internal-link my-button">
+                                        Log In
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     </div>
                     {% endif %}
                     <div class="col-12 col-lg-6">
                         <div class="card light-back">
-                            <h2 class="text-center mb-2 card-header">Search For Recipe</h2>
-                            <p class="text-center card-subtitle text-muted">Search by dish/ingredient etc</p>
-                            <div class="row">
-                                <form action="{{ url_for('search') }}" method="post" class="col-12">
-                                    <div class="row justify-content-center">
-                                        <div class="form-outline col-9 m-3">
-                                            <input type="text" id="query" name="query" class="form-control" required />
-                                            <label class="form-label" for="query">Search</label>
-                                        </div>
-                                        <div class="col-9 mb-3 text-center">
-                                            <button type="submit" class="btn internal-link my-button">
-                                                Search
-                                            </button>
-                                        </div>
+                            <h2 class="text-center mb-4 card-header">Search For Recipe</h2>
+                            <p class="text-center card-subtitle text-muted mb-4">Search by dish/ingredient etc</p>
+                            <form action="{{ url_for('search') }}" method="post" class="col-12">
+                                <div class="justify-content-center">
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="query" name="query" class="form-control" required />
+                                        <label class="form-label" for="query">Search</label>
                                     </div>
-                                </form>
-                            </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn internal-link my-button">
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

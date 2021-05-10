@@ -5,15 +5,15 @@
 
 <main>
     <div class="container mt-5 mb-5">
-        <form class="col-8 mx-auto" method="POST" action="{{ url_for('add_recipe') }}">
-            <div class="card dark-green-back">
+        <form class="col col-md-8 mx-auto" method="POST" action="{{ url_for('add_recipe') }}">
+            <div class="card light-back">
                 <h2 class="text-center title text-shadow">Add Recipe</h2>
                 <div class="row">
                     <p class="text-center">
                         Please fill in all fields.
                     </p>
                 </div>
-                <div class="form-outline form-white mb-4">
+                <div class="form-outline mb-4">
                     <input type="text" id="rname" name="rname" class="form-control" required />
                     <label class="form-label" for="rname">Recipe Name</label>
                 </div>
@@ -22,33 +22,31 @@
                     <input type="radio" class="btn-check" name="difficulty" id="easy" value="easy" autocomplete="off"
                         checked />
                     <label class="btn btn-success" for="easy">Easy</label>
-
                     <input type="radio" class="btn-check" name="difficulty" id="medium" value="medium"
                         autocomplete="off" />
                     <label class="btn btn-success" for="medium">Medium</label>
-
                     <input type="radio" class="btn-check" name="difficulty" id="hard" value="hard" autocomplete="off" />
                     <label class="btn btn-success" for="hard">Hard</label>
                 </div>
-                <div class="form-outline form-white mb-4">
+                <div class="form-outline mb-4">
                     <input type="number" id="prep_time" name="prep_time" class="form-control" required />
                     <label class="form-label" for="prep_time">Prep Time (minutes)</label>
                 </div>
-                <div class="form-outline form-white mb-4">
+                <div class="form-outline mb-4">
                     <input type="number" id="cook_time" name="cook_time" class="form-control" required />
                     <label class="form-label" for="cook_time">Cook Time (minutes)</label>
                 </div>
-                <div class="form-outline form-white mb-4">
+                <div class="form-outline mb-4">
                     <input type="number" id="serves" name="serves" class="form-control" required />
                     <label class="form-label" for="serves">Serves (How many)</label>
                 </div>
-                <div class="form-outline form-white mb-4">
+                <div class="form-outline mb-4">
                     <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
                     <label class="form-label" for="description">Description</label>
                 </div>
                 <p>Add Ingredients</p>
                 <div class="ingredient_field_wrapper wrapper">
-                    <div class="form-outline form-white mb-4">
+                    <div class="form-outline mb-4">
                         <input type="text" name="ingredient" id="ingredient1" class="form-control ingredient"
                             required />
                         <label class="form-label" for="ingredient1">Ingredient</label>
@@ -62,7 +60,7 @@
                 </div>
                 <p>Add Instructions</p>
                 <div class="instruction_field_wrapper wrapper">
-                    <div class="form-outline form-white mb-4">
+                    <div class="form-outline mb-4">
                         <textarea name="instruction" id="instruction1" class="form-control instruction" rows=4
                             required></textarea>
                         <label class="form-label" for="instruction1">Instruction 1</label>
