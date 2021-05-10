@@ -25,6 +25,18 @@ footer {
     }
 }
 
+@media only screen and (min-height: 600px) {
+    #home-buttons>a {
+        font-size: 1.5em;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #home-buttons>a {
+        font-size: 2em;
+    }
+}
+
 h1,
 h2,
 h3,
@@ -199,7 +211,6 @@ a {
     left: 50%;
     bottom: 0;
     margin-top: -25px;
-    margin-left: -25px;
     height: 30px;
     width: 30px;
     -webkit-animation: bounce 1.5s infinite;
@@ -209,68 +220,71 @@ a {
 }
 
 .bounce i {
+    position: absolute;
+    transform: translate(-50%, -50%);
     font-size: 1.2em;
 }
 
-@-webkit-keyframes bounce {
-    0% {
-        bottom: 0px;
+@media only screen and (min-width: 992px) {
+
+    .bounce i {
+        font-size: 1.5em;
     }
 
-    50% {
-        bottom: 15px;
+    @-webkit-keyframes bounce {
+        0% {
+            bottom: 0px;
+        }
+
+        50% {
+            bottom: 15px;
+        }
+
+        100% {
+            bottom: 30;
+        }
     }
 
-    100% {
-        bottom: 30;
-    }
-}
+    @-moz-keyframes bounce {
+        0% {
+            bottom: 0px;
+        }
 
-@-moz-keyframes bounce {
-    0% {
-        bottom: 0px;
-    }
+        50% {
+            bottom: 15px;
+        }
 
-    50% {
-        bottom: 15px;
-    }
-
-    100% {
-        bottom: 30;
-    }
-}
-
-@-o-keyframes bounce {
-    0% {
-        bottom: 0px;
+        100% {
+            bottom: 30;
+        }
     }
 
-    50% {
-        bottom: 15px;
+    @-o-keyframes bounce {
+        0% {
+            bottom: 0px;
+        }
+
+        50% {
+            bottom: 15px;
+        }
+
+        100% {
+            bottom: 30;
+        }
     }
 
-    100% {
-        bottom: 30;
-    }
-}
+    @keyframes bounce {
+        0% {
+            bottom: 0px;
+        }
 
-@keyframes bounce {
-    0% {
-        bottom: 0px;
-    }
+        50% {
+            bottom: 15px;
+        }
 
-    50% {
-        bottom: 15px;
-    }
-
-    100% {
-        bottom: 30;
-    }
-}
-
-@media only screen and (max-width: 992px) {
-    .bounce {
-        display: none;
+        100% {
+            bottom: 30;
+        }
     }
 }
 
@@ -292,6 +306,7 @@ a {
     text-align: center;
     text-transform: capitalize;
 }
+
 .pagination-page-info b {
     padding-left: 2px;
     padding: .1em .25em;
@@ -303,11 +318,11 @@ a {
     font-weight: 700;
 }
 
-.page-item.active .page-link  {
+.page-item.active .page-link {
     background-color: #008100;
 }
 
-.page-item.disabled .page-link  {
+.page-item.disabled .page-link {
     display: none;
 }
 
@@ -315,7 +330,7 @@ a {
     background-color: #F0EBEF;
 }
 
-.page-item.active .page-link:hover  {
+.page-item.active .page-link:hover {
     background-color: #008100;
 }
 

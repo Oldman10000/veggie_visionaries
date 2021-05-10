@@ -119,4 +119,15 @@
         </div>
         <!-- Container wrapper -->
     </nav>
+    <section>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="row flashes">
+            <h2 class="text-center">{{ message }}</h2>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </section>
 </header>
