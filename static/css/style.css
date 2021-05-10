@@ -50,6 +50,11 @@ li,
     color: #F0EBEF;
 }
 
+.dark-green-letters {
+    color: #008100;
+    font-weight: 700;
+}
+
 .light-green-back {
     background-color: #87B679;
     color: #1D261E;
@@ -226,6 +231,10 @@ a {
 }
 
 /* pagination */
+
+.pagination {
+    justify-content: center;
+}
 
 .pagination-page-info {
     margin-bottom: 1em;

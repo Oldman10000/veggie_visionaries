@@ -7,29 +7,32 @@
     <div class="container">
         <h2 class="text-center title text-shadow p-3">Recipes</h2>
 
-        <div class="row justify-content-center">
-            <form action="{{ url_for('search') }}" method="post" class="col">
-                <div class="row mb-3 justify-content-center">
-                    <div class="form-outline form-white col-11 col-xxl-9 mb-3">
+        <form action="{{ url_for('search') }}" method="post">
+            <div class="row mb-5 justify-content-center">
+                <div class="col-12 col-xl-10 mb-3">
+                    <div class="form-outline form-white">
                         <input type="text" id="query" name="query" class="form-control" required />
-                        <label class="form-label" for="query">Enter Recipe Name/Ingredient/Creator</label>
+                        <label class="form-label overflow-hidden" for="query">Enter Recipe
+                            Name/Ingredient/Creator</label>
                     </div>
-                    <div class="col-12 col-xxl-3">
-                        <button type="submit" class="btn internal-link my-button">
-                            Search
+                </div>
+                <div class="col-12 col-xl-2 mb-3 text-center">
+                    <button type="submit" class="btn internal-link my-button">
+                        Search
+                    </button>
+                    <a href="{{ url_for('all_recipes') }}" class="btn internal-link my-button">Reset</a>
+                </div>
+                <div class="dropdown d-inline">
+                    <div class="col-12 text-center">
+                        <button class="btn internal-link my-button dropdown-toggle" type="button"
+                            id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+                            Sort By
                         </button>
-                        <a href="{{ url_for('all_recipes') }}" class="btn internal-link my-button">Reset</a>
-                        <div class="dropdown d-inline">
-                            <button class="btn internal-link my-button dropdown-toggle" type="button"
-                                id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
-                                Sort By
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" href="{{ url_for('a_z') }}">A-Z</a></li>
-                                <li><a class="dropdown-item" href="#">Time</a></li>
-                                <li><a class="dropdown-item" href="#">Rating</a></li>
-                            </ul>
-                        </div>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="{{ url_for('a_z') }}">A-Z</a></li>
+                            <li><a class="dropdown-item" href="#">Time</a></li>
+                            <li><a class="dropdown-item" href="#">Rating</a></li>
+                        </ul>
                         <div class="dropdown d-inline">
                             <button class="btn internal-link my-button dropdown-toggle" type="button"
                                 id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
@@ -43,8 +46,8 @@
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
 
         {{ pagination.links }}
         {{ pagination.info }}
@@ -60,16 +63,16 @@
                             {% if loop.index % 2 != 0 %}
                             <div class="col-12 col-md-6 d-flex align-items-center justify-content-center mb-2">
                                 {% if recipe.image %}
-                                <img src="#" alt="{{ recipe.name }} Photo">
+                                <img src="{{ recipe.image }}" alt="{{ recipe.name }} Photo">
                                 {% else %}
                                 <i class="fas fa-camera-retro fa-5x"></i>
                                 {% endif %}
                             </div>
                             <div class="col-12 col-md-6 mb-2">
-                                <p class="card-text">
+                                <p class="card-text dark-green-letters">
                                     Created by {{ recipe.created_by }}
                                 </p>
-                                <p class="card-text">
+                                <p class="card-text text-muted">
                                     Created on {{ recipe.date }} at {{ recipe.time }}
                                 </p>
                                 <p class="card-text">
@@ -98,10 +101,10 @@
                                 {% endif %}
                             </div>
                             <div class="col-12 col-md-6 order-md-1 mb-2">
-                                <p class="card-text">
+                                <p class="card-text dark-green-letters">
                                     Created by {{ recipe.created_by }}
                                 </p>
-                                <p class="card-text">
+                                <p class="card-text text-muted">
                                     Created on {{ recipe.date }} at {{ recipe.time }}
                                 </p>
                                 <p class="card-text">
