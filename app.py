@@ -131,6 +131,8 @@ def show_recipe(recipe_id):
             "time": date.strftime("%X")
         }
         mongo.db.reviews.insert_one(review)
+        return redirect(url_for("all_recipes"))
+
     reviews = mongo.db.reviews.find({"recipe": recipe_id})
     return render_template("recipe.html", recipe=recipe, reviews=reviews)
 
