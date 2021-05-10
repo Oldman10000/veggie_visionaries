@@ -84,11 +84,13 @@
                     </div>
                     {% endfor %}
                 </div>
-                <div class="delete_ingredient_button btn my-button mb-4" title="Add field">
-                    <i class="fas fa-plus"></i> Remove Last Ingredient
-                </div>
-                <div class="add_ingredient_button btn my-button mb-4" title="Add field">
-                    <i class="fas fa-plus"></i> Add Another Ingredient
+                <div class="btn-group mb-4">
+                    <div class="add_ingredient_button btn my-button dark-button">
+                        <i class="fas fa-plus"></i> Add Another Ingredient
+                    </div>
+                    <div class="delete_ingredient_button btn my-button delete-button">
+                        <i class="fas fa-trash"></i> Remove Last Ingredient
+                    </div>
                 </div>
                 <p>Add Instructions</p>
                 <div class="instruction_field_wrapper wrapper">
@@ -100,20 +102,23 @@
                     </div>
                     {% endfor %}
                 </div>
-                <div class="delete_instruction_button btn my-button mb-4" title="Add field">
-                    <i class="fas fa-plus"></i> Remove Last Instruction
-                </div>
-                <div class="add_instruction_button btn my-button mb-4" title="Add field">
-                    <i class="fas fa-plus"></i> Add Further Instructions
+                <div class="btn-group mb-4">
+                    <div class="add_instruction_button btn my-button dark-button">
+                        <i class="fas fa-plus"></i> Add Another Instruction
+                    </div>
+                    <div class="delete_instruction_button btn my-button delete-button">
+                        <i class="fas fa-trash"></i> Remove Last Instruction
+                    </div>
                 </div>
                 <div class="btn my-button photo-widget mb-4">
-                    Add Photo (Optional)
+                    <i class="fas fa-camera-retro"></i> Add Photo (Optional)
                 </div>
-                <input type="text" id="image_submit" name="image_submit" />
-                <label for="image_submit">Image Submit</label>
-                <button type="submit" class="btn my-button mb-3">Edit</button>
+                <div class="image-submit-div">
+                    <input type="hidden" id="image_submit" name="image_submit" />
+                </div>
+                <button type="submit" class="btn my-button dark-button mb-4">Edit</button>
                 <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}"
-                    class="btn internal-link my-button">Cancel</a>
+                    class="btn internal-link my-button delete-button">Cancel</a>
             </div>
         </form>
     </div>

@@ -104,6 +104,11 @@ a {
     font-weight: 700;
 }
 
+.dark-button {
+    background: #008100;
+    color: #F0EBEF;
+}
+
 /* overriding materialize for bootstrap input default outlines */
 .form-outline .form-control,
 .form-outline.form-white .form-control {
@@ -272,7 +277,7 @@ a {
 /* Recipes page */
 
 .delete-button {
-    background: red;
+    background: orange;
     font-weight: 700;
 }
 
@@ -312,4 +317,8 @@ a {
 
 .page-item.active .page-link:hover  {
     background-color: #008100;
+}
+
+.fa-check-circle {
+    color: #008100;
 }
