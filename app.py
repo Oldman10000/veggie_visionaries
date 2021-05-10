@@ -137,6 +137,32 @@ def show_recipe(recipe_id):
     return render_template("recipe.html", recipe=recipe, reviews=reviews)
 
 
+# allows user to add recipe
+@app.route("/add_recipe", methods=["GET", "POST"])
+def add_recipe():
+    if request.method == "POST":
+        date = datetime.datetime.now()
+        recipe = {
+            "name": request.form.get("rname"),
+            "difficulty": request.form.get("difficulty"),
+            "prep_time": request.form.get("prep_time"),
+            "cook_time": request.form.get("cook_time"),
+            "serves": request.form.get("serves"),
+            "description": request.form.get("description"),
+            "ingredients": request.form.getlist("ingredient"),
+            "instructions": request.form.getlist("instruction"),
+            "image": request.form.get("image_submit"),
+            "created_by": session["user"],
+            "date": date.strftime("%x"),
+            "time": date.strftime("%X")
+        }
+        mongo.db.recipes.insert_one(recipe)
+        flash("Recipe Successfully Added")
+        return redirect(url_for("all_recipes"))
+
+    return render_template("add_recipe.html")
+
+
 # allows user to edit recipe
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
@@ -243,29 +269,6 @@ def logout():
     flash("Logged Out")
     session.pop("user")
     return redirect(url_for("login"))
-
-
-# allows user to add recipe
-@app.route("/add_recipe", methods=["GET", "POST"])
-def add_recipe():
-    if request.method == "POST":
-        recipe = {
-            "name": request.form.get("rname"),
-            "difficulty": request.form.get("difficulty"),
-            "prep_time": request.form.get("prep_time"),
-            "cook_time": request.form.get("cook_time"),
-            "serves": request.form.get("serves"),
-            "description": request.form.get("description"),
-            "ingredients": request.form.getlist("ingredient"),
-            "instructions": request.form.getlist("instruction"),
-            "image": request.form.get("image_submit"),
-            "created_by": session["user"]
-        }
-        mongo.db.recipes.insert_one(recipe)
-        flash("Recipe Successfully Added")
-        return redirect(url_for("all_recipes"))
-
-    return render_template("add_recipe.html")
 
 
 # runs application

@@ -22,9 +22,10 @@
                                 {% endif %}
                             </div>
                             <div class="col-12 col-md-6">
-                                <p class="card-text">
-                                    Created by {{ recipe.created_by }}
+                                <p class="card-title">
+                                    Created by <strong>{{ recipe.created_by }}</strong>
                                 </p>
+                                <p class="text-muted">Added on {{ recipe.date }} at {{ recipe.time }}</p>
                                 <p class="card-text">
                                     Difficulty: {{ recipe.difficulty }}
                                 </p>
