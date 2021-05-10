@@ -6,6 +6,7 @@ from flask_pymongo import PyMongo
 from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+import datetime
 if os.path.exists("env.py"):
     import env
 
@@ -113,11 +114,14 @@ def show_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     # review submission
     if request.method == "POST":
+        date = datetime.datetime.now()
         review = {
             "recipe": recipe_id,
             "rating": request.form.get("rating"),
             "review": request.form.get("review"),
-            "created_by": session["user"]
+            "created_by": session["user"],
+            "date": date.strftime("%x"),
+            "time": date.strftime("%X")
         }
         mongo.db.reviews.insert_one(review)
     reviews = mongo.db.reviews.find({"recipe": recipe_id})

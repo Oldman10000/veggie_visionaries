@@ -115,7 +115,8 @@
             <div class="col-12">
                 <div class="card light-back mt-4">
                     <div class="card-body">
-                        <p class="card-title">{{ loop.index }}. {{ review.created_by }}</p>
+                        <p class="card-title">{{ loop.index }}. <strong>{{ review.created_by }}</strong></p>
+                        <p class="card-subtitle text-muted">{{ review.date }} {{ review.time }}</p>
                         <p class="card-text">
                             {{ review.review }}
                         </p>
