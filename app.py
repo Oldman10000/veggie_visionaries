@@ -82,7 +82,14 @@ def show_recipes(recipes):
 # shows all recipes
 @app.route("/recipes")
 def all_recipes():
-    recipes = list(mongo.db.recipes.find())
+    recipes = list(mongo.db.recipes.find().sort("_id", -1))
+    return show_recipes(recipes)
+
+
+# shows all recipes
+@app.route("/older")
+def older():
+    recipes = list(mongo.db.recipes.find().sort("_id", 1))
     return show_recipes(recipes)
 
 
