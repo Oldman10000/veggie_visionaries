@@ -28,7 +28,7 @@
                             id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
                             Sort By
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdown-menu" aria-labelledby="sortbybutton">
                             <li><a class="dropdown-item" href="{{ url_for('a_z') }}">A-Z</a></li>
                             <li><a class="dropdown-item" href="{{ url_for('rating') }}">Rating</a></li>
                             <li><a class="dropdown-item" href="{{ url_for('all_recipes') }}">Newer</a></li>
@@ -38,7 +38,7 @@
                             id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
                             Difficulty
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdown-menu" aria-labelledby="difficultybutton">
                             <li><a class="dropdown-item" href="{{ url_for('easy') }}">Easy</a></li>
                             <li><a class="dropdown-item" href="{{ url_for('medium') }}">Medium</a></li>
                             <li><a class="dropdown-item" href="{{ url_for('hard') }}">Hard</a></li>

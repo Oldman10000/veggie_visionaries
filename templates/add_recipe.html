@@ -5,6 +5,7 @@
 
 <main>
     <div class="container mt-5 mb-5">
+        {% if session.user %}
         <form class="col col-md-8 mx-auto" method="POST" action="{{ url_for('add_recipe') }}">
             <div class="card light-back">
                 <h2 class="text-center title text-shadow">Add Recipe</h2>
@@ -86,6 +87,9 @@
                 <a href="{{ url_for('all_recipes') }}" class="btn my-button delete-button">Cancel</a>
             </div>
         </form>
+        {% else %}
+        <h2 class="text-center">Please <a href="{{ url_for('login') }}" class="internal-link">Login</a> to add a recipe</h2>
+        {% endif %}
     </div>
 </main>
 
