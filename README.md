@@ -56,10 +56,10 @@ The website is built as a Minimum Viable Product, but with room for expansion.
 
 ### Skeleton
 
-[Wireframe for Mobile](documentation/wireframes/Mobile_Wireframes.pdf)
+[Wireframe for Mobile](documentation/wireframes/Phone_Wireframe.pdf)
 
-[Wireframe for Tablet](documentation/wireframes/Tablet_Wireframes.pdf)
+[Wireframe for Tablet](documentation/wireframes/Tablet_Wireframe.pdf)
 
-[Wireframe for Desktop](documentation/wireframes/Desktop_Wireframes.pdf)
+[Wireframe for Desktop](documentation/wireframes/Desktop_Wireframe.pdf)
 
 ### Surface
