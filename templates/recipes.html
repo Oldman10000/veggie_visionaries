@@ -90,6 +90,31 @@
                                 <p class="card-text">
                                     {{ recipe.description }}
                                 </p>
+                                <p class="card-text">
+                                    {% if recipe.avgrating == 1 %}
+                                    <i class="fas fa-star"></i>
+                                    {% elif recipe.avgrating == 2 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    {% elif recipe.avgrating == 3 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    {% elif recipe.avgrating == 4 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    {% elif recipe.avgrating == 5 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    {% else %}
+                                    <p><strong>{{ recipe.avgrating }}</strong></p>
+                                    {% endif %}
+                                </p>
                             </div>
                             {% else %}
                             <div
@@ -121,6 +146,31 @@
                                 </p>
                                 <p class="card-text">
                                     {{ recipe.description }}
+                                </p>
+                                <p class="card-text">
+                                    {% if recipe.avgrating == 1 %}
+                                    <i class="fas fa-star"></i>
+                                    {% elif recipe.avgrating == 2 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    {% elif recipe.avgrating == 3 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    {% elif recipe.avgrating == 4 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    {% elif recipe.avgrating == 5 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    {% else %}
+                                    <p><strong>{{ recipe.avgrating }}</strong></p>
+                                    {% endif %}
                                 </p>
                             </div>
                             {% endif %}

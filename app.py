@@ -60,6 +60,20 @@ def pagination_args(recipes):
 def show_recipes(recipes):
     recipes_paginated = paginated(recipes)
     pagination = pagination_args(recipes)
+
+    # cycles through each recipe and updates average rating
+    for recipe in recipes:
+        recipe_id = recipe["_id"]
+        if recipe["rating"]:
+            recipe_avg = round(sum(recipe["rating"])/len(recipe["rating"]))
+            mongo.db.recipes.update(
+                {"_id": ObjectId(recipe_id)},
+                {"$set": {"avgrating": recipe_avg}})
+        else:
+            mongo.db.recipes.update(
+                {"_id": ObjectId(recipe_id)},
+                {"$set": {"avgrating": "No Reviews Yet!"}})
+
     return render_template("recipes.html",
                            recipes=recipes_paginated,
                            pagination=pagination)
