@@ -109,9 +109,30 @@ def hard():
 
 
 # allows user to delete review
-@app.route("/delete_review/<review_id>")
-def delete_review(review_id):
+@app.route("/delete_review/<review_id>/<recipe_id>")
+def delete_review(review_id, recipe_id):
+    # removes rating from recipe rating array
+    # gets review
+    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+    rating = review["rating"]
+    print(rating)
+    print(type(rating))
+    # gets recipe
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    ratingArray = recipe["rating"]
+    print(ratingArray)
+    print(type(ratingArray))
+    # removes one occurance of the rating from the ratings array
+    ratingArray.remove(rating)
+    print(ratingArray)
+    print(type(ratingArray))
+    # replaces old array with new array
+    mongo.db.recipes.update_one({"_id": ObjectId(recipe_id)},
+                                {"$set": {"rating": ratingArray}})
+
+    # removes review from reviews collection
     mongo.db.reviews.remove({"_id": ObjectId(review_id)})
+
     return redirect(url_for("all_recipes"))
 
 
@@ -131,6 +152,10 @@ def show_recipe(recipe_id):
             "time": date.strftime("%X")
         }
         mongo.db.reviews.insert_one(review)
+
+        # updates rating
+        rating = int(request.form.get("rating"))
+        mongo.db.recipes.update_one(recipe, {"$push": {"rating": rating}})
         return redirect(url_for("all_recipes"))
 
     reviews = mongo.db.reviews.find({"recipe": recipe_id})

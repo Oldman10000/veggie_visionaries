@@ -164,7 +164,7 @@
                                             data-mdb-dismiss="modal">
                                             Cancel
                                         </button>
-                                        <a href="{{ url_for('delete_review', review_id=review._id) }}" type="button"
+                                        <a href="{{ url_for('delete_review', review_id=review._id, recipe_id=recipe._id) }}" type="button"
                                             class="btn internal-link my-button delete-button">Delete</a>
                                     </div>
                                 </div>
