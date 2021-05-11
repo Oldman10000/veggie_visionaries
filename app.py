@@ -115,17 +115,11 @@ def delete_review(review_id, recipe_id):
     # gets review
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
     rating = review["rating"]
-    print(rating)
-    print(type(rating))
     # gets recipe
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     ratingArray = recipe["rating"]
-    print(ratingArray)
-    print(type(ratingArray))
     # removes one occurance of the rating from the ratings array
     ratingArray.remove(rating)
-    print(ratingArray)
-    print(type(ratingArray))
     # replaces old array with new array
     mongo.db.recipes.update_one({"_id": ObjectId(recipe_id)},
                                 {"$set": {"rating": ratingArray}})
@@ -159,7 +153,15 @@ def show_recipe(recipe_id):
         return redirect(url_for("all_recipes"))
 
     reviews = mongo.db.reviews.find({"recipe": recipe_id})
-    return render_template("recipe.html", recipe=recipe, reviews=reviews)
+    # gets average rating
+    if recipe["rating"]:
+        ratings = recipe["rating"]
+        avg = round(sum(ratings)/len(ratings))
+    else:
+        avg = "No Reviews Yet!"
+
+    return render_template(
+        "recipe.html", recipe=recipe, reviews=reviews, avg=avg)
 
 
 # allows user to add recipe
@@ -179,7 +181,8 @@ def add_recipe():
             "image": request.form.get("image_submit"),
             "created_by": session["user"],
             "date": date.strftime("%x"),
-            "time": date.strftime("%X")
+            "time": date.strftime("%X"),
+            "rating": []
         }
         mongo.db.recipes.insert_one(recipe)
         flash("Recipe Successfully Added")
@@ -204,7 +207,7 @@ def edit_recipe(recipe_id):
             "instructions": request.form.getlist("instruction"),
             "created_by": session["user"]
         }
-        mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, edited)
+        mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, {"$set": edited})
         flash("Recipe Successfully Edited")
         return redirect(url_for("show_recipe", recipe_id=recipe_id))
 
