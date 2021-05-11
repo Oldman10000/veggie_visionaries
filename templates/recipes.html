@@ -30,20 +30,17 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <li><a class="dropdown-item" href="{{ url_for('a_z') }}">A-Z</a></li>
-                            <li><a class="dropdown-item" href="#">Time</a></li>
-                            <li><a class="dropdown-item" href="#">Rating</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('rating') }}">Rating</a></li>
                         </ul>
-                        <div class="dropdown d-inline">
-                            <button class="btn internal-link my-button dropdown-toggle" type="button"
-                                id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
-                                Difficulty
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" href="{{ url_for('easy') }}">Easy</a></li>
-                                <li><a class="dropdown-item" href="{{ url_for('medium') }}">Medium</a></li>
-                                <li><a class="dropdown-item" href="{{ url_for('hard') }}">Hard</a></li>
-                            </ul>
-                        </div>
+                        <button class="btn internal-link my-button dropdown-toggle" type="button"
+                            id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+                            Difficulty
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="{{ url_for('easy') }}">Easy</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('medium') }}">Medium</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('hard') }}">Hard</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>

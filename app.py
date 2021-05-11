@@ -87,7 +87,7 @@ def all_recipes():
 
 
 # allows user to search for recipe
-@app.route("/search", methods=["GET", "POST"])
+@app.route("/search")
 def search():
     query = request.form.get("query")
     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
@@ -95,28 +95,35 @@ def search():
 
 
 # sorts recipes alphabetically
-@app.route("/recipes/a-z", methods=["GET", "POST"])
+@app.route("/recipes/a-z")
 def a_z():
     recipes = list(mongo.db.recipes.find().sort("name"))
     return show_recipes(recipes)
 
 
+# sorts recipes by rating
+@app.route("/recipes/rating")
+def rating():
+    recipes = list(mongo.db.recipes.find().sort("avgrating", -1))
+    return show_recipes(recipes)
+
+
 # gets easy recipes
-@app.route("/recipes/easy", methods=["GET", "POST"])
+@app.route("/recipes/easy")
 def easy():
     recipes = list(mongo.db.recipes.find({"difficulty": "easy"}))
     return show_recipes(recipes)
 
 
 # gets medium recipes
-@app.route("/recipes/medium", methods=["GET", "POST"])
+@app.route("/recipes/medium")
 def medium():
     recipes = list(mongo.db.recipes.find({"difficulty": "medium"}))
     return show_recipes(recipes)
 
 
 # gets hard recipes
-@app.route("/recipes/hard", methods=["GET", "POST"])
+@app.route("/recipes/hard")
 def hard():
     recipes = list(mongo.db.recipes.find({"difficulty": "hard"}))
     return show_recipes(recipes)
