@@ -197,8 +197,8 @@ def show_recipe(recipe_id):
     if session.get("user"):
         user = mongo.db.users.find_one({"username": session["user"]})
         if user["favorite"]:
-            for x in user["favorite"]:
-                if x == recipe_id:
+            for recipe in user["favorite"]:
+                if recipe["_id"] == ObjectId(recipe_id):
                     favorited = True
                     break
                 else:
@@ -220,7 +220,9 @@ def show_recipe(recipe_id):
 @app.route("/favorite/<recipe_id>")
 def favorite(recipe_id):
     user = mongo.db.users.find_one({"username": session["user"]})
-    mongo.db.users.update_one(user, {"$push": {"favorite": recipe_id}})
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    mongo.db.users.update_one(user, {"$push": {"favorite": recipe}})
+    flash("Recipe Added to Favourites")
     return redirect(url_for("all_recipes"))
 
 
@@ -228,10 +230,12 @@ def favorite(recipe_id):
 @app.route("/remove_favorite/<recipe_id>")
 def remove_favorite(recipe_id):
     user = mongo.db.users.find_one({"username": session["user"]})
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     favoriteArray = user["favorite"]
-    favoriteArray.remove(recipe_id)
+    favoriteArray.remove(recipe)
     mongo.db.users.update_one({"username": session["user"]},
                               {"$set": {"favorite": favoriteArray}})
+    flash("Recipe Removed from Favourites")
     return redirect(url_for("all_recipes"))
 
 

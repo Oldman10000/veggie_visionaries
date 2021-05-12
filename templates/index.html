@@ -78,9 +78,21 @@
                     <div class="col-12 col-lg-6">
                         <div class="card light-back">
                             <h2 class="text-center card-header">{{ user.username }}'s favourite Recipes</h2>
-                            {% for favorite in favorites %}
-                            <p>{{ favorite }}</p>
+                            {% for recipe in user.favorite %}
+                            <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}"
+                                class="card dark-green-back mt-4 text-center align-items-center">
+                                <h3>{{ recipe.name }}
+                                </h3>
+                                {% if recipe.image %}
+                                <div class="bg-image hover-zoom rounded m-3">
+                                    <img src="{{ recipe.image }}" alt="{{ recipe.name }} Photo">
+                                </div>
+                                {% else %}
+                                <i class="fas fa-camera-retro fa-5x"></i>
+                                {% endif %}
+                            </a>
                             {% endfor %}
+
                         </div>
                     </div>
                     {% else %}
