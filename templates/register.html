@@ -5,6 +5,9 @@
 
 <main>
     <div class="container mt-5">
+        {% if session.user %}
+        <h2 class="text-center">You are already logged in!!</h2>
+        {% else %}
         <form class="mx-auto col-8 md-form" method="POST" action="{{ url_for('register') }}">
             <div class="card light-back">
                 <h2 class="text-center title text-shadow">Register</h2>
@@ -52,6 +55,7 @@
                 <button type="submit" class="btn my-button">Register</button>
             </div>
         </form>
+        {% endif %}
     </div>
 </main>
 

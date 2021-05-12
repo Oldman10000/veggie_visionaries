@@ -5,6 +5,9 @@
 
 <main>
     <div class="container mt-5">
+        {% if session.user %}
+        <h2 class="text-center">You are already logged in!!</h2>
+        {% else %}
         <form class="col-8 mx-auto" method="POST" action="{{ url_for('login') }}">
             <div class="card light-back">
                 <h2 class="text-center title text-shadow">Log In</h2>
@@ -29,6 +32,7 @@
                 </div>
             </div>
         </form>
+        {% endif %}
     </div>
 </main>
 
