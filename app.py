@@ -24,7 +24,12 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/index")
 def index():
-    return render_template("index.html")
+    if session.get("user"):
+        user = mongo.db.users.find_one({"username": session["user"]})
+    else:
+        user = False
+
+    return render_template("index.html", user=user)
 
 
 # amount of items per page for pagination feature
@@ -350,9 +355,10 @@ def loggedin(username):
     # grabs session users username
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
+    user = mongo.db.users.find_one({"username": session["user"]})
 
     if session["user"]:
-        return render_template("index.html", username=username)
+        return render_template("index.html", username=username, user=user)
 
     return redirect(url_for("login"))
 

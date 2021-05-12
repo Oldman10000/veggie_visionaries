@@ -77,7 +77,10 @@
                     {% if session.user %}
                     <div class="col-12 col-lg-6">
                         <div class="card light-back">
-                            <h2 class="text-center card-header">My Favourite Recipes</h2>
+                            <h2 class="text-center card-header">{{ user.username }}'s favourite Recipes</h2>
+                            {% for favorite in favorites %}
+                            <p>{{ favorite }}</p>
+                            {% endfor %}
                         </div>
                     </div>
                     {% else %}
