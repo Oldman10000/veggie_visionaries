@@ -28,8 +28,9 @@ def index():
         user = mongo.db.users.find_one({"username": session["user"]})
     else:
         user = False
-
-    return render_template("index.html", user=user)
+    allrecipes = list(mongo.db.recipes.find().sort("avgrating", -1))
+    recipes = allrecipes[0:5]
+    return render_template("index.html", user=user, recipes=recipes)
 
 
 # amount of items per page for pagination feature
@@ -77,7 +78,7 @@ def show_recipes(recipes):
         else:
             mongo.db.recipes.update(
                 {"_id": ObjectId(recipe_id)},
-                {"$set": {"avgrating": "No Reviews Yet!"}})
+                {"$set": {"avgrating": 0}})
 
     return render_template("recipes.html",
                            recipes=recipes_paginated,

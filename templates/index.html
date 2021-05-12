@@ -150,56 +150,37 @@
                     <div class="col-12">
                         <div class="ratings card light-back">
                             <h2 class="text-center card-header">Top Rated</h2>
-                            <div class="col-12 mb-4">
-                                <div class="card dark-green-back">
-                                    <h3 class="card-header">Vegetarian Fajitas</h3>
-                                    <div class="rating p-3">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 mb-4">
-                                <div class="card dark-green-back">
-                                    <h3 class="card-header">Vegetarian Fajitas</h3>
-                                    <div class="rating p-3">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 mb-4">
-                                <div class="card dark-green-back">
-                                    <h3 class="card-header">Vegetarian Fajitas</h3>
-                                    <div class="rating p-3">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 mb-4">
-                                <div class="card dark-green-back">
-                                    <h3 class="card-header">Vegetarian Fajitas</h3>
-                                    <div class="rating p-3">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 mb-4">
-                                <div class="card dark-green-back">
-                                    <h3 class="card-header">Vegetarian Fajitas</h3>
-                                    <div class="rating p-3">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i>
-                                    </div>
-                                </div>
-                            </div>
+                            {% for recipe in recipes %}
+                            <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}"
+                                class="card dark-green-back mt-4 text-center ">
+                                <h3 class="card-header">{{ recipe.name }}</h3>
+                                <p class="card-text mt-3">
+                                    {% if recipe.avgrating == 1 %}
+                                    <i class="fas fa-star"></i>
+                                    {% elif recipe.avgrating == 2 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    {% elif recipe.avgrating == 3 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    {% elif recipe.avgrating == 4 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    {% elif recipe.avgrating == 5 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    {% else %}
+                                    <p><strong>No Rating Yet</strong></p>
+                                    {% endif %}
+                                </p>
+                            </a>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
