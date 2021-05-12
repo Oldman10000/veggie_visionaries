@@ -200,8 +200,8 @@ def show_recipe(recipe_id):
     if session.get("user"):
         user = mongo.db.users.find_one({"username": session["user"]})
         if user["favorite"]:
-            for recipe in user["favorite"]:
-                if recipe["_id"] == ObjectId(recipe_id):
+            for item in user["favorite"]:
+                if item["_id"] == ObjectId(recipe_id):
                     favorited = True
                     break
                 else:
