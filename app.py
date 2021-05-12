@@ -28,8 +28,10 @@ def index():
         user = mongo.db.users.find_one({"username": session["user"]})
     else:
         user = False
+
     allrecipes = list(mongo.db.recipes.find().sort("avgrating", -1))
     recipes = allrecipes[0:5]
+
     return render_template("index.html", user=user, recipes=recipes)
 
 
@@ -362,8 +364,12 @@ def loggedin(username):
         {"username": session["user"]})["username"]
     user = mongo.db.users.find_one({"username": session["user"]})
 
+    allrecipes = list(mongo.db.recipes.find().sort("avgrating", -1))
+    recipes = allrecipes[0:5]
+
     if session["user"]:
-        return render_template("index.html", username=username, user=user)
+        return render_template(
+            "index.html", username=username, user=user, recipes=recipes)
 
     return redirect(url_for("login"))
 
