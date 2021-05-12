@@ -345,3 +345,7 @@ a {
 .bg-image > img {
     max-width: 100%;
 }
+
+.fa-heart {
+    color: #008100;
+}

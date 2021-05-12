@@ -75,4 +75,20 @@ $(document).ready(function () {
             }
         });
     });
+
+    $(".favorite").hover(
+        function () {
+        $(this).addClass("fas");
+    }, function() {
+        $(this).removeClass("fas");
+    });
+
+    $(".remove").hover(
+        function () {
+        $(this).removeClass("fas");
+        $(this).addClass("far");
+    }, function() {
+        $(this).removeClass("far");
+        $(this).addClass("fas");
+    });
 });

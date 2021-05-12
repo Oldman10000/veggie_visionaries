@@ -188,8 +188,32 @@ def show_recipe(recipe_id):
     else:
         avg = "No Reviews Yet!"
 
+    # checks if this recipe has been favorited by the user
+    if session.get("user"):
+        user = mongo.db.users.find_one({"username": session["user"]})
+        for x in user["favorite"]:
+            if x == recipe_id:
+                favorited = True
+                break
+            else:
+                favorited = False
+    else:
+        favorited = False
+
     return render_template(
-        "recipe.html", recipe=recipe, reviews=reviews, avg=avg)
+        "recipe.html",
+        recipe=recipe,
+        reviews=reviews,
+        avg=avg,
+        favorited=favorited)
+
+
+# Allows user to favorite a particular recipe
+@app.route("/favorite/<recipe_id>", methods=["GET", "POST"])
+def favorite(recipe_id):
+    user = mongo.db.users.find_one({"username": session["user"]})
+    mongo.db.users.update_one(user, {"$push": {"favorite": recipe_id}})
+    return redirect(url_for("all_recipes"))
 
 
 # allows user to add recipe
@@ -251,7 +275,7 @@ def delete_recipe(recipe_id):
     return redirect(url_for("all_recipes"))
 
 
-# allows uer to register
+# allows user to register
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":

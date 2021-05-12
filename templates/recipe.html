@@ -69,6 +69,19 @@
                                     <p><strong>{{ avg }}</strong></p>
                                     {% endif %}
                                 </p>
+                                {% if session.user %}
+                                {% if favorited %}
+                                <p class="card-text">Remove from favorites <a href="#"><i
+                                            class="remove fas fa-heart"></i></a></p>
+                                {% else %}
+                                <p class="card-text">Add to favorites <a
+                                        href="{{ url_for('favorite', recipe_id=recipe._id) }}"><i
+                                            class="favorite far fa-heart"></i></a></p>
+                                {% endif %}
+                                {% else %}
+                                <p>Please <a href="{{ url_for('login') }}" class="internal-link">Log In</a> or <a
+                                        href="{{ url_for('register') }}" class="internal-link">Register</a> to favourite this recipe!</p>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
