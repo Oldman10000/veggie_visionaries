@@ -191,12 +191,15 @@ def show_recipe(recipe_id):
     # checks if this recipe has been favorited by the user
     if session.get("user"):
         user = mongo.db.users.find_one({"username": session["user"]})
-        for x in user["favorite"]:
-            if x == recipe_id:
-                favorited = True
-                break
-            else:
-                favorited = False
+        if user["favorite"]:
+            for x in user["favorite"]:
+                if x == recipe_id:
+                    favorited = True
+                    break
+                else:
+                    favorited = False
+        else:
+            favorited = False
     else:
         favorited = False
 
@@ -209,10 +212,21 @@ def show_recipe(recipe_id):
 
 
 # Allows user to favorite a particular recipe
-@app.route("/favorite/<recipe_id>", methods=["GET", "POST"])
+@app.route("/favorite/<recipe_id>")
 def favorite(recipe_id):
     user = mongo.db.users.find_one({"username": session["user"]})
     mongo.db.users.update_one(user, {"$push": {"favorite": recipe_id}})
+    return redirect(url_for("all_recipes"))
+
+
+# allows user to remove recipe from favorites
+@app.route("/remove_favorite/<recipe_id>")
+def remove_favorite(recipe_id):
+    user = mongo.db.users.find_one({"username": session["user"]})
+    favoriteArray = user["favorite"]
+    favoriteArray.remove(recipe_id)
+    mongo.db.users.update_one({"username": session["user"]},
+                              {"$set": {"favorite": favoriteArray}})
     return redirect(url_for("all_recipes"))
 
 
@@ -292,7 +306,8 @@ def register():
             "lname": request.form.get("lname").lower(),
             "email": request.form.get("email").lower(),
             "username": request.form.get("username").lower(),
-            "password": generate_password_hash(request.form.get("password"))
+            "password": generate_password_hash(request.form.get("password")),
+            "favorite": []
         }
         mongo.db.users.insert_one(register)
 
