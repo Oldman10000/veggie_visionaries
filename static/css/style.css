@@ -337,3 +337,11 @@ a {
 .fa-check-circle {
     color: #008100;
 }
+
+.bg-image {
+    max-width: 300px;
+}
+
+.bg-image > img {
+    max-width: 100%;
+}

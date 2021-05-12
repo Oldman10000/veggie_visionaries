@@ -62,12 +62,14 @@
                             {% if loop.index % 2 != 0 %}
                             <div class="col-12 col-md-6 d-flex align-items-center justify-content-center mb-2">
                                 {% if recipe.image %}
-                                <img src="{{ recipe.image }}" alt="{{ recipe.name }} Photo">
+                                <div class="bg-image hover-zoom rounded">
+                                    <img src="{{ recipe.image }}" alt="{{ recipe.name }} Photo">
+                                </div>
                                 {% else %}
                                 <i class="fas fa-camera-retro fa-5x"></i>
                                 {% endif %}
                             </div>
-                            <div class="col-12 col-md-6 mb-2">
+                            <div class="col-12 col-md-6 mt-4 mb-2">
                                 <p class="card-text dark-green-letters">
                                     Created by {{ recipe.created_by }}
                                 </p>
@@ -119,12 +121,14 @@
                             <div
                                 class="col-12 col-md-6 order-md-2 d-flex align-items-center justify-content-center mb-2">
                                 {% if recipe.image %}
-                                <img src="{{ recipe.image }}" alt="{{ recipe.name }} Photo">
+                                <div class="bg-image hover-zoom rounded">
+                                    <img src="{{ recipe.image }}" alt="{{ recipe.name }} Photo">
+                                </div>
                                 {% else %}
                                 <i class="fas fa-camera-retro fa-5x"></i>
                                 {% endif %}
                             </div>
-                            <div class="col-12 col-md-6 order-md-1 mb-2">
+                            <div class="col-12 col-md-6 order-md-1 mt-4 mb-2">
                                 <p class="card-text dark-green-letters">
                                     Created by {{ recipe.created_by }}
                                 </p>
