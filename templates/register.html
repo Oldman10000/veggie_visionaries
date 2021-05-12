@@ -38,19 +38,22 @@
                 <div class="form-outline mb-4">
                     <input type="text" id="username" name="username" class="form-control" data-mdb-showcounter="true"
                         minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required />
-                    <label class="form-label" for="username">Username</label>
+                    <label class="form-label" for="username">Username (5-15 characters, letters and numbers only)</label>
                     <div class="form-helper"></div>
                 </div>
                 <div class="form-outline mb-4">
                     <input type="password" id="password" name="password" class="form-control"
                         data-mdb-showcounter="true" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$"
                         required />
-                    <label class="form-label" for="password">Password</label>
+                    <label class="form-label" for="password">Password (5-15 characters, letters and numbers only)</label>
                     <div class="form-helper"></div>
                 </div>
                 <div class="form-outline mb-4">
-                    <input type="password" id="passwordconfirm" name="passwordconfirm" class="form-control" required />
-                    <label class="form-label" for="passwordconfirm">Confirm</label>
+                    <input type="password" id="passwordconfirm" name="passwordconfirm" class="form-control"
+                        data-mdb-showcounter="true" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$"
+                        required />
+                    <label class="form-label" for="passwordconfirm">Confirm Password</label>
+                    <div class="form-helper"></div>
                 </div>
                 <div class="mb-2">
                     <p id="passwordmatch"></p>
