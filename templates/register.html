@@ -49,10 +49,13 @@
                     <div class="form-helper"></div>
                 </div>
                 <div class="form-outline mb-4">
-                    <input type="password" id="passwordconfirm" name="passwordconfirm" class="form-control" />
+                    <input type="password" id="passwordconfirm" name="passwordconfirm" class="form-control" required />
                     <label class="form-label" for="passwordconfirm">Confirm</label>
                 </div>
-                <button type="submit" class="btn my-button">Register</button>
+                <div class="mb-2">
+                    <p id="passwordmatch"></p>
+                </div>
+                <button type="submit" class="btn my-button" id="register-submit">Register</button>
             </div>
         </form>
         {% endif %}

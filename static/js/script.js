@@ -76,19 +76,47 @@ $(document).ready(function () {
         });
     });
 
+    // changes appearance of favorite button on hover
     $(".favorite").hover(
         function () {
-        $(this).addClass("fas");
-    }, function() {
-        $(this).removeClass("fas");
-    });
+            $(this).addClass("fas");
+        },
+        function () {
+            $(this).removeClass("fas");
+        });
 
     $(".remove").hover(
         function () {
-        $(this).removeClass("fas");
-        $(this).addClass("far");
-    }, function() {
-        $(this).removeClass("far");
-        $(this).addClass("fas");
-    });
+            $(this).removeClass("fas");
+            $(this).addClass("far");
+        },
+        function () {
+            $(this).removeClass("far");
+            $(this).addClass("fas");
+        });
+
+    // checks if passwords match on registration form
+    function checkPasswordMatch() {
+        let password = $("#password").val();
+        let confirmPassword = $("#passwordconfirm").val();
+
+        if (password.length == 0) {
+            $("#passwordmatch").html("Password field empty");
+            $("#register-submit").prop("disabled", true);
+        } else if (password != confirmPassword) {
+            $("#passwordmatch").html("Passwords do not match!");
+            $("#register-submit").prop("disabled", true);
+        } else if (password.length <= 4 ) {
+            $("#passwordmatch").html("Password must be at least 5 characters long");
+            $("#register-submit").prop("disabled", true);
+        } else {
+            $("#passwordmatch").html("Passwords match.");
+            $("#register-submit").prop("disabled", false);
+        }
+    }
+
+    checkPasswordMatch()
+
+    $("#password, #passwordconfirm").keyup(checkPasswordMatch);
+
 });
