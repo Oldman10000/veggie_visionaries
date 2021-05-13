@@ -336,13 +336,20 @@ def login():
     if request.method == "POST":
         # check if username exists
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username".lower())})
-
+            {
+                "$or": [
+                    {"username": request.form.get("username".lower())},
+                    {"email": request.form.get("username".lower())}
+                ]
+            }
+        )
+        print(existing_user)
         if existing_user:
             # ensure password is correct
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("username").lower()
+                    session["user"] = existing_user["username"]
+                    print(session["user"])
                     return redirect(url_for(
                         "loggedin", username=session["user"]))
             else:
