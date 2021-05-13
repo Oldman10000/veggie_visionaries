@@ -65,7 +65,7 @@ def pagination_args(recipes):
 
 
 # general recipes page template
-def show_recipes(recipes):
+def show_recipes(recipes, order):
     recipes_paginated = paginated(recipes)
     pagination = pagination_args(recipes)
 
@@ -84,64 +84,73 @@ def show_recipes(recipes):
 
     return render_template("recipes.html",
                            recipes=recipes_paginated,
-                           pagination=pagination)
+                           pagination=pagination,
+                           order=order)
 
 
 # shows all recipes
 @app.route("/recipes")
 def all_recipes():
     recipes = list(mongo.db.recipes.find().sort("_id", -1))
-    return show_recipes(recipes)
+    order = "Newest First"
+    return show_recipes(recipes, order)
 
 
 # shows all recipes
 @app.route("/older")
 def older():
     recipes = list(mongo.db.recipes.find().sort("_id", 1))
-    return show_recipes(recipes)
+    order = "Oldest First"
+    return show_recipes(recipes, order)
 
 
 # allows user to search for recipe
-@app.route("/search")
+@app.route("/search",  methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
-    return show_recipes(recipes)
+    order = "You have found..."
+    return show_recipes(recipes, order)
 
 
 # sorts recipes alphabetically
 @app.route("/recipes/a-z")
 def a_z():
     recipes = list(mongo.db.recipes.find().sort("name"))
-    return show_recipes(recipes)
+    order = "A-Z"
+    return show_recipes(recipes, order)
 
 
 # sorts recipes by rating
 @app.route("/recipes/rating")
 def rating():
     recipes = list(mongo.db.recipes.find().sort("avgrating", -1))
-    return show_recipes(recipes)
+    order = "Top Rated First"
+    return show_recipes(recipes, order)
 
 
 # gets easy recipes
 @app.route("/recipes/easy")
 def easy():
     recipes = list(mongo.db.recipes.find({"difficulty": "easy"}))
-    return show_recipes(recipes)
+    order = "Easy"
+    return show_recipes(recipes, order)
 
 
 # gets medium recipes
 @app.route("/recipes/medium")
 def medium():
     recipes = list(mongo.db.recipes.find({"difficulty": "medium"}))
-    return show_recipes(recipes)
+    order = "Medium"
+    return show_recipes(recipes, order)
 
 
 # gets hard recipes
 @app.route("/recipes/hard")
 def hard():
     recipes = list(mongo.db.recipes.find({"difficulty": "hard"}))
-    return show_recipes(recipes)
+    order = "Hard"
+    return show_recipes(recipes, order)
 
 
 # allows user to delete review

@@ -22,8 +22,8 @@
                     </button>
                     <a href="{{ url_for('all_recipes') }}" class="btn internal-link my-button">Reset</a>
                 </div>
-                <div class="dropdown d-inline">
-                    <div class="col-12 text-center">
+                <div class="col-12 text-center">
+                    <div class="dropdown d-inline">
                         <button class="btn internal-link my-button dropdown-toggle" type="button"
                             id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
                             Sort By
@@ -34,6 +34,8 @@
                             <li><a class="dropdown-item" href="{{ url_for('all_recipes') }}">Newer</a></li>
                             <li><a class="dropdown-item" href="{{ url_for('older') }}">Older</a></li>
                         </ul>
+                    </div>
+                    <div class="dropdown d-inline">
                         <button class="btn internal-link my-button dropdown-toggle" type="button"
                             id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
                             Difficulty
@@ -50,6 +52,7 @@
 
         {{ pagination.links }}
         {{ pagination.info }}
+        <p class="text-center">{{ order }}</p>
 
         {% if recipes|length > 0 %}
         {% for recipe in recipes %}
@@ -57,10 +60,10 @@
             <div class="col">
                 <div class="card light-back mb-4">
                     <div class="card-body">
-                        <h3 class="card-title text-center mb-4">{{ recipe.name }}</h3>
                         <div class="row">
                             {% if loop.index % 2 != 0 %}
-                            <div class="col-12 col-md-6 d-flex align-items-center justify-content-center mb-2">
+                            <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}"
+                                class="col-12 col-md-6 d-flex align-items-center justify-content-center mb-2">
                                 {% if recipe.image %}
                                 <div class="bg-image hover-zoom rounded">
                                     <img src="{{ recipe.image }}" alt="{{ recipe.name }} Photo">
@@ -68,28 +71,11 @@
                                 {% else %}
                                 <i class="fas fa-camera-retro fa-5x"></i>
                                 {% endif %}
-                            </div>
+                            </a>
                             <div class="col-12 col-md-6 mt-4 mb-2">
+                                <h3 class="card-title mb-4">{{ recipe.name }}</h3>
                                 <p class="card-text dark-green-letters">
                                     Created by {{ recipe.created_by }}
-                                </p>
-                                <p class="card-text text-muted">
-                                    Created on {{ recipe.date }} at {{ recipe.time }}
-                                </p>
-                                <p class="card-text">
-                                    Difficulty: {{ recipe.difficulty }}
-                                </p>
-                                <p class="card-text">
-                                    Prep Time: {{ recipe.prep_time }}
-                                </p>
-                                <p class="card-text">
-                                    Cook Time: {{ recipe.cook_time }}
-                                </p>
-                                <p class="card-text">
-                                    Serves: {{ recipe.serves }}
-                                </p>
-                                <p class="card-text">
-                                    {{ recipe.description }}
                                 </p>
                                 <p class="card-text">
                                     {% if recipe.avgrating == 1 %}
@@ -116,9 +102,27 @@
                                     <p><strong>No rating yet</strong></p>
                                     {% endif %}
                                 </p>
+                                <p class="card-text text-muted">
+                                    Created on {{ recipe.date }} at {{ recipe.time }}
+                                </p>
+                                <p class="card-text">
+                                    Difficulty: {{ recipe.difficulty }}
+                                </p>
+                                <p class="card-text">
+                                    Prep Time: {{ recipe.prep_time }}
+                                </p>
+                                <p class="card-text">
+                                    Cook Time: {{ recipe.cook_time }}
+                                </p>
+                                <p class="card-text">
+                                    Serves: {{ recipe.serves }}
+                                </p>
+                                <p class="card-text">
+                                    {{ recipe.description }}
+                                </p>
                             </div>
                             {% else %}
-                            <div
+                            <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}"
                                 class="col-12 col-md-6 order-md-2 d-flex align-items-center justify-content-center mb-2">
                                 {% if recipe.image %}
                                 <div class="bg-image hover-zoom rounded">
@@ -127,28 +131,11 @@
                                 {% else %}
                                 <i class="fas fa-camera-retro fa-5x"></i>
                                 {% endif %}
-                            </div>
+                            </a>
                             <div class="col-12 col-md-6 order-md-1 mt-4 mb-2">
+                                <h3 class="card-title mb-4">{{ recipe.name }}</h3>
                                 <p class="card-text dark-green-letters">
                                     Created by {{ recipe.created_by }}
-                                </p>
-                                <p class="card-text text-muted">
-                                    Created on {{ recipe.date }} at {{ recipe.time }}
-                                </p>
-                                <p class="card-text">
-                                    Difficulty: {{ recipe.difficulty }}
-                                </p>
-                                <p class="card-text">
-                                    Prep Time: {{ recipe.prep_time }}
-                                </p>
-                                <p class="card-text">
-                                    Cook Time: {{ recipe.cook_time }}
-                                </p>
-                                <p class="card-text">
-                                    Serves: {{ recipe.serves }}
-                                </p>
-                                <p class="card-text">
-                                    {{ recipe.description }}
                                 </p>
                                 <p class="card-text">
                                     {% if recipe.avgrating == 1 %}
@@ -175,8 +162,27 @@
                                     <p><strong>No rating yet</strong></p>
                                     {% endif %}
                                 </p>
+                                <p class="card-text text-muted">
+                                    Created on {{ recipe.date }} at {{ recipe.time }}
+                                </p>
+                                <p class="card-text">
+                                    Difficulty: {{ recipe.difficulty }}
+                                </p>
+                                <p class="card-text">
+                                    Prep Time: {{ recipe.prep_time }}
+                                </p>
+                                <p class="card-text">
+                                    Cook Time: {{ recipe.cook_time }}
+                                </p>
+                                <p class="card-text">
+                                    Serves: {{ recipe.serves }}
+                                </p>
+                                <p class="card-text">
+                                    {{ recipe.description }}
+                                </p>
                             </div>
                             {% endif %}
+                            {% if session.user %}
                             {% if session.user|lower == recipe.created_by|lower or session.user["username"] == admin %}
                             <div class="col-12 order-md-3">
                                 <div class="row justify-content-between mt-2 mb-2">
@@ -207,6 +213,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
                             {% endif %}
                             <div class="col-12 order-md-4">
                                 <div class="row justify-content-center">

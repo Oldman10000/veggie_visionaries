@@ -342,6 +342,12 @@ a {
     max-width: 300px;
 }
 
+@media only screen and (min-width: 576px) {
+    .bg-image {
+        max-width: 500px;
+    }
+}
+
 .bg-image > img {
     max-width: 100%;
 }
