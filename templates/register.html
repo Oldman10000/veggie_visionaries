@@ -14,22 +14,6 @@
                 <p class="text-center">
                     Already have an account with us? Login <a href="{{ url_for('login') }}">Here</a>
                 </p>
-                <div class="row mb-4">
-                    <div class="col">
-                        <div class="form-outline">
-                            <input type="text" id="fname" name="fname" class="form-control" pattern="^[a-zA-Z]{0,20}$"
-                                required />
-                            <label class="form-label" for="fname">First Name</label>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-outline">
-                            <input type="text" id="lname" name="lname" class="form-control" pattern="^[a-zA-Z]{0,20}$"
-                                required />
-                            <label class="form-label" for="lname">Last Name</label>
-                        </div>
-                    </div>
-                </div>
                 <div class="form-outline mb-4">
                     <input type="email" id="email" name="email" class="form-control" required />
                     <label class="form-label" for="email">Email Address</label>
@@ -37,14 +21,16 @@
                 <div class="form-outline mb-4">
                     <input type="text" id="username" name="username" class="form-control" data-mdb-showcounter="true"
                         minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required />
-                    <label class="form-label" for="username">Username (5-15 characters, letters and numbers only)</label>
+                    <label class="form-label" for="username">Username (5-15 characters, letters and numbers
+                        only)</label>
                     <div class="form-helper"></div>
                 </div>
                 <div class="form-outline mb-4">
                     <input type="password" id="password" name="password" class="form-control"
                         data-mdb-showcounter="true" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$"
                         required />
-                    <label class="form-label" for="password">Password (5-15 characters, letters and numbers only)</label>
+                    <label class="form-label" for="password">Password (5-15 characters, letters and numbers
+                        only)</label>
                     <div class="form-helper"></div>
                 </div>
                 <div class="form-outline mb-4">
@@ -63,5 +49,37 @@
         {% endif %}
     </div>
 </main>
+
+<script type="text/javascript">
+    // checks if passwords match on registration form
+    $(document).ready(function () {
+        function checkPasswordMatch() {
+            let password = $("#password").val();
+            let confirmPassword = $("#passwordconfirm").val();
+
+            if (password.length == 0) {
+                $("#passwordmatch").html("");
+                $("#passwordmatch").css("color", "red");
+                $("#register-submit").prop("disabled", true);
+            } else if (password != confirmPassword) {
+                $("#passwordmatch").html("Passwords do not match!");
+                $("#passwordmatch").css("color", "red");
+                $("#register-submit").prop("disabled", true);
+            } else if (password.length <= 4) {
+                $("#passwordmatch").html("Password must be at least 5 characters long");
+                $("#passwordmatch").css("color", "red");
+                $("#register-submit").prop("disabled", true);
+            } else {
+                $("#passwordmatch").html("Passwords match.");
+                $("#passwordmatch").css("color", "#008100");
+                $("#register-submit").prop("disabled", false);
+            }
+        }
+
+        checkPasswordMatch();
+
+        $("#password, #passwordconfirm").keyup(checkPasswordMatch);
+    });
+</script>
 
 {% endblock %}
