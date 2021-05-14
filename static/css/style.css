@@ -283,7 +283,7 @@ a:hover {
 
 .delete-button {
     background: orange;
-    font-weight: 700;
+    color: #F0EBEF;
 }
 
 /* pagination */
@@ -302,7 +302,7 @@ a:hover {
     padding-left: 2px;
     padding: .1em .25em;
     font-size: 120%;
-    color: #F0EBEF;
+    color: #1D261E;
 }
 
 .page-item {
