@@ -9,6 +9,17 @@
             <div class="col-11 col-md-12 card light-back mb-2 shadow-1-strong">
                 <h2 class="text-center mb-4 card-header">Recipes</h2>
                 <div class="text-center mb-3">
+                    <button type="button" class="btn dark-button d-inline" data-mdb-toggle="modal"
+                        data-mdb-target="#searchmodal">
+                        Search
+                    </button>
+                    <a href="{{ url_for('all_recipes') }}">
+                        <button class="btn delete-button d-inline">
+                            Reset
+                        </button>
+                    </a>
+                </div>
+                <div class="text-center mb-3">
                     <div class="dropdown d-inline">
                         <button class="btn dark-button dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-mdb-toggle="dropdown" aria-expanded="false">
@@ -32,15 +43,6 @@
                             <li><a class="dropdown-item" href="{{ url_for('hard') }}">Hard</a></li>
                         </ul>
                     </div>
-                    <button type="button" class="btn dark-button d-inline" data-mdb-toggle="modal"
-                        data-mdb-target="#searchmodal">
-                        Search
-                    </button>
-                    <a href="{{ url_for('all_recipes') }}">
-                        <button class="btn delete-button d-inline">
-                            Reset
-                        </button>
-                    </a>
                     <!-- Search Modal -->
                     <div class="modal fade" id="searchmodal" tabindex="-1" aria-labelledby="searchmodalLabel"
                         aria-hidden="true">
@@ -95,7 +97,7 @@
                             {% endif %}
                         </a>
                         <div class="col-12 col-md-6 mt-4 mb-2">
-                            <h3 class="card-title mb-4">{{ recipe.name }}</h3>
+                            <h3 class="card-title mb-2 mb-md-2">{{ recipe.name }}</h3>
                             <p class="card-text dark-green-letters">
                                 Created by {{ recipe.created_by }}
                             </p>
@@ -121,23 +123,23 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 {% else %}
-                                <p><strong>No rating yet</strong></p>
+                                <strong>No rating yet</strong>
                                 {% endif %}
                             </p>
                             <p class="card-text text-muted">
-                                Created on {{ recipe.date }} at {{ recipe.time }}
+                                <strong>Created on</strong> {{ recipe.date }} at {{ recipe.time }}
                             </p>
                             <p class="card-text">
-                                Difficulty: {{ recipe.difficulty }}
+                                <strong>Difficulty:</strong> {{ recipe.difficulty }}
                             </p>
                             <p class="card-text">
-                                Prep Time: {{ recipe.prep_time }}
+                                <strong>Prep Time:</strong> {{ recipe.prep_time }}
                             </p>
                             <p class="card-text">
-                                Cook Time: {{ recipe.cook_time }}
+                                <strong>Cook Time:</strong> {{ recipe.cook_time }}
                             </p>
                             <p class="card-text">
-                                Serves: {{ recipe.serves }}
+                                <strong>Serves:</strong> {{ recipe.serves }}
                             </p>
                             <p class="card-text">
                                 {{ recipe.description }}
@@ -155,7 +157,7 @@
                             {% endif %}
                         </a>
                         <div class="col-12 col-md-6 order-md-1 mt-4 mb-2">
-                            <h3 class="card-title mb-4">{{ recipe.name }}</h3>
+                            <h3 class="card-title mb-2 mb-md-2">{{ recipe.name }}</h3>
                             <p class="card-text dark-green-letters">
                                 Created by {{ recipe.created_by }}
                             </p>
@@ -181,40 +183,39 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 {% else %}
-                                <p><strong>No rating yet</strong></p>
+                                <strong>No rating yet</strong>
                                 {% endif %}
                             </p>
                             <p class="card-text text-muted">
-                                Created on {{ recipe.date }} at {{ recipe.time }}
+                                <strong>Created on</strong> {{ recipe.date }} at {{ recipe.time }}
                             </p>
                             <p class="card-text">
-                                Difficulty: {{ recipe.difficulty }}
+                                <strong>Difficulty:</strong> {{ recipe.difficulty }}
                             </p>
                             <p class="card-text">
-                                Prep Time: {{ recipe.prep_time }}
+                                <strong>Prep Time:</strong> {{ recipe.prep_time }}
                             </p>
                             <p class="card-text">
-                                Cook Time: {{ recipe.cook_time }}
+                                <strong>Cook Time:</strong> {{ recipe.cook_time }}
                             </p>
                             <p class="card-text">
-                                Serves: {{ recipe.serves }}
+                                <strong>Serves:</strong> {{ recipe.serves }}
                             </p>
                             <p class="card-text">
                                 {{ recipe.description }}
                             </p>
                         </div>
                         {% endif %}
-                        {% if session.user %}
-                        {% if session.user|lower == recipe.created_by|lower or session.user["username"] == admin %}
+                        {% if session.user|lower == recipe.created_by|lower or session.user == "admin" %}
                         <div class="col-12 order-md-3">
                             <div class="row justify-content-between mt-2 mb-2">
                                 <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}"
                                     class="col-5 col-md-3 btn dark-button">Edit</a>
                                 <button class="col-5 col-md-3 btn delete-button" data-mdb-toggle="modal"
-                                    data-mdb-target="#searchmodal">Delete</a>
+                                    data-mdb-target="#deletemodal">Delete</a>
                             </div>
                             <!-- Modal -->
-                            <div class="modal fade" id="searchmodal" tabindex="-1" aria-labelledby="searchmodalLabel"
+                            <div class="modal fade" id="deletemodal" tabindex="-1" aria-labelledby="deletemodalLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
@@ -233,7 +234,6 @@
                                 </div>
                             </div>
                         </div>
-                        {% endif %}
                         {% endif %}
                         <div class="col-12 order-md-4">
                             <div class="row justify-content-center">

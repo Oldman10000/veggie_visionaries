@@ -5,7 +5,7 @@
 
 <main>
     <div class="container mt-5 mb-5">
-        {% if session.user|lower == recipe.created_by|lower or session.user["username"] == admin %}
+        {% if session.user|lower == recipe.created_by|lower or session.user == "admin" %}
         <form class="col col-md-8 mx-auto" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
             <div class="card light-back shadow-1-strong">
                 <h2 class="text-center card-header mb-4">Edit Recipe</h2>
