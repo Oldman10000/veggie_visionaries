@@ -65,6 +65,10 @@ li,
     text-transform: uppercase;
 }
 
+.card-text {
+    margin-bottom: 8px;
+}
+
 .dark-green-back {
     background-color: #008100;
     color: #F0EBEF;
@@ -219,7 +223,7 @@ a:hover {
 @media only screen and (min-width: 992px) {
 
     .bounce i {
-        font-size: 1.5em;
+        font-size: 2em;
     }
 
     @-webkit-keyframes bounce {
@@ -345,4 +349,9 @@ a:hover {
 
 .fa-heart {
     color: #008100;
+}
+
+.fa-star {
+    color: gold;
+    text-shadow: 1px 1px 0px #1D261E;
 }
