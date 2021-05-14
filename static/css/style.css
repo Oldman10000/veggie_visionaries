@@ -27,13 +27,7 @@ footer {
 
 @media only screen and (min-height: 600px) {
     #home-buttons>a {
-        font-size: 1.5em;
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    #home-buttons>a {
-        font-size: 2em;
+        font-size: 1.2em;
     }
 }
 
@@ -43,8 +37,14 @@ h3,
 h4,
 h5,
 h6,
-button {
-    font-family: 'Amatic SC', cursive;
+.nav-link,
+button,
+.my-button {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 0px #1D261E;
 }
 
 p,
@@ -53,8 +53,16 @@ label,
 .form-helper,
 textarea,
 li,
-.pagination-page-info {
-    font-family: 'Indie Flower', cursive;
+.pagination-page-info  {
+    font-family: 'Raleway', sans-serif;
+}
+
+.navbar-brand h1 {
+    margin-bottom: 0;
+}
+
+.nav-link {
+    text-transform: uppercase;
 }
 
 .dark-green-back {
@@ -90,30 +98,12 @@ a {
     color: #F0EBEF;
 }
 
-.text-shadow {
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-}
-
-.title {
-    font-size: 2.5em;
-    font-weight: 700;
-    letter-spacing: 10px;
-}
-
-.small-title {
-    font-size: 2em;
-    font-weight: 500;
-    letter-spacing: 8px;
-}
-
 .card {
     padding: 20px;
 }
 
 .my-button {
     background: #AAFFB4;
-    font-family: 'Amatic SC', cursive;
-    font-weight: 700;
 }
 
 .dark-button {
@@ -182,13 +172,7 @@ a {
     position: relative;
 }
 
-#main-title {
-    letter-spacing: 10px;
-    font-weight: 700;
-}
-
 .welcome {
-    letter-spacing: 5px;
     font-weight: 700;
 }
 

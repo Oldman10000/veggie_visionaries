@@ -1,80 +1,79 @@
-<header>
-    <nav id="nav" class="navbar sticky-top navbar-expand-lg dark-green-back light-text text-shadow">
-        <!-- Container wrapper -->
-        <div class="container-fluid">
-            <!-- Navbar Brand -->
-            <a class="navbar-brand" href="{{ url_for('index') }}">
-                <h1>Veggie Visionaries</h1>
-            </a>
-            <!-- Toggle button -->
-            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbar-content"
-                aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
+<!-- no header element as this prevents 'sticky top' class from working -->
+<nav id="nav" class="navbar sticky-top navbar-expand-lg dark-green-back light-text text-shadow">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+        <!-- Navbar Brand -->
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+            <h1>Veggie Visionaries</h1>
+        </a>
+        <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbar-content"
+            aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
 
-            <!-- Collapsible wrapper -->
-            <div class="collapse navbar-collapse" id="navbar-content">
-                <!-- Left links -->
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    {% if session.user %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('loggedin', username=session['user']) }}">
-                            <p>Home</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('all_recipes') }}">
-                            <p>Recipes</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('add_recipe') }}">
-                            <p>Add Recipe</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('logout') }}">
-                            <p>Log Out</p>
-                        </a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('index') }}">
-                            <p>Home</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('all_recipes') }}">
-                            <p>Recipes</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('register') }}">
-                            <p>Register</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('login') }}">
-                            <p>Log In</p>
-                        </a>
-                    </li>
-                    {% endif %}
-                </ul>
-                <!-- Left links -->
-            </div>
-            <!-- Collapsible wrapper -->
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbar-content">
+            <!-- Left links -->
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                {% if session.user %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('loggedin', username=session['user']) }}">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('all_recipes') }}">
+                        Recipes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('add_recipe') }}">
+                        Add Recipe
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">
+                        Log Out
+                    </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('all_recipes') }}">
+                        Recipes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('register') }}">
+                        Register
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}">
+                        Log In
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+            <!-- Left links -->
         </div>
-        <!-- Container wrapper -->
-    </nav>
-    <section>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        {% for message in messages %}
-        <div class="row flashes">
-            <h2 class="text-center">{{ message }}</h2>
-        </div>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
-    </section>
-</header>
+        <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+</nav>
+<section>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="row flashes">
+        <h2 class="text-center">{{ message }}</h2>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</section>
