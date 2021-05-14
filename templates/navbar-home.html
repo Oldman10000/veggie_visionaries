@@ -73,43 +73,43 @@
             <!-- Left links -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 {% if session.user %}
-                <li class="nav-item">
+                <li class="nav-item scale">
                     <a class="nav-link" href="{{ url_for('loggedin', username=session['user']) }}">
                         Home
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item scale">
                     <a class="nav-link" href="{{ url_for('all_recipes') }}">
                         Recipes
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item scale">
                     <a class="nav-link" href="{{ url_for('add_recipe') }}">
                         Add Recipe
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item scale">
                     <a class="nav-link" href="{{ url_for('logout') }}">
                         Log Out
                     </a>
                 </li>
                 {% else %}
-                <li class="nav-item">
+                <li class="nav-item scale">
                     <a class="nav-link" href="{{ url_for('index') }}">
                         Home
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item scale">
                     <a class="nav-link" href="{{ url_for('all_recipes') }}">
                         Recipes
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item scale">
                     <a class="nav-link" href="{{ url_for('register') }}">
                         Register
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item scale">
                     <a class="nav-link" href="{{ url_for('login') }}">
                         Log In
                     </a>
@@ -126,7 +126,7 @@
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     {% for message in messages %}
-    <div class="row flashes">
+    <div class="row flashes mt-2">
         <h2 class="text-center">{{ message }}</h2>
     </div>
     {% endfor %}
