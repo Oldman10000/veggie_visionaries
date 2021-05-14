@@ -19,7 +19,7 @@
                 {% if session.user %}
                 <li class="nav-item">
                     <a class="nav-link scale" href="{{ url_for('loggedin', username=session['user']) }}">
-                        Home
+                        {{ session.user }} Home
                     </a>
                 </li>
                 <li class="nav-item">
