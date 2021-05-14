@@ -53,7 +53,7 @@ label,
 .form-helper,
 textarea,
 li,
-.pagination-page-info  {
+.pagination-page-info {
     font-family: 'Raleway', sans-serif;
 }
 
@@ -89,13 +89,19 @@ a {
     color: inherit;
 }
 
-.internal-link {
-    color: #1D261E;
-    font-weight: 800;
+a:hover {
+    color: inherit
 }
 
-.internal-link:hover {
-    color: #F0EBEF;
+/* anchor effects on larger screens only */
+@media only screen and (min-width: 992px) {
+    .scale {
+        transition: transform 0.4s;
+    }
+    
+    .scale:hover {
+        transform: scale(1.1);
+    }
 }
 
 .card {
@@ -104,6 +110,7 @@ a {
 
 .my-button {
     background: #AAFFB4;
+    color: #1D261E;
 }
 
 .dark-button {
@@ -332,7 +339,7 @@ a {
     }
 }
 
-.bg-image > img {
+.bg-image>img {
     max-width: 100%;
 }
 

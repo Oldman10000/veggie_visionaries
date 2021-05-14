@@ -18,43 +18,43 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 {% if session.user %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('loggedin', username=session['user']) }}">
+                    <a class="nav-link scale" href="{{ url_for('loggedin', username=session['user']) }}">
                         Home
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('all_recipes') }}">
+                    <a class="nav-link scale" href="{{ url_for('all_recipes') }}">
                         Recipes
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('add_recipe') }}">
+                    <a class="nav-link scale" href="{{ url_for('add_recipe') }}">
                         Add Recipe
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('logout') }}">
+                    <a class="nav-link scale" href="{{ url_for('logout') }}">
                         Log Out
                     </a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('index') }}">
+                    <a class="nav-link scale" href="{{ url_for('index') }}">
                         Home
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('all_recipes') }}">
+                    <a class="nav-link scale" href="{{ url_for('all_recipes') }}">
                         Recipes
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('register') }}">
+                    <a class="nav-link scale" href="{{ url_for('register') }}">
                         Register
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('login') }}">
+                    <a class="nav-link scale" href="{{ url_for('login') }}">
                         Log In
                     </a>
                 </li>
