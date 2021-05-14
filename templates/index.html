@@ -115,7 +115,7 @@
                                     <div class="form-helper"></div>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn my-button">
+                                    <button type="submit" class="btn dark-button">
                                         Log In
                                     </button>
                                 </div>
@@ -131,10 +131,10 @@
                                 <div class="justify-content-center">
                                     <div class="form-outline mb-4">
                                         <input type="text" id="query" name="query" class="form-control" required />
-                                        <label class="form-label" for="query">Search</label>
+                                        <label class="form-label" for="query">e.g. Stir Fry</label>
                                     </div>
                                     <div class="text-center">
-                                        <button type="submit" class="btn my-button">
+                                        <button type="submit" class="btn dark-button">
                                             Search
                                         </button>
                                     </div>
@@ -153,7 +153,7 @@
                             <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}"
                                 class="card dark-green-back mt-4 text-center shadow-1-strong">
                                 <h3 class="card-header text-shadow">{{ recipe.name }}</h3>
-                                <p class="card-text mt-3 text-shadow">
+                                <p class="card-text mt-3">
                                     {% if recipe.avgrating == 1 %}
                                     <i class="fas fa-star"></i>
                                     {% elif recipe.avgrating == 2 %}
