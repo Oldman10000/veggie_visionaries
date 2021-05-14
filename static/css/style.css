@@ -65,6 +65,22 @@ li,
     text-transform: uppercase;
 }
 
+.log-btn {
+    background: #AAFFB4;
+    border-radius: 2.5px;
+    color: #1D261E;
+    text-shadow: none;
+    font-weight: 500;
+}
+
+.log-btn:hover {
+    color: #1D261E;
+}
+
+.card a:hover {
+    color: #F0EBEF;
+}
+
 .card-text {
     margin-bottom: 8px;
 }

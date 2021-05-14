@@ -73,44 +73,44 @@
             <!-- Left links -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 {% if session.user %}
-                <li class="nav-item scale">
-                    <a class="nav-link" href="{{ url_for('loggedin', username=session['user']) }}">
+                <li class="nav-item">
+                    <a class="nav-link scale" href="{{ url_for('loggedin', username=session['user']) }}">
                         {{ session.user }} Home
                     </a>
                 </li>
-                <li class="nav-item scale">
-                    <a class="nav-link" href="{{ url_for('all_recipes') }}">
+                <li class="nav-item">
+                    <a class="nav-link scale" href="{{ url_for('all_recipes') }}">
                         Recipes
                     </a>
                 </li>
-                <li class="nav-item scale">
-                    <a class="nav-link" href="{{ url_for('add_recipe') }}">
+                <li class="nav-item">
+                    <a class="nav-link scale" href="{{ url_for('add_recipe') }}">
                         Add Recipe
                     </a>
                 </li>
-                <li class="nav-item scale">
-                    <a class="nav-link" href="{{ url_for('logout') }}">
+                <li class="nav-item">
+                    <a class="nav-link log-btn log-btn scale ms-2" href="{{ url_for('logout') }}">
                         Log Out
                     </a>
                 </li>
                 {% else %}
-                <li class="nav-item scale">
-                    <a class="nav-link" href="{{ url_for('index') }}">
+                <li class="nav-item">
+                    <a class="nav-link scale" href="{{ url_for('index') }}">
                         Home
                     </a>
                 </li>
-                <li class="nav-item scale">
-                    <a class="nav-link" href="{{ url_for('all_recipes') }}">
+                <li class="nav-item">
+                    <a class="nav-link scale" href="{{ url_for('all_recipes') }}">
                         Recipes
                     </a>
                 </li>
-                <li class="nav-item scale">
-                    <a class="nav-link" href="{{ url_for('register') }}">
+                <li class="nav-item">
+                    <a class="nav-link scale" href="{{ url_for('register') }}">
                         Register
                     </a>
                 </li>
-                <li class="nav-item scale">
-                    <a class="nav-link" href="{{ url_for('login') }}">
+                <li class="nav-item scale ms-2">
+                    <a class="nav-link log-btn scale ms-2" href="{{ url_for('login') }}">
                         Log In
                     </a>
                 </li>
