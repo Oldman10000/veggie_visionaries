@@ -342,7 +342,7 @@ def delete_recipe(recipe_id):
     else:
         user = False
     # checks if session user is the creator (or admin account)
-    if user == created_by or user == "admin":
+    if user == created_by or user["username"] == "admin":
         # deletes all instances of recipe in user favorites
         mongo.db.users.update(
             {},
