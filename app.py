@@ -88,6 +88,18 @@ def show_recipes(recipes, order):
                            order=order)
 
 
+# shows user favorites
+@app.route("/favorites")
+def favorites():
+    if session.get("user"):
+        user = mongo.db.users.find_one({"username": session["user"]})
+        recipes = user["favorite"]
+    else:
+        recipes = ""
+    order = "Favourites"
+    return show_recipes(order=order, recipes=recipes)
+
+
 # shows all recipes
 @app.route("/recipes")
 def all_recipes():
