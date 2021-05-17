@@ -243,24 +243,39 @@ def show_recipe(recipe_id):
 # Allows user to favorite a particular recipe
 @app.route("/favorite/<recipe_id>")
 def favorite(recipe_id):
+    # gets session user
     user = mongo.db.users.find_one({"username": session["user"]})
+    # gets current recipe
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    # pushes current recipe to session user's favorites
     mongo.db.users.update_one(user, {"$push": {"favorite": recipe}})
     flash("Recipe Added to Favourites")
-    return redirect(url_for("all_recipes"))
+    return redirect(url_for("favorites"))
 
 
 # allows user to remove recipe from favorites
 @app.route("/remove_favorite/<recipe_id>")
 def remove_favorite(recipe_id):
+    # gets session user
     user = mongo.db.users.find_one({"username": session["user"]})
+    # gets current recipe
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    # gets recipe id
+    recipeId = recipe["_id"]
+    # gets array of user favorites and creates list
     favoriteArray = user["favorite"]
+    # iterates through user favorites to find matching recipe id and assigns
+    # this to recipe variable
+    for favorite in favoriteArray:
+        if favorite["_id"] == recipeId:
+            recipe = favorite
+    # removes unfavorited recipe from local list
     favoriteArray.remove(recipe)
+    # updates mongo db array with new local list
     mongo.db.users.update_one({"username": session["user"]},
                               {"$set": {"favorite": favoriteArray}})
     flash("Recipe Removed from Favourites")
-    return redirect(url_for("all_recipes"))
+    return redirect(url_for("favorites"))
 
 
 # allows user to add recipe

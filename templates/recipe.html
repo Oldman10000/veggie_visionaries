@@ -79,11 +79,11 @@
                                 {% if favorited %}
                                 <p class="card-text">Remove from favorites <a
                                         href="{{ url_for('remove_favorite', recipe_id=recipe._id) }}"><i
-                                            class="fav-heart remove fas"></i></a></p>
+                                            class="fav-heart remove fas fa-heart"></i></a></p>
                                 {% else %}
                                 <p class="card-text">Add to favorites <a
                                         href="{{ url_for('favorite', recipe_id=recipe._id) }}"><i
-                                            class="fav-heart favorite far"></i></a></p>
+                                            class="fav-heart favorite far fa-heart"></i></a></p>
                                 {% endif %}
                                 {% else %}
                                 <p>Please <a href="{{ url_for('login') }}">Log In</a> or <a
