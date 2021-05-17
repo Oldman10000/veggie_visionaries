@@ -78,20 +78,19 @@
                     <div class="col-12 col-lg-6">
                         <div class="card light-back shadow-1-strong">
                             <h2 class="text-center card-header">{{ user.username }}'s favourite Recipes</h2>
+                            {% if user.favorite %}
                             {% for recipe in user.favorite %}
                             <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}"
                                 class="card dark-green-back mt-4 text-center align-items-center shadow-1-strong">
                                 <h3>{{ recipe.name }}
                                 </h3>
-                                {% if recipe.image %}
-                                <div class="bg-image hover-zoom rounded m-3">
-                                    <img src="{{ recipe.image }}" alt="{{ recipe.name }} Photo">
-                                </div>
-                                {% else %}
-                                <i class="fas fa-camera-retro fa-5x"></i>
-                                {% endif %}
                             </a>
                             {% endfor %}
+                            {% else %}
+                            <p class="text-center mt-4">You have no favorites! Find some recipes <a href="{{ url_for('all_recipes') }}">
+                                    Here!
+                                </a></p>
+                            {% endif %}
 
                         </div>
                     </div>
@@ -101,7 +100,8 @@
                             <div class="card light-back shadow-1-strong">
                                 <h2 class="text-center mb-4 card-header">Log In</h2>
                                 <p class="text-center">
-                                    Don't have an account with us yet? Register <a href="{{ url_for('register') }}">Here</a>
+                                    Don't have an account with us yet? Register <a
+                                        href="{{ url_for('register') }}">Here</a>
                                 </p>
                                 <div class="form-outline mb-4">
                                     <input type="text" id="username" name="username" class="form-control" required />

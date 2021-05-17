@@ -115,7 +115,7 @@
                     <i class="fas fa-camera-retro"></i> Add Photo (Optional)
                 </div>
                 <div class="image-submit-div">
-                    <input type="hidden" id="image_submit" name="image_submit" />
+                    <input type="hidden" id="image_submit" name="image_submit" value="{{ recipe.image }}" />
                 </div>
                 <button type="submit" class="btn my-button dark-button mb-4">Edit</button>
                 <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}"
