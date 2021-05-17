@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <!-- Navbar Brand -->
         <a class="navbar-brand" href="{{ url_for('index') }}">
-            <h1>Veggie Visionaries</h1>
+            <h1><i class="fas fa-carrot"></i> Veggie Visionaries</h1>
         </a>
         <!-- Toggle button -->
         <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbar-content"
@@ -24,12 +24,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link scale" href="{{ url_for('favorites') }}">
-                        {{ session.user }}'s Favourites
+                        <i class="fas fa-heart"></i> {{ session.user }}'s Favourites
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link scale" href="{{ url_for('all_recipes') }}">
-                        Recipes
+                        All Recipes
                     </a>
                 </li>
                 <li class="nav-item">
@@ -50,7 +50,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link scale" href="{{ url_for('all_recipes') }}">
-                        Recipes
+                        All Recipes
                     </a>
                 </li>
                 <li class="nav-item">
