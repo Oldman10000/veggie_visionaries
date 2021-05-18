@@ -417,3 +417,13 @@ label.star:before {
     content: '\f006';
     font-family: FontAwesome;
 }
+
+
+.form-select {
+    border-color: #008100;
+}
+
+.form-select:focus {
+    border-color: #008100;
+    box-shadow: none;
+}

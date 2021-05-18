@@ -131,13 +131,12 @@ def search():
 
 # sorts recipes in particular orders
 def sorter(recipes, sort):
-    print(type(recipes))
     # sorts alphabetically
     if sort == "A-Z":
         recipes.sort("name")
         return recipes
     # sorts by newest added
-    elif sort == "Newest":
+    elif sort == "Newer":
         recipes.sort("_id", -1)
         return recipes
     # sorts by rating
@@ -147,6 +146,7 @@ def sorter(recipes, sort):
     # sorts by oldest
     elif sort == "Older":
         recipes.sort("_id", 1)
+        return recipes
     else:
         return False
 
@@ -155,12 +155,13 @@ def sorter(recipes, sort):
 def filteredRecipes(filtered, order):
     recipes = filtered
     order = order
-
     sort = request.args.get("sort", None)
+    print(sort)
     if sort:
         sorter(recipes, sort)
         current_sorting = sort
     else:
+        recipes.sort("_id", -1)
         current_sorting = "Newer"
     return show_recipes(recipes, order, current_sorting)
 
@@ -186,6 +187,78 @@ def medium():
 def hard():
     filtered = mongo.db.recipes.find({"difficulty": "hard"})
     order = "Hard"
+    return filteredRecipes(filtered, order)
+
+
+# gets chinese recipes
+@app.route("/recipes/chinese")
+def chinese():
+    filtered = mongo.db.recipes.find({"cuisine": "chinese"})
+    order = "Chinese"
+    return filteredRecipes(filtered, order)
+
+
+# gets indian recipes
+@app.route("/recipes/indian")
+def indian():
+    filtered = mongo.db.recipes.find({"cuisine": "indian"})
+    order = "Indian"
+    return filteredRecipes(filtered, order)
+
+
+# gets italian recipes
+@app.route("/recipes/italian")
+def italian():
+    filtered = mongo.db.recipes.find({"cuisine": "italian"})
+    order = "Italian"
+    return filteredRecipes(filtered, order)
+
+
+# gets french recipes
+@app.route("/recipes/french")
+def french():
+    filtered = mongo.db.recipes.find({"cuisine": "french"})
+    order = "French"
+    return filteredRecipes(filtered, order)
+
+
+# gets japanese recipes
+@app.route("/recipes/japanese")
+def japanese():
+    filtered = mongo.db.recipes.find({"cuisine": "japanese"})
+    order = "Japanese"
+    return filteredRecipes(filtered, order)
+
+
+# gets thai recipes
+@app.route("/recipes/thai")
+def thai():
+    filtered = mongo.db.recipes.find({"cuisine": "thai"})
+    order = "Thai"
+    return filteredRecipes(filtered, order)
+
+
+# gets mexican recipes
+@app.route("/recipes/mexican")
+def mexican():
+    filtered = mongo.db.recipes.find({"cuisine": "mexican"})
+    order = "Mexican"
+    return filteredRecipes(filtered, order)
+
+
+# gets british recipes
+@app.route("/recipes/british")
+def british():
+    filtered = mongo.db.recipes.find({"cuisine": "British"})
+    order = "British"
+    return filteredRecipes(filtered, order)
+
+
+# gets other recipes
+@app.route("/recipes/other")
+def other():
+    filtered = mongo.db.recipes.find({"cuisine": "other"})
+    order = "Other"
     return filteredRecipes(filtered, order)
 
 

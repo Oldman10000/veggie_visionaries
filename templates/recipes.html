@@ -29,17 +29,37 @@
                             <li><a class="dropdown-item" href="{{ url_for('hard') }}">Hard</a></li>
                         </ul>
                     </div>
+                    <div class="dropdown d-inline">
+                        <button class="btn dark-button dropdown-toggle mt-2 mt-md-0" type="button"
+                            id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+                            Cuisine
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="cuisinebutton">
+                            <li><a class="dropdown-item" href="{{ url_for('chinese') }}">Chinese</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('indian') }}">Indian</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('italian') }}">Italian</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('french') }}">French</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('japanese') }}">Japanese</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('thai') }}">Thai</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('mexican') }}">Mexican</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('british') }}">British</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('other') }}">Other</a></li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- sort selector -->
                 <div class="custom-select mt-2 mb-2">
                     <select id="sort-selector" class="form-select">
-                        <option value="Newer" {% if current_sorting == "Newer" %}selected{% endif %}>Default (Newest First)
+                        <option value="Newer" {% if current_sorting == "Newer" %}selected{% endif %}>Default (Newest
+                            First)
                         </option>
                         <option value="A-Z" {% if current_sorting == "A-Z" %}selected{% endif %}>A-Z</option>
-                        <option value="Rating" {% if current_sorting == "Rating" %}selected{% endif %}>Rating (Top Rated First)
+                        <option value="Rating" {% if current_sorting == "Rating" %}selected{% endif %}>Rating (Top Rated
+                            First)
                         </option>
-                        <option value="Older" {% if current_sorting == "Older" %}selected{% endif %}>Oldest First</option>
+                        <option value="Older" {% if current_sorting == "Older" %}selected{% endif %}>Oldest First
+                        </option>
                     </select>
                 </div>
 
@@ -129,6 +149,9 @@
                                 <strong>Created on</strong> {{ recipe.date }} at {{ recipe.time }}
                             </p>
                             <p class="card-text">
+                                <strong>Cuisine:</strong> {{ recipe.cuisine|capitalize }}
+                            </p>
+                            <p class="card-text">
                                 <strong>Difficulty:</strong> {{ recipe.difficulty }}
                             </p>
                             <p class="card-text">
@@ -187,6 +210,9 @@
                             </p>
                             <p class="card-text text-muted">
                                 <strong>Created on</strong> {{ recipe.date }} at {{ recipe.time }}
+                            </p>
+                            <p class="card-text">
+                                <strong>Cuisine:</strong> {{ recipe.cuisine|capitalize }}
                             </p>
                             <p class="card-text">
                                 <strong>Difficulty:</strong> {{ recipe.difficulty }}

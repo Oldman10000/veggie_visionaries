@@ -18,6 +18,18 @@
                     <input type="text" id="rname" name="rname" class="form-control" required />
                     <label class="form-label" for="rname">Recipe Name</label>
                 </div>
+                <p>Cuisine</p>
+                <select name="cuisine" id="cuisine" class="form-select mb-4" aria-label="cuisine-select" required>
+                    <option value="Other">Other</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="Indian">Indian</option>
+                    <option value="Italian">Italian</option>
+                    <option value="French">French</option>
+                    <option value="Japanese">Japanese</option>
+                    <option value="Thai">Thai</option>
+                    <option value="Mexican">Mexican</option>
+                    <option value="British">British</option>
+                </select>
                 <p>Difficulty</p>
                 <div class="btn-group mb-4">
                     <input type="radio" class="btn-check" name="difficulty" id="easy" value="easy" autocomplete="off"
@@ -54,10 +66,10 @@
                     </div>
                 </div>
                 <div class="btn-group mb-4">
-                    <div class="add_ingredient_button btn my-button dark-button">
+                    <div class="add_ingredient_button btn dark-button">
                         <i class="fas fa-plus"></i> Add Another Ingredient
                     </div>
-                    <div class="delete_ingredient_button btn my-button delete-button">
+                    <div class="delete_ingredient_button btn dark-button delete-button">
                         <i class="fas fa-trash"></i> Remove Last Ingredient
                     </div>
                 </div>
@@ -70,21 +82,21 @@
                     </div>
                 </div>
                 <div class="btn-group mb-4">
-                    <div class="add_instruction_button btn my-button dark-button">
+                    <div class="add_instruction_button btn dark-button">
                         <i class="fas fa-plus"></i> Add Another Instruction
                     </div>
-                    <div class="delete_instruction_button btn my-button delete-button">
+                    <div class="delete_instruction_button btn delete-button">
                         <i class="fas fa-trash"></i> Remove Last Instruction
                     </div>
                 </div>
-                <div class="btn my-button dark-button photo-widget mb-4">
+                <div class="btn dark-button photo-widget mb-4">
                     <i class="fas fa-camera-retro"></i> Add Photo (Optional)
                 </div>
                 <div class="image-submit-div">
                     <input type="hidden" id="image_submit" name="image_submit" />
                 </div>
-                <button type="submit" class="btn my-button dark-button mb-4">Submit</button>
-                <a href="{{ url_for('all_recipes') }}" class="btn my-button delete-button">Cancel</a>
+                <button type="submit" class="btn dark-button mb-4">Submit</button>
+                <a href="{{ url_for('all_recipes') }}" class="btn delete-button">Cancel</a>
             </div>
         </form>
         {% else %}
