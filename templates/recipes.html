@@ -9,32 +9,18 @@
             <div class="col-11 col-md-12 card light-back mb-2 shadow-1-strong">
                 <h2 class="text-center mb-4 card-header">Recipes</h2>
                 <div class="text-center mb-2">
-                    <button type="button" class="btn dark-button d-inline mt-3 mt-md-0" data-mdb-toggle="modal"
+                    <button type="button" class="btn dark-button d-inline mt-2 mt-md-0" data-mdb-toggle="modal"
                         data-mdb-target="#searchmodal">
                         Search
                     </button>
                     <a href="{{ url_for('all_recipes') }}">
-                        <button class="btn delete-button d-inline mt-3 mt-md-0">
+                        <button class="btn delete-button d-inline mt-2 mt-md-0">
                             Reset
                         </button>
                     </a>
-                </div>
-                <div class="text-center mb-3">
                     <div class="dropdown d-inline">
-                        <button class="btn dark-button dropdown-toggle mt-3 mt-md-0" type="button" id="dropdownMenuButton"
-                            data-mdb-toggle="dropdown" aria-expanded="false">
-                            Sort By
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="sortbybutton">
-                            <li><a class="dropdown-item" href="{{ url_for('a_z') }}">A-Z</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('rating') }}">Rating</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('all_recipes') }}">Newer</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('older') }}">Older</a></li>
-                        </ul>
-                    </div>
-                    <div class="dropdown d-inline">
-                        <button class="btn dark-button dropdown-toggle mt-3 mt-md-0" type="button" id="dropdownMenuButton"
-                            data-mdb-toggle="dropdown" aria-expanded="false">
+                        <button class="btn dark-button dropdown-toggle mt-2 mt-md-0" type="button"
+                            id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
                             Difficulty
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="difficultybutton">
@@ -43,37 +29,43 @@
                             <li><a class="dropdown-item" href="{{ url_for('hard') }}">Hard</a></li>
                         </ul>
                     </div>
-                    {% if session.user %}
-                    <a class="d-inline" href="{{ url_for('favorites') }}">
-                        <button class="btn dark-button mt-3 mt-md-0">
-                            {{ session.user }}'s Favourites
-                        </button>
-                    </a>
-                    {% endif %}
-                    <!-- Search Modal -->
-                    <div class="modal fade" id="searchmodal" tabindex="-1" aria-labelledby="searchmodalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content card light-back mb-2 mt-4 shadow-1-strong">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="searchmodalLabel">Search for a Recipe</h4>
-                                    <button type="button" class="btn-close" data-mdb-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form class="justify-content-center" action="{{ url_for('search') }}" method="post">
-                                        <div class="form-outline mb-4">
-                                            <input type="text" id="query" name="query" class="form-control light-back"
-                                                required />
-                                            <label class="form-label overflow-hidden" for="query">e.g. Lasagne</label>
-                                        </div>
-                                        <div class="text-center">
-                                            <button type="submit" class="btn dark-button">
-                                                Search
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
+                </div>
+
+                <!-- sort selector -->
+                <div class="custom-select mt-2 mb-2">
+                    <select id="sort-selector" class="form-select">
+                        <option value="Newer" {% if current_sorting == "Newer" %}selected{% endif %}>Default (Newest)
+                        </option>
+                        <option value="A-Z" {% if current_sorting == "A-Z" %}selected{% endif %}>A-Z</option>
+                        <option value="Rating" {% if current_sorting == "Rating" %}selected{% endif %}>Rating
+                        </option>
+                        <option value="Older" {% if current_sorting == "Older" %}selected{% endif %}>Oldest</option>
+                    </select>
+                </div>
+
+                <!-- Search Modal -->
+                <div class="modal fade" id="searchmodal" tabindex="-1" aria-labelledby="searchmodalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content card light-back mb-2 mt-4 shadow-1-strong">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="searchmodalLabel">Search for a Recipe</h4>
+                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="justify-content-center" action="{{ url_for('search') }}" method="post">
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="query" name="query" class="form-control light-back"
+                                            required />
+                                        <label class="form-label overflow-hidden" for="query">e.g. Lasagne</label>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn dark-button">
+                                            Search
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -222,8 +214,8 @@
                                     data-mdb-target="#deletemodal{{ recipe._id }}">Delete</a>
                             </div>
                             <!-- Modal -->
-                            <div class="modal fade" id="deletemodal{{ recipe._id }}" tabindex="-1" aria-labelledby="deletemodalLabel"
-                                aria-hidden="true">
+                            <div class="modal fade" id="deletemodal{{ recipe._id }}" tabindex="-1"
+                                aria-labelledby="deletemodalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-body">
@@ -261,4 +253,17 @@
     </div>
 
 </main>
+
+<script type="text/javascript">
+    // sort functionality
+    $(document).ready(function () {
+        $("#sort-selector").change(function () {
+            let selector = $(this);
+            let currentUrl = new URL(window.location);
+            let sort = selector.val();
+            currentUrl.searchParams.set("sort", sort);
+            window.location.replace(currentUrl);
+        })
+    });
+</script>
 {% endblock %}

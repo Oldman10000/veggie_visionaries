@@ -53,7 +53,8 @@ label,
 .form-helper,
 textarea,
 li,
-.pagination-page-info {
+.pagination-page-info,
+option {
     font-family: 'Raleway', sans-serif;
 }
 

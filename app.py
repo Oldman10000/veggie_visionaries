@@ -65,7 +65,8 @@ def pagination_args(recipes):
 
 
 # general recipes page template
-def show_recipes(recipes, order):
+def show_recipes(recipes, order, current_sorting):
+    recipes = list(recipes)
     recipes_paginated = paginated(recipes)
     pagination = pagination_args(recipes)
 
@@ -85,7 +86,59 @@ def show_recipes(recipes, order):
     return render_template("recipes.html",
                            recipes=recipes_paginated,
                            pagination=pagination,
-                           order=order)
+                           order=order,
+                           current_sorting=current_sorting)
+
+
+# shows all recipes
+@app.route("/recipes")
+def all_recipes():
+    recipes = mongo.db.recipes.find().sort("_id", -1)
+    order = "All Recipes"
+    sort = request.args.get("sort", None)
+    if sort:
+        sorter(recipes, sort)
+        current_sorting = sort
+    else:
+        current_sorting = "Newer"
+    return show_recipes(recipes, order, current_sorting)
+
+
+# allows user to search for recipe
+@app.route("/search",  methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    recipes = mongo.db.recipes.find({"$text": {"$search": query}})
+    order = "You have found..."
+    sort = request.args.get("sort", None)
+    if sort:
+        sorter(recipes, sort)
+        current_sorting = sort
+    else:
+        current_sorting = "Newer"
+    return show_recipes(recipes, order, current_sorting)
+
+
+# sorts recipes in particular orders
+def sorter(recipes, sort):
+    print(type(recipes))
+    # sorts alphabetically
+    if sort == "A-Z":
+        recipes.sort("name")
+        return recipes
+    # sorts by newest added
+    elif sort == "Newest":
+        recipes.sort("_id", -1)
+        return recipes
+    # sorts by rating
+    elif sort == "Rating":
+        recipes.sort("avgrating", -1)
+        return recipes
+    # sorts by oldest
+    elif sort == "Older":
+        recipes.sort("_id", 1)
+    else:
+        return False
 
 
 # shows user favorites
@@ -94,75 +147,61 @@ def favorites():
     if session.get("user"):
         user = mongo.db.users.find_one({"username": session["user"]})
         recipes = user["favorite"]
-    else:
-        recipes = ""
+    print(type(recipes))
     order = "Favourites"
-    return show_recipes(order=order, recipes=recipes)
-
-
-# shows all recipes
-@app.route("/recipes")
-def all_recipes():
-    recipes = list(mongo.db.recipes.find().sort("_id", -1))
-    order = "Newest First"
-    return show_recipes(recipes, order)
-
-
-# shows all recipes
-@app.route("/older")
-def older():
-    recipes = list(mongo.db.recipes.find().sort("_id", 1))
-    order = "Oldest First"
-    return show_recipes(recipes, order)
-
-
-# allows user to search for recipe
-@app.route("/search",  methods=["GET", "POST"])
-def search():
-    query = request.form.get("query")
-    recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
-    order = "You have found..."
-    return show_recipes(recipes, order)
-
-
-# sorts recipes alphabetically
-@app.route("/recipes/a-z")
-def a_z():
-    recipes = list(mongo.db.recipes.find().sort("name"))
-    order = "A-Z"
-    return show_recipes(recipes, order)
-
-
-# sorts recipes by rating
-@app.route("/recipes/rating")
-def rating():
-    recipes = list(mongo.db.recipes.find().sort("avgrating", -1))
-    order = "Top Rated First"
-    return show_recipes(recipes, order)
+    sort = request.args.get("sort", None)
+    if sort:
+        sorter(recipes, sort)
+        current_sorting = sort
+    else:
+        current_sorting = "Newer"
+    return show_recipes(
+        order=order,
+        recipes=recipes,
+        current_sorting=current_sorting)
 
 
 # gets easy recipes
 @app.route("/recipes/easy")
 def easy():
-    recipes = list(mongo.db.recipes.find({"difficulty": "easy"}))
+    recipes = mongo.db.recipes.find(
+        {"difficulty": "easy"}).sort("_id", -1)
     order = "Easy"
-    return show_recipes(recipes, order)
+    sort = request.args.get("sort", None)
+    if sort:
+        sorter(recipes, sort)
+        current_sorting = sort
+    else:
+        current_sorting = "Newer"
+    return show_recipes(recipes, order, current_sorting)
 
 
 # gets medium recipes
 @app.route("/recipes/medium")
 def medium():
-    recipes = list(mongo.db.recipes.find({"difficulty": "medium"}))
+    recipes = mongo.db.recipes.find({"difficulty": "medium"})
     order = "Medium"
-    return show_recipes(recipes, order)
+    sort = request.args.get("sort", None)
+    if sort:
+        sorter(recipes, sort)
+        current_sorting = sort
+    else:
+        current_sorting = "Newer"
+    return show_recipes(recipes, order, current_sorting)
 
 
 # gets hard recipes
 @app.route("/recipes/hard")
 def hard():
-    recipes = list(mongo.db.recipes.find({"difficulty": "hard"}))
+    recipes = mongo.db.recipes.find({"difficulty": "hard"})
     order = "Hard"
-    return show_recipes(recipes, order)
+    sort = request.args.get("sort", None)
+    if sort:
+        sorter(recipes, sort)
+        current_sorting = sort
+    else:
+        current_sorting = "Newer"
+    return show_recipes(recipes, order, current_sorting)
 
 
 # allows user to delete review
