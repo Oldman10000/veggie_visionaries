@@ -90,6 +90,16 @@ def show_recipes(recipes, order, current_sorting):
                            current_sorting=current_sorting)
 
 
+# shows user favorites
+@app.route("/favorites")
+def favorites():
+    if session.get("user"):
+        user = mongo.db.users.find_one({"username": session["user"]})
+    else:
+        user = False
+    return render_template("favorites.html", user=user)
+
+
 # shows all recipes
 @app.route("/recipes")
 def all_recipes():
@@ -139,26 +149,6 @@ def sorter(recipes, sort):
         recipes.sort("_id", 1)
     else:
         return False
-
-
-# shows user favorites
-@app.route("/favorites")
-def favorites():
-    if session.get("user"):
-        user = mongo.db.users.find_one({"username": session["user"]})
-        recipes = user["favorite"]
-    print(type(recipes))
-    order = "Favourites"
-    sort = request.args.get("sort", None)
-    if sort:
-        sorter(recipes, sort)
-        current_sorting = sort
-    else:
-        current_sorting = "Newer"
-    return show_recipes(
-        order=order,
-        recipes=recipes,
-        current_sorting=current_sorting)
 
 
 # gets easy recipes
