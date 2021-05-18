@@ -151,12 +151,11 @@ def sorter(recipes, sort):
         return False
 
 
-# gets easy recipes
-@app.route("/recipes/easy")
-def easy():
-    recipes = mongo.db.recipes.find(
-        {"difficulty": "easy"}).sort("_id", -1)
-    order = "Easy"
+# gets filtered recipes
+def filteredRecipes(filtered, order):
+    recipes = filtered
+    order = order
+
     sort = request.args.get("sort", None)
     if sort:
         sorter(recipes, sort)
@@ -164,34 +163,30 @@ def easy():
     else:
         current_sorting = "Newer"
     return show_recipes(recipes, order, current_sorting)
+
+
+# gets easy recipes
+@app.route("/recipes/easy")
+def easy():
+    filtered = mongo.db.recipes.find({"difficulty": "easy"})
+    order = "Easy"
+    return filteredRecipes(filtered, order)
 
 
 # gets medium recipes
 @app.route("/recipes/medium")
 def medium():
-    recipes = mongo.db.recipes.find({"difficulty": "medium"})
+    filtered = mongo.db.recipes.find({"difficulty": "medium"})
     order = "Medium"
-    sort = request.args.get("sort", None)
-    if sort:
-        sorter(recipes, sort)
-        current_sorting = sort
-    else:
-        current_sorting = "Newer"
-    return show_recipes(recipes, order, current_sorting)
+    return filteredRecipes(filtered, order)
 
 
 # gets hard recipes
 @app.route("/recipes/hard")
 def hard():
-    recipes = mongo.db.recipes.find({"difficulty": "hard"})
+    filtered = mongo.db.recipes.find({"difficulty": "hard"})
     order = "Hard"
-    sort = request.args.get("sort", None)
-    if sort:
-        sorter(recipes, sort)
-        current_sorting = sort
-    else:
-        current_sorting = "Newer"
-    return show_recipes(recipes, order, current_sorting)
+    return filteredRecipes(filtered, order)
 
 
 # allows user to delete review
@@ -314,6 +309,7 @@ def add_recipe():
         date = datetime.datetime.now()
         recipe = {
             "name": request.form.get("rname"),
+            "cuisine": request.form.get("cuisine"),
             "difficulty": request.form.get("difficulty"),
             "prep_time": request.form.get("prep_time"),
             "cook_time": request.form.get("cook_time"),
