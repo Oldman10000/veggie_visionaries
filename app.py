@@ -164,51 +164,36 @@ def allRecipes():
 @app.route("/recipes/<cuisine>/<difficulty>")
 def findRecipe(cuisine, difficulty):
 
-    if cuisine == 'chinese':
-        recipes = mongo.db.recipes.find({"cuisine": "chinese"})
-    elif cuisine == 'indian':
-        recipes = mongo.db.recipes.find({"cuisine": "indian"})
-    elif cuisine == 'italian':
-        recipes = mongo.db.recipes.find({"cuisine": "italian"})
-    elif cuisine == 'french':
-        recipes = mongo.db.recipes.find({"cuisine": "french"})
-    elif cuisine == 'japanese':
-        recipes = mongo.db.recipes.find({"cuisine": "japanese"})
-    elif cuisine == 'thai':
-        recipes = mongo.db.recipes.find({"cuisine": "thai"})
-    elif cuisine == 'mexican':
-        recipes = mongo.db.recipes.find({"cuisine": "mexican"})
-    elif cuisine == 'british':
-        recipes = mongo.db.recipes.find({"cuisine": "british"})
-    elif cuisine == 'other':
-        recipes = mongo.db.recipes.find({"cuisine": "other"})
-    else:
-        cuisine = 'all'
-        recipes = mongo.db.recipes.find().sort("_id", -1)
+    print(cuisine)
+    print(difficulty)
 
-    if cuisine != 'all':
+    if cuisine == 'all':
         if difficulty == 'easy':
             recipes = mongo.db.recipes.find(
-                {"difficulty": "easy", "cuisine": cuisine})
+                {"difficulty": "easy"}).sort("_id", -1)
         elif difficulty == 'medium':
             recipes = mongo.db.recipes.find(
-                {"difficulty": "medium", "cuisine": cuisine})
+                {"difficulty": "medium"}).sort("_id", -1)
         elif difficulty == 'hard':
             recipes = mongo.db.recipes.find(
-                {"difficulty": "hard", "cuisine": cuisine})
+                {"difficulty": "hard"}).sort("_id", -1)
         else:
-            difficulty = 'all'
-            recipes = mongo.db.recipes.find().sort("_id", -1)
+            recipes = mongo.db.recipes.find(
+                {"cuisine": cuisine}).sort("_id", -1)
     else:
         if difficulty == 'easy':
-            recipes = mongo.db.recipes.find({"difficulty": "easy"})
+            recipes = mongo.db.recipes.find(
+                {"difficulty": "easy", "cuisine": cuisine}).sort("_id", -1)
         elif difficulty == 'medium':
-            recipes = mongo.db.recipes.find({"difficulty": "medium"})
+            recipes = mongo.db.recipes.find(
+                {"difficulty": "medium", "cuisine": cuisine}).sort("_id", -1)
         elif difficulty == 'hard':
-            recipes = mongo.db.recipes.find({"difficulty": "hard"})
+            recipes = mongo.db.recipes.find(
+                {"difficulty": "hard", "cuisine": cuisine}).sort("_id", -1)
         else:
             difficulty = 'all'
-            recipes = mongo.db.recipes.find().sort("_id", -1)
+            recipes = mongo.db.recipes.find(
+                {"cuisine": cuisine}).sort("_id", -1)
 
     sort = request.args.get("sort", None)
 
