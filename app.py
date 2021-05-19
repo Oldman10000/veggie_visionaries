@@ -65,8 +65,9 @@ def pagination_args(recipes):
 
 
 # general recipes page template
-def show_recipes(recipes, current_sorting):
+def show_recipes(recipes, current_sorting, filtered):
     recipes = list(recipes)
+    filtered = filtered
     recipes_paginated = paginated(recipes)
     pagination = pagination_args(recipes)
 
@@ -86,6 +87,7 @@ def show_recipes(recipes, current_sorting):
     return render_template("recipes.html",
                            recipes=recipes_paginated,
                            pagination=pagination,
+                           filtered=filtered,
                            current_sorting=current_sorting)
 
 
@@ -104,13 +106,14 @@ def favorites():
 def search():
     query = request.form.get("query")
     recipes = mongo.db.recipes.find({"$text": {"$search": query}})
+    filtered = "Search Results"
     sort = request.args.get("sort", None)
     if sort:
         sorter(recipes, sort)
         current_sorting = sort
     else:
         current_sorting = "Newer"
-    return show_recipes(recipes, current_sorting)
+    return show_recipes(recipes, current_sorting, filtered)
 
 
 # sorts recipes in particular orders
@@ -138,7 +141,7 @@ def sorter(recipes, sort):
 @app.route("/recipes")
 def allRecipes():
     recipes = mongo.db.recipes.find().sort("_id", -1)
-
+    filtered = "all recipes"
     sort = request.args.get("sort", None)
 
     if sort:
@@ -148,7 +151,7 @@ def allRecipes():
         recipes.sort("_id", -1)
         current_sorting = "Newer"
 
-    return show_recipes(recipes, current_sorting)
+    return show_recipes(recipes, current_sorting, filtered)
 
 
 # gets recipes
@@ -180,7 +183,7 @@ def findRecipe(filtered):
     elif filtered == 'other':
         recipes = mongo.db.recipes.find({"cuisine": "other"})
     else:
-        filtered = 'all'
+        filtered = 'all recipes'
         recipes = mongo.db.recipes.find().sort("_id", -1)
 
     sort = request.args.get("sort", None)
@@ -192,7 +195,7 @@ def findRecipe(filtered):
         recipes.sort("_id", -1)
         current_sorting = "Newer"
 
-    return show_recipes(recipes, current_sorting)
+    return show_recipes(recipes, current_sorting, filtered)
 
 
 # allows user to delete review
