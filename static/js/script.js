@@ -14,7 +14,7 @@ $(document).ready(function () {
             $('.ingredient_field_wrapper').append(`
             <div class="form-outline mb-4">
                 <input type="text" name="ingredient" id="ingredient${ingredientInputs}" class="form-control ingredient" required />
-                <label class="form-label" for="ingredient${ingredientInputs}">Ingredient</label>
+                <label class="form-label" for="ingredient${ingredientInputs}">Ingredient ${ingredientInputs}</label>
             </div>
             `)
             ingredientInputs = $(".ingredient").length;
@@ -32,7 +32,7 @@ $(document).ready(function () {
             $('.instruction_field_wrapper').append(`
             <div class="form-outline mb-4">
                 <textarea name="instruction" id="instruction${instructionInputs}" class="form-control instruction" rows=4 required></textarea>
-                <label class="form-label" for="instruction${instructionInputs}">Instruction ${instructionInputs}</label>
+                <label class="form-label" for="instruction${instructionInputs}">Step ${instructionInputs}</label>
             </div>
             `)
             instructionInputs = $(".instruction").length;

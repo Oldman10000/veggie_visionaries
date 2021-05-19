@@ -75,51 +75,51 @@
                         required>{{ recipe.description }}</textarea>
                     <label class="form-label" for="description">Description</label>
                 </div>
-                <p>Add Ingredients</p>
+                <p>Edit Ingredients</p>
                 <div class="ingredient_field_wrapper wrapper">
                     {% for ingredient in recipe.ingredients %}
                     <div class="form-outline mb-4">
                         <input type="text" name="ingredient" id="ingredient1" class="form-control ingredient"
                             value="{{ ingredient }}" required />
-                        <label class="form-label" for="ingredient1">Ingredient</label>
+                        <label class="form-label" for="ingredient1">Ingredient {{ loop.index }}</label>
                     </div>
                     {% endfor %}
                 </div>
                 <div class="btn-group mb-4">
-                    <div class="add_ingredient_button btn my-button dark-button">
+                    <div class="add_ingredient_button btn dark-button">
                         <i class="fas fa-plus"></i> Add Another Ingredient
                     </div>
-                    <div class="delete_ingredient_button btn my-button delete-button">
+                    <div class="delete_ingredient_button btn delete-button">
                         <i class="fas fa-trash"></i> Remove Last Ingredient
                     </div>
                 </div>
-                <p>Add Instructions</p>
+                <p>Edit Instruction Steps</p>
                 <div class="instruction_field_wrapper wrapper">
                     {% for instruction in recipe.instructions %}
                     <div class="form-outline mb-4">
                         <textarea name="instruction" id="instruction1" class="form-control instruction" rows=4
                             required>{{ instruction }}</textarea>
-                        <label class="form-label" for="instruction1">Instruction {{ loop.index }}</label>
+                        <label class="form-label" for="instruction1">Step {{ loop.index }}</label>
                     </div>
                     {% endfor %}
                 </div>
                 <div class="btn-group mb-4">
-                    <div class="add_instruction_button btn my-button dark-button">
-                        <i class="fas fa-plus"></i> Add Another Instruction
+                    <div class="add_instruction_button btn dark-button">
+                        <i class="fas fa-plus"></i> Add Another Step
                     </div>
-                    <div class="delete_instruction_button btn my-button delete-button">
-                        <i class="fas fa-trash"></i> Remove Last Instruction
+                    <div class="delete_instruction_button btn delete-button">
+                        <i class="fas fa-trash"></i> Remove Last Step
                     </div>
                 </div>
-                <div class="btn my-button dark-button photo-widget mb-4">
+                <div class="btn dark-button photo-widget mb-4">
                     <i class="fas fa-camera-retro"></i> Add Photo (Optional)
                 </div>
                 <div class="image-submit-div">
                     <input type="hidden" id="image_submit" name="image_submit" value="{{ recipe.image }}" />
                 </div>
-                <button type="submit" class="btn my-button dark-button mb-4">Edit</button>
+                <button type="submit" class="btn dark-button mb-4">Edit</button>
                 <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}"
-                    class="btn my-button delete-button">Cancel</a>
+                    class="btn delete-button">Cancel</a>
             </div>
         </form>
         {% else %}
