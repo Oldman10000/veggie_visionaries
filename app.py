@@ -178,8 +178,7 @@ def findRecipe(cuisine, difficulty):
             recipes = mongo.db.recipes.find(
                 {"difficulty": "hard"}).sort("_id", -1)
         elif difficulty == 'all':
-            recipes = mongo.db.recipes.find(
-                {"cuisine": cuisine}).sort("_id", -1)
+            recipes = mongo.db.recipes.find().sort("_id", -1)
         else:
             return redirect(url_for('allRecipes'))
 
