@@ -64,22 +64,16 @@ option {
 
 .nav-link {
     text-transform: uppercase;
+    font-size: 0.8em;
 }
 
-.log-btn {
-    background: #AAFFB4;
-    border-radius: 2.5px;
-    color: #1D261E;
-    text-shadow: none;
-    font-weight: 500;
+.navbar-brand > h1 {
+    font-size: 1.2em;
 }
 
-.log-btn:hover {
-    color: #1D261E;
-}
-
-.card a:hover {
+.card a h3, .card a p:hover {
     color: #F0EBEF;
+    text-decoration: none;
 }
 
 .card-text {
@@ -111,7 +105,15 @@ a {
 }
 
 a:hover {
-    color: inherit
+    color: inherit;
+}
+
+p > a {
+    font-weight: 600;
+}
+
+p > a:hover {
+    text-decoration: underline;
 }
 
 /* anchor effects on larger screens only */
@@ -221,7 +223,7 @@ a:hover {
 .bounce {
     position: absolute;
     left: 50%;
-    bottom: 0;
+    bottom: 30px;
     margin-top: -25px;
     height: 30px;
     width: 30px;
@@ -245,57 +247,57 @@ a:hover {
 
     @-webkit-keyframes bounce {
         0% {
-            bottom: 0px;
+            bottom: 30px;
         }
 
         50% {
-            bottom: 15px;
+            bottom: 45px;
         }
 
         100% {
-            bottom: 30;
+            bottom: 60;
         }
     }
 
     @-moz-keyframes bounce {
         0% {
-            bottom: 0px;
+            bottom: 30px;
         }
 
         50% {
-            bottom: 15px;
+            bottom: 45px;
         }
 
         100% {
-            bottom: 30;
+            bottom: 60;
         }
     }
 
     @-o-keyframes bounce {
         0% {
-            bottom: 0px;
+            bottom: 30px;
         }
 
         50% {
-            bottom: 15px;
+            bottom: 45px;
         }
 
         100% {
-            bottom: 30;
+            bottom: 60;
         }
     }
 
     @keyframes bounce {
         0% {
-            bottom: 0px;
+            bottom: 30px;
         }
 
         50% {
-            bottom: 15px;
+            bottom: 45px;
         }
 
         100% {
-            bottom: 30;
+            bottom: 60;
         }
     }
 }

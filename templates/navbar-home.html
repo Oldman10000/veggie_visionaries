@@ -75,7 +75,7 @@
                 {% if session.user %}
                 <li class="nav-item">
                     <a class="nav-link scale" href="{{ url_for('loggedin', username=session['user']) }}">
-                        Home
+                        <i class="fas fa-home"></i> Home
                     </a>
                 </li>
                 <li class="nav-item">
@@ -85,38 +85,38 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link scale" href="{{ url_for('allRecipes') }}">
-                        All Recipes
+                        <i class="fas fa-utensils"></i> All Recipes
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link scale" href="{{ url_for('add_recipe') }}">
-                        Add Recipe
+                        <i class="fas fa-plus"></i> Add Recipe
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link log-btn log-btn scale ms-2" href="{{ url_for('logout') }}">
-                        Log Out
+                    <a class="nav-link scale" href="{{ url_for('logout') }}">
+                        <i class="fas fa-sign-out-alt"></i> Log Out
                     </a>
                 </li>
                 {% else %}
                 <li class="nav-item">
                     <a class="nav-link scale" href="{{ url_for('index') }}">
-                        Home
+                        <i class="fas fa-home"></i> Home
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link scale" href="{{ url_for('allRecipes') }}">
-                        All Recipes
+                        <i class="fas fa-utensils"></i> All Recipes
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link scale" href="{{ url_for('register') }}">
-                        Register
+                        <i class="fas fa-user-plus"></i> Register
                     </a>
                 </li>
-                <li class="nav-item scale ms-2">
-                    <a class="nav-link log-btn scale ms-2" href="{{ url_for('login') }}">
-                        Log In
+                <li class="nav-item">
+                    <a class="nav-link scale" href="{{ url_for('login') }}">
+                        <i class="fas fa-sign-in-alt"></i> Log In
                     </a>
                 </li>
                 {% endif %}
