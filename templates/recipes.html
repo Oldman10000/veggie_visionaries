@@ -8,86 +8,83 @@
         <div class="row mb-2 mt-4 justify-content-center">
             <div class="col-11 col-md-12 card light-back mb-2 shadow-1-strong">
                 <h2 class="text-center mb-4 card-header">Recipes</h2>
-                <div class="text-center mb-2">
-                    <button type="button" class="btn dark-button d-inline mt-2 mt-md-0" data-mdb-toggle="modal"
-                        data-mdb-target="#searchmodal">
-                        Search
-                    </button>
-                    <a href="{{ url_for('allRecipes') }}">
-                        <button class="btn delete-button d-inline mt-2 mt-md-0">
-                            Reset
-                        </button>
-                    </a>
-                    <div class="dropdown d-inline">
-                        <button class="btn dark-button dropdown-toggle mt-2 mt-md-0" type="button"
-                            id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
-                            Difficulty
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="difficultybutton">
-                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'easy') }}">Easy</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'medium') }}">Medium</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'hard') }}">Hard</a></li>
-                        </ul>
-                    </div>
-                    <div class="dropdown d-inline">
-                        <button class="btn dark-button dropdown-toggle mt-2 mt-md-0" type="button"
-                            id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
-                            Cuisine
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="cuisinebutton">
-                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'chinese') }}">Chinese</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'indian') }}">Indian</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'italian') }}">Italian</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'french') }}">French</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'japanese') }}">Japanese</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'thai') }}">Thai</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'mexican') }}">Mexican</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'british') }}">British</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'other') }}">Other</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- sort selector -->
-                <div class="custom-select mt-2 mb-2">
-                    <select id="sort-selector" class="form-select">
-                        <option value="Newer" {% if current_sorting == "Newer" %}selected{% endif %}>Default (Newest
-                            First)
-                        </option>
-                        <option value="A-Z" {% if current_sorting == "A-Z" %}selected{% endif %}>A-Z</option>
-                        <option value="Rating" {% if current_sorting == "Rating" %}selected{% endif %}>Rating (Top Rated
-                            First)
-                        </option>
-                        <option value="Older" {% if current_sorting == "Older" %}selected{% endif %}>Oldest First
-                        </option>
-                    </select>
-                </div>
-
-                <!-- Search Modal -->
-                <div class="modal fade" id="searchmodal" tabindex="-1" aria-labelledby="searchmodalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content card light-back mb-2 mt-4 shadow-1-strong">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="searchmodalLabel">Search for a Recipe</h4>
-                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
-                                    aria-label="Close"></button>
+                <div class="row mb-2 justify-content-between">
+                    <div class="mt-2 mb-2 col-12">
+                        <form action="{{ url_for('search') }}" method="post" id="search">
+                            <div class="form-outline">
+                                <input type="text" id="query" name="query" class="form-control" required />
+                                <label class="form-label" for="query">Search for Recipe e.g. Stir Fry</label>
                             </div>
-                            <div class="modal-body">
-                                <form class="justify-content-center" action="{{ url_for('search') }}" method="post">
-                                    <div class="form-outline mb-4">
-                                        <input type="text" id="query" name="query" class="form-control light-back"
-                                            required />
-                                        <label class="form-label overflow-hidden" for="query">e.g. Lasagne</label>
-                                    </div>
-                                    <div class="text-center">
-                                        <button type="submit" class="btn dark-button">
-                                            Search
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
+                        </form>
+                    </div>
+
+                    <div class="mt-2 mb-2 col-12 col-md-8">
+                        <button type="submit" form="search" class="btn dark-button d-inline">
+                            Search
+                        </button>
+                        <a href="{{ url_for('allRecipes') }}">
+                            <button class="btn delete-button d-inline">
+                                Reset
+                            </button>
+                        </a>
+                        <div class="dropdown d-inline">
+                            <button class="btn dark-button dropdown-toggle mt-2 mt-md-0" type="button"
+                                id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+                                Difficulty
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="difficultybutton">
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('findRecipe', filtered = 'easy') }}">Easy</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('findRecipe', filtered = 'medium') }}">Medium</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('findRecipe', filtered = 'hard') }}">Hard</a>
+                                </li>
+                            </ul>
                         </div>
+                        <div class="dropdown d-inline">
+                            <button class="btn dark-button dropdown-toggle mt-2 mt-md-0" type="button"
+                                id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+                                Cuisine
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="cuisinebutton">
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('findRecipe', filtered = 'chinese') }}">Chinese</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('findRecipe', filtered = 'indian') }}">Indian</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('findRecipe', filtered = 'italian') }}">Italian</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('findRecipe', filtered = 'french') }}">French</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('findRecipe', filtered = 'japanese') }}">Japanese</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('findRecipe', filtered = 'thai') }}">Thai</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('findRecipe', filtered = 'mexican') }}">Mexican</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('findRecipe', filtered = 'british') }}">British</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('findRecipe', filtered = 'other') }}">Other</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- sort selector -->
+                    <div class="custom-select mt-2 mb-2 col-12 col-md-4">
+                        <select id="sort-selector" class="form-select">
+                            <option value="Newer" {% if current_sorting == "Newer" %}selected{% endif %}>Default (Newest
+                                First)
+                            </option>
+                            <option value="A-Z" {% if current_sorting == "A-Z" %}selected{% endif %}>A-Z</option>
+                            <option value="Rating" {% if current_sorting == "Rating" %}selected{% endif %}>Rating (Top
+                                Rated
+                                First)
+                            </option>
+                            <option value="Older" {% if current_sorting == "Older" %}selected{% endif %}>Oldest First
+                            </option>
+                        </select>
                     </div>
                 </div>
                 <p class="text-center">Displaying: <strong>{{ filtered|capitalize }}</strong></p>
