@@ -42,6 +42,10 @@
                                 <li><a class="dropdown-item"
                                         href="{{ url_for('findRecipe', cuisine=cuisine, difficulty = 'hard') }}">Hard</a>
                                 </li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('findRecipe', cuisine=cuisine, difficulty = 'all') }}">Reset</a>
+                                </li>
                             </ul>
                         </div>
                         <div class="dropdown d-inline">
@@ -77,6 +81,10 @@
                                 <li><a class="dropdown-item"
                                         href="{{ url_for('findRecipe', difficulty=difficulty, cuisine = 'other') }}">Other</a>
                                 </li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item"
+                                    href="{{ url_for('findRecipe', difficulty=difficulty, cuisine = 'all') }}">Reset</a>
+                            </li>
                             </ul>
                         </div>
                     </div>

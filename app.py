@@ -191,7 +191,6 @@ def findRecipe(cuisine, difficulty):
             recipes = mongo.db.recipes.find(
                 {"difficulty": "hard", "cuisine": cuisine}).sort("_id", -1)
         else:
-            difficulty = 'all'
             recipes = mongo.db.recipes.find(
                 {"cuisine": cuisine}).sort("_id", -1)
 
