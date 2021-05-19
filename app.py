@@ -214,7 +214,7 @@ def delete_review(review_id, recipe_id):
     # removes review from reviews collection
     mongo.db.reviews.remove({"_id": ObjectId(review_id)})
 
-    return redirect(url_for("allRecipes"))
+    return redirect(url_for("show_recipe", recipe_id=recipe_id))
 
 
 # gets specific recipe as selected by user
@@ -237,7 +237,7 @@ def show_recipe(recipe_id):
         # updates rating
         rating = int(request.form.get("rating"))
         mongo.db.recipes.update_one(recipe, {"$push": {"rating": rating}})
-        return redirect(url_for("allRecipes"))
+        return redirect(url_for("show_recipe", recipe_id=recipe_id))
 
     reviews = mongo.db.reviews.find({"recipe": recipe_id})
     # gets average rating
