@@ -81,7 +81,7 @@
                             {% if user.favorite %}
                             {% for recipe in user.favorite %}
                             <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}"
-                                class="card dark-green-back mt-4 text-center align-items-center shadow-1-strong">
+                                class="card dark-green-back mt-4 text-center align-items-center shadow-1-strong small-scale">
                                 <h3>{{ recipe.name }}
                                 </h3>
                             </a>
@@ -151,7 +151,7 @@
                             <h2 class="text-center card-header">Top Rated</h2>
                             {% for recipe in recipes %}
                             <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}"
-                                class="card dark-green-back mt-4 text-center shadow-1-strong">
+                                class="card dark-green-back mt-4 text-center shadow-1-strong small-scale">
                                 <h3 class="card-header text-shadow">{{ recipe.name }}</h3>
                                 <p class="card-text mt-3">
                                     {% if recipe.avgrating == 1 %}
