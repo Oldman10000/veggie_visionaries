@@ -38,7 +38,7 @@
     <footer class="fixed-bottom mt-4">
         <div class="row justify-content-evenly text-center" id="footer-links">
             {% if session.user %}
-            <a href="{{ url_for('all_recipes') }}" class="my-button col-2">
+            <a href="{{ url_for('allRecipes') }}" class="my-button col-2">
                 <i class="fas fa-utensils"></i>
             </a>
             <a href="{{ url_for('add_recipe') }}" class="my-button col-2">
@@ -54,7 +54,7 @@
                 <i class="fas fa-sign-out-alt"></i>
             </a>
             {% else %}
-            <a href="{{ url_for('all_recipes') }}" class="my-button col-3">
+            <a href="{{ url_for('allRecipes') }}" class="my-button col-3">
                 <i class="fas fa-utensils"></i>
             </a>
             <a href="{{ url_for('register') }}" class="my-button col-3">

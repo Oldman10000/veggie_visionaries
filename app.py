@@ -65,7 +65,7 @@ def pagination_args(recipes):
 
 
 # general recipes page template
-def show_recipes(recipes, order, current_sorting):
+def show_recipes(recipes, current_sorting):
     recipes = list(recipes)
     recipes_paginated = paginated(recipes)
     pagination = pagination_args(recipes)
@@ -86,7 +86,6 @@ def show_recipes(recipes, order, current_sorting):
     return render_template("recipes.html",
                            recipes=recipes_paginated,
                            pagination=pagination,
-                           order=order,
                            current_sorting=current_sorting)
 
 
@@ -100,33 +99,18 @@ def favorites():
     return render_template("favorites.html", user=user)
 
 
-# shows all recipes
-@app.route("/recipes")
-def all_recipes():
-    recipes = mongo.db.recipes.find().sort("_id", -1)
-    order = "All Recipes"
-    sort = request.args.get("sort", None)
-    if sort:
-        sorter(recipes, sort)
-        current_sorting = sort
-    else:
-        current_sorting = "Newer"
-    return show_recipes(recipes, order, current_sorting)
-
-
 # allows user to search for recipe
 @app.route("/search",  methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
     recipes = mongo.db.recipes.find({"$text": {"$search": query}})
-    order = "You have found..."
     sort = request.args.get("sort", None)
     if sort:
         sorter(recipes, sort)
         current_sorting = sort
     else:
         current_sorting = "Newer"
-    return show_recipes(recipes, order, current_sorting)
+    return show_recipes(recipes, current_sorting)
 
 
 # sorts recipes in particular orders
@@ -151,115 +135,64 @@ def sorter(recipes, sort):
         return False
 
 
-# gets filtered recipes
-def filteredRecipes(filtered, order):
-    recipes = filtered
-    order = order
+@app.route("/recipes")
+def allRecipes():
+    recipes = mongo.db.recipes.find().sort("_id", -1)
+
     sort = request.args.get("sort", None)
-    print(sort)
+
     if sort:
         sorter(recipes, sort)
         current_sorting = sort
     else:
         recipes.sort("_id", -1)
         current_sorting = "Newer"
-    return show_recipes(recipes, order, current_sorting)
+
+    return show_recipes(recipes, current_sorting)
 
 
-# gets easy recipes
-@app.route("/recipes/easy")
-def easy():
-    filtered = mongo.db.recipes.find({"difficulty": "easy"})
-    order = "Easy"
-    return filteredRecipes(filtered, order)
+# gets recipes
+@app.route("/recipes/<filtered>")
+def findRecipe(filtered):
 
+    if filtered == 'easy':
+        recipes = mongo.db.recipes.find({"difficulty": "easy"})
+    elif filtered == 'medium':
+        recipes = mongo.db.recipes.find({"difficulty": "medium"})
+    elif filtered == 'hard':
+        recipes = mongo.db.recipes.find({"dificulty": "hard"})
+    elif filtered == 'chinese':
+        recipes = mongo.db.recipes.find({"cuisine": "chinese"})
+    elif filtered == 'indian':
+        recipes = mongo.db.recipes.find({"cuisine": "indian"})
+    elif filtered == 'italian':
+        recipes = mongo.db.recipes.find({"cuisine": "italian"})
+    elif filtered == 'french':
+        recipes = mongo.db.recipes.find({"cuisine": "french"})
+    elif filtered == 'japanese':
+        recipes = mongo.db.recipes.find({"cuisine": "japanese"})
+    elif filtered == 'thai':
+        recipes = mongo.db.recipes.find({"cuisine": "thai"})
+    elif filtered == 'mexican':
+        recipes = mongo.db.recipes.find({"cuisine": "mexican"})
+    elif filtered == 'british':
+        recipes = mongo.db.recipes.find({"cuisine": "british"})
+    elif filtered == 'other':
+        recipes = mongo.db.recipes.find({"cuisine": "other"})
+    else:
+        filtered = 'all'
+        recipes = mongo.db.recipes.find().sort("_id", -1)
 
-# gets medium recipes
-@app.route("/recipes/medium")
-def medium():
-    filtered = mongo.db.recipes.find({"difficulty": "medium"})
-    order = "Medium"
-    return filteredRecipes(filtered, order)
+    sort = request.args.get("sort", None)
 
+    if sort:
+        sorter(recipes, sort)
+        current_sorting = sort
+    else:
+        recipes.sort("_id", -1)
+        current_sorting = "Newer"
 
-# gets hard recipes
-@app.route("/recipes/hard")
-def hard():
-    filtered = mongo.db.recipes.find({"difficulty": "hard"})
-    order = "Hard"
-    return filteredRecipes(filtered, order)
-
-
-# gets chinese recipes
-@app.route("/recipes/chinese")
-def chinese():
-    filtered = mongo.db.recipes.find({"cuisine": "chinese"})
-    order = "Chinese"
-    return filteredRecipes(filtered, order)
-
-
-# gets indian recipes
-@app.route("/recipes/indian")
-def indian():
-    filtered = mongo.db.recipes.find({"cuisine": "indian"})
-    order = "Indian"
-    return filteredRecipes(filtered, order)
-
-
-# gets italian recipes
-@app.route("/recipes/italian")
-def italian():
-    filtered = mongo.db.recipes.find({"cuisine": "italian"})
-    order = "Italian"
-    return filteredRecipes(filtered, order)
-
-
-# gets french recipes
-@app.route("/recipes/french")
-def french():
-    filtered = mongo.db.recipes.find({"cuisine": "french"})
-    order = "French"
-    return filteredRecipes(filtered, order)
-
-
-# gets japanese recipes
-@app.route("/recipes/japanese")
-def japanese():
-    filtered = mongo.db.recipes.find({"cuisine": "japanese"})
-    order = "Japanese"
-    return filteredRecipes(filtered, order)
-
-
-# gets thai recipes
-@app.route("/recipes/thai")
-def thai():
-    filtered = mongo.db.recipes.find({"cuisine": "thai"})
-    order = "Thai"
-    return filteredRecipes(filtered, order)
-
-
-# gets mexican recipes
-@app.route("/recipes/mexican")
-def mexican():
-    filtered = mongo.db.recipes.find({"cuisine": "mexican"})
-    order = "Mexican"
-    return filteredRecipes(filtered, order)
-
-
-# gets british recipes
-@app.route("/recipes/british")
-def british():
-    filtered = mongo.db.recipes.find({"cuisine": "British"})
-    order = "British"
-    return filteredRecipes(filtered, order)
-
-
-# gets other recipes
-@app.route("/recipes/other")
-def other():
-    filtered = mongo.db.recipes.find({"cuisine": "other"})
-    order = "Other"
-    return filteredRecipes(filtered, order)
+    return show_recipes(recipes, current_sorting)
 
 
 # allows user to delete review
@@ -281,7 +214,7 @@ def delete_review(review_id, recipe_id):
     # removes review from reviews collection
     mongo.db.reviews.remove({"_id": ObjectId(review_id)})
 
-    return redirect(url_for("all_recipes"))
+    return redirect(url_for("allRecipes"))
 
 
 # gets specific recipe as selected by user
@@ -304,7 +237,7 @@ def show_recipe(recipe_id):
         # updates rating
         rating = int(request.form.get("rating"))
         mongo.db.recipes.update_one(recipe, {"$push": {"rating": rating}})
-        return redirect(url_for("all_recipes"))
+        return redirect(url_for("allRecipes"))
 
     reviews = mongo.db.reviews.find({"recipe": recipe_id})
     # gets average rating
@@ -382,8 +315,8 @@ def add_recipe():
         date = datetime.datetime.now()
         recipe = {
             "name": request.form.get("rname"),
-            "cuisine": request.form.get("cuisine"),
-            "difficulty": request.form.get("difficulty"),
+            "cuisine": request.form.get("cuisine").lower(),
+            "difficulty": request.form.get("difficulty").lower(),
             "prep_time": request.form.get("prep_time"),
             "cook_time": request.form.get("cook_time"),
             "serves": request.form.get("serves"),
@@ -398,7 +331,7 @@ def add_recipe():
         }
         mongo.db.recipes.insert_one(recipe)
         flash("Recipe Successfully Added")
-        return redirect(url_for("all_recipes"))
+        return redirect(url_for("allRecipes"))
 
     return render_template("add_recipe.html")
 
@@ -409,7 +342,7 @@ def edit_recipe(recipe_id):
     if request.method == "POST":
         edited = {
             "name": request.form.get("rname"),
-            "difficulty": request.form.get("difficulty"),
+            "difficulty": request.form.get("difficulty").lower(),
             "prep_time": request.form.get("prep_time"),
             "cook_time": request.form.get("cook_time"),
             "serves": request.form.get("serves"),
@@ -456,7 +389,7 @@ def delete_recipe(recipe_id):
     # if no session user or incorrect user
     else:
         flash("Only the recipe creator is allowed to delete this recipe")
-    return redirect(url_for("all_recipes"))
+    return redirect(url_for("allRecipes"))
 
 
 # allows user to register

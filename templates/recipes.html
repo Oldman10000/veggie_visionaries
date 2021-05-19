@@ -13,7 +13,7 @@
                         data-mdb-target="#searchmodal">
                         Search
                     </button>
-                    <a href="{{ url_for('all_recipes') }}">
+                    <a href="{{ url_for('allRecipes') }}">
                         <button class="btn delete-button d-inline mt-2 mt-md-0">
                             Reset
                         </button>
@@ -24,9 +24,9 @@
                             Difficulty
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="difficultybutton">
-                            <li><a class="dropdown-item" href="{{ url_for('easy') }}">Easy</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('medium') }}">Medium</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('hard') }}">Hard</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'easy') }}">Easy</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'medium') }}">Medium</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'hard') }}">Hard</a></li>
                         </ul>
                     </div>
                     <div class="dropdown d-inline">
@@ -35,15 +35,15 @@
                             Cuisine
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="cuisinebutton">
-                            <li><a class="dropdown-item" href="{{ url_for('chinese') }}">Chinese</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('indian') }}">Indian</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('italian') }}">Italian</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('french') }}">French</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('japanese') }}">Japanese</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('thai') }}">Thai</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('mexican') }}">Mexican</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('british') }}">British</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('other') }}">Other</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'chinese') }}">Chinese</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'indian') }}">Indian</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'italian') }}">Italian</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'french') }}">French</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'japanese') }}">Japanese</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'thai') }}">Thai</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'mexican') }}">Mexican</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'british') }}">British</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('findRecipe', filtered = 'other') }}">Other</a></li>
                         </ul>
                     </div>
                 </div>
