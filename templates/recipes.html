@@ -34,12 +34,13 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="difficultybutton">
                                 <li><a class="dropdown-item"
-                                        href="{{ url_for('findRecipe', filtered = 'easy') }}">Easy</a>
+                                        href="{{ url_for('findRecipe', cuisine=cuisine, difficulty = 'easy') }}">Easy</a>
                                 </li>
                                 <li><a class="dropdown-item"
-                                        href="{{ url_for('findRecipe', filtered = 'medium') }}">Medium</a></li>
+                                        href="{{ url_for('findRecipe', cuisine=cuisine, difficulty = 'medium') }}">Medium</a>
+                                </li>
                                 <li><a class="dropdown-item"
-                                        href="{{ url_for('findRecipe', filtered = 'hard') }}">Hard</a>
+                                        href="{{ url_for('findRecipe', cuisine=cuisine, difficulty = 'hard') }}">Hard</a>
                                 </li>
                             </ul>
                         </div>
@@ -50,24 +51,32 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="cuisinebutton">
                                 <li><a class="dropdown-item"
-                                        href="{{ url_for('findRecipe', filtered = 'chinese') }}">Chinese</a></li>
-                                <li><a class="dropdown-item"
-                                        href="{{ url_for('findRecipe', filtered = 'indian') }}">Indian</a></li>
-                                <li><a class="dropdown-item"
-                                        href="{{ url_for('findRecipe', filtered = 'italian') }}">Italian</a></li>
-                                <li><a class="dropdown-item"
-                                        href="{{ url_for('findRecipe', filtered = 'french') }}">French</a></li>
-                                <li><a class="dropdown-item"
-                                        href="{{ url_for('findRecipe', filtered = 'japanese') }}">Japanese</a></li>
-                                <li><a class="dropdown-item"
-                                        href="{{ url_for('findRecipe', filtered = 'thai') }}">Thai</a>
+                                        href="{{ url_for('findRecipe', difficulty=difficulty, cuisine = 'chinese') }}">Chinese</a>
                                 </li>
                                 <li><a class="dropdown-item"
-                                        href="{{ url_for('findRecipe', filtered = 'mexican') }}">Mexican</a></li>
+                                        href="{{ url_for('findRecipe', difficulty=difficulty, cuisine = 'indian') }}">Indian</a>
+                                </li>
                                 <li><a class="dropdown-item"
-                                        href="{{ url_for('findRecipe', filtered = 'british') }}">British</a></li>
+                                        href="{{ url_for('findRecipe', difficulty=difficulty, cuisine = 'italian') }}">Italian</a>
+                                </li>
                                 <li><a class="dropdown-item"
-                                        href="{{ url_for('findRecipe', filtered = 'other') }}">Other</a></li>
+                                        href="{{ url_for('findRecipe', difficulty=difficulty, cuisine = 'french') }}">French</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('findRecipe', difficulty=difficulty, cuisine = 'japanese') }}">Japanese</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('findRecipe', difficulty=difficulty, cuisine = 'thai') }}">Thai</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('findRecipe', difficulty=difficulty, cuisine = 'mexican') }}">Mexican</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('findRecipe', difficulty=difficulty, cuisine = 'british') }}">British</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('findRecipe', difficulty=difficulty, cuisine = 'other') }}">Other</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -87,7 +96,8 @@
                         </select>
                     </div>
                 </div>
-                <p class="text-center">Displaying: <strong>{{ filtered|capitalize }}</strong></p>
+                <p class="text-center">Displaying: <strong>{% if cuisine != 'all' %}{{ cuisine|capitalize }},
+                        {% endif %}{{ difficulty|capitalize }}</strong></p>
                 {{ pagination.info }}
             </div>
         </div>

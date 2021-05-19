@@ -65,9 +65,10 @@ def pagination_args(recipes):
 
 
 # general recipes page template
-def show_recipes(recipes, current_sorting, filtered):
+def show_recipes(recipes, current_sorting, cuisine, difficulty):
     recipes = list(recipes)
-    filtered = filtered
+    cuisine = cuisine
+    difficulty = difficulty
     recipes_paginated = paginated(recipes)
     pagination = pagination_args(recipes)
 
@@ -87,7 +88,8 @@ def show_recipes(recipes, current_sorting, filtered):
     return render_template("recipes.html",
                            recipes=recipes_paginated,
                            pagination=pagination,
-                           filtered=filtered,
+                           cuisine=cuisine,
+                           difficulty=difficulty,
                            current_sorting=current_sorting)
 
 
@@ -106,14 +108,15 @@ def favorites():
 def search():
     query = request.form.get("query")
     recipes = mongo.db.recipes.find({"$text": {"$search": query}})
-    filtered = "Search Results"
+    cuisine = "all"
+    difficulty = "all"
     sort = request.args.get("sort", None)
     if sort:
         sorter(recipes, sort)
         current_sorting = sort
     else:
         current_sorting = "Newer"
-    return show_recipes(recipes, current_sorting, filtered)
+    return show_recipes(recipes, current_sorting, cuisine, difficulty)
 
 
 # sorts recipes in particular orders
@@ -138,10 +141,13 @@ def sorter(recipes, sort):
         return False
 
 
+# gets all recipes
 @app.route("/recipes")
 def allRecipes():
     recipes = mongo.db.recipes.find().sort("_id", -1)
-    filtered = "all recipes"
+    cuisine = "all"
+    difficulty = "all"
+
     sort = request.args.get("sort", None)
 
     if sort:
@@ -151,40 +157,58 @@ def allRecipes():
         recipes.sort("_id", -1)
         current_sorting = "Newer"
 
-    return show_recipes(recipes, current_sorting, filtered)
+    return show_recipes(recipes, current_sorting, cuisine, difficulty)
 
 
-# gets recipes
-@app.route("/recipes/<filtered>")
-def findRecipe(filtered):
+# gets filtered recipes
+@app.route("/recipes/<cuisine>/<difficulty>")
+def findRecipe(cuisine, difficulty):
 
-    if filtered == 'easy':
-        recipes = mongo.db.recipes.find({"difficulty": "easy"})
-    elif filtered == 'medium':
-        recipes = mongo.db.recipes.find({"difficulty": "medium"})
-    elif filtered == 'hard':
-        recipes = mongo.db.recipes.find({"dificulty": "hard"})
-    elif filtered == 'chinese':
+    if cuisine == 'chinese':
         recipes = mongo.db.recipes.find({"cuisine": "chinese"})
-    elif filtered == 'indian':
+    elif cuisine == 'indian':
         recipes = mongo.db.recipes.find({"cuisine": "indian"})
-    elif filtered == 'italian':
+    elif cuisine == 'italian':
         recipes = mongo.db.recipes.find({"cuisine": "italian"})
-    elif filtered == 'french':
+    elif cuisine == 'french':
         recipes = mongo.db.recipes.find({"cuisine": "french"})
-    elif filtered == 'japanese':
+    elif cuisine == 'japanese':
         recipes = mongo.db.recipes.find({"cuisine": "japanese"})
-    elif filtered == 'thai':
+    elif cuisine == 'thai':
         recipes = mongo.db.recipes.find({"cuisine": "thai"})
-    elif filtered == 'mexican':
+    elif cuisine == 'mexican':
         recipes = mongo.db.recipes.find({"cuisine": "mexican"})
-    elif filtered == 'british':
+    elif cuisine == 'british':
         recipes = mongo.db.recipes.find({"cuisine": "british"})
-    elif filtered == 'other':
+    elif cuisine == 'other':
         recipes = mongo.db.recipes.find({"cuisine": "other"})
     else:
-        filtered = 'all recipes'
+        cuisine = 'all'
         recipes = mongo.db.recipes.find().sort("_id", -1)
+
+    if cuisine != 'all':
+        if difficulty == 'easy':
+            recipes = mongo.db.recipes.find(
+                {"difficulty": "easy", "cuisine": cuisine})
+        elif difficulty == 'medium':
+            recipes = mongo.db.recipes.find(
+                {"difficulty": "medium", "cuisine": cuisine})
+        elif difficulty == 'hard':
+            recipes = mongo.db.recipes.find(
+                {"difficulty": "hard", "cuisine": cuisine})
+        else:
+            difficulty = 'all'
+            recipes = mongo.db.recipes.find().sort("_id", -1)
+    else:
+        if difficulty == 'easy':
+            recipes = mongo.db.recipes.find({"difficulty": "easy"})
+        elif difficulty == 'medium':
+            recipes = mongo.db.recipes.find({"difficulty": "medium"})
+        elif difficulty == 'hard':
+            recipes = mongo.db.recipes.find({"difficulty": "hard"})
+        else:
+            difficulty = 'all'
+            recipes = mongo.db.recipes.find().sort("_id", -1)
 
     sort = request.args.get("sort", None)
 
@@ -195,7 +219,7 @@ def findRecipe(filtered):
         recipes.sort("_id", -1)
         current_sorting = "Newer"
 
-    return show_recipes(recipes, current_sorting, filtered)
+    return show_recipes(recipes, current_sorting, cuisine, difficulty)
 
 
 # allows user to delete review
@@ -375,9 +399,6 @@ def delete_recipe(recipe_id):
         user = mongo.db.users.find_one({"username": session["user"]})
     else:
         user = False
-    print(created_by)
-    print(user["username"])
-    print(recipe)
     # checks if session user is the creator (or admin account)
     if user["username"] == created_by or user["username"] == "admin":
         # deletes all instances of recipe in user favorites
@@ -435,13 +456,11 @@ def login():
                 ]
             }
         )
-        print(existing_user)
         if existing_user:
             # ensure password is correct
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
                     session["user"] = existing_user["username"]
-                    print(session["user"])
                     return redirect(url_for(
                         "loggedin", username=session["user"]))
             else:
