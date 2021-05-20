@@ -498,7 +498,13 @@ def all_cuisines():
 # allows admin to delete a cuisine
 @app.route("/delete_cuisine/<cuisine_id>")
 def delete_cuisine(cuisine_id):
+    # gets cuisine
     cuisine = mongo.db.cuisines.find_one({"_id": ObjectId(cuisine_id)})
+    # if any recipes have been set with this cuisine,
+    # this default to "cuisine": "other"
+    mongo.db.recipes.update(
+        {"cuisine": cuisine["name"]}, {"$set": {"cuisine": "other"}})
+    # deletes cuisine
     mongo.db.cuisines.delete_one(cuisine)
     flash("Cuisine Deleted")
     return redirect(url_for("all_cuisines"))
