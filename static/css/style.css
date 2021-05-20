@@ -73,7 +73,7 @@ option {
     flex-direction: row;
 }
 
-.card a h3, .card a p:hover {
+.card a h3, .card a p:hover, .card p {
     color: #F0EBEF;
     text-decoration: none;
 }

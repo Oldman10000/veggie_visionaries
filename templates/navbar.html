@@ -32,16 +32,14 @@
                         <i class="fas fa-utensils"></i> All Recipes
                     </a>
                 </li>
-                {% if session.user|lower == 'admin' %}
-                <li class="nav-item">
-                    <a class="nav-link scale" href="{{ url_for('all_cuisines') }}">
-                        <i class="fas fa-globe-europe"></i> Cuisines
-                    </a>
-                </li>
-                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link scale" href="{{ url_for('add_recipe') }}">
                         <i class="fas fa-plus"></i> Add Recipe
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link scale" href="{{ url_for('all_cuisines') }}">
+                        <i class="fas fa-globe-europe"></i> Cuisines
                     </a>
                 </li>
                 <li class="nav-item">
@@ -58,6 +56,11 @@
                 <li class="nav-item">
                     <a class="nav-link scale" href="{{ url_for('allRecipes') }}">
                         <i class="fas fa-utensils"></i> All Recipes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link scale" href="{{ url_for('all_cuisines') }}">
+                        <i class="fas fa-globe-europe"></i> Cuisines
                     </a>
                 </li>
                 <li class="nav-item">
