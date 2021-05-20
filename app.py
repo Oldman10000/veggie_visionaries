@@ -488,10 +488,15 @@ def logout():
 def all_cuisines():
     cuisines = list(mongo.db.cuisines.find().sort("name"))
     if request.method == "POST":
-        mongo.db.cuisines.insert_one(
-            {"name": request.form.get("addcuisine").lower()})
+        cuisine = {
+            "name": request.form.get("addcuisine").lower(),
+            "image": request.form.get("cuisine_image")
+        }
+        mongo.db.cuisines.insert_one(cuisine)
+
         flash("Cuisine Successfully Added")
         return redirect(url_for("all_cuisines"))
+
     return render_template("cuisines.html", cuisines=cuisines)
 
 

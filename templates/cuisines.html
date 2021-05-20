@@ -14,25 +14,47 @@
                         <input type="text" id="cuisineinput" name="addcuisine" class="form-control" required />
                         <label class="form-label" for="addcuisine">Add Cuisine</label>
                     </div>
+                    <div class="btn dark-button photo-widget-2 mb-4">
+                        <i class="fas fa-camera-retro"></i> Add Photo
+                    </div>
+                    <div class="cuisine-image-submit-div">
+                        <input type="hidden" id="cuisine_image" name="cuisine_image" />
+                    </div>
+                    <button type="submit" class="btn dark-button mb-4 offset">Submit</button>
                 </form>
                 {% endif %}
                 {% if cuisines|length > 0 %}
                 {% for cuisine in cuisines %}
-                <div class="col-12 col-md-3 p-1 text-center">
-                    <a href="{{ url_for('findRecipe', cuisine=cuisine.name, difficulty='all' ) }}"
-                        class="card dark-green-back mt-4 shadow-1-strong small-scale cuisine-item">
-                        <p class="text-shadow">{{ cuisine.name|capitalize }}</p>
-                    </a>
-                    {% if session.user|lower == "admin" %}
-                    <a href="{{ url_for('delete_cuisine', cuisine_id=cuisine._id ) }}" class="btn delete-button mt-2">Delete Cuisine</a>
-                    {% endif %}
+                <div class="col-12 col-xs-6 col-md-4 col-lg-3 p-1 text-center">
+                    <div class="card dark-green-back small-scale">
+                        <a href="{{ url_for('findRecipe', cuisine=cuisine.name, difficulty='all' ) }}">
+                            <h3 class="text-shadow">{{ cuisine.name|capitalize }}</h3>
+                            {% if cuisine.image %}
+                            <div class="bg-image cuisine-image rounded">
+                                <img src="{{ cuisine.image }}" alt="{{ cuisine.name }} Photo">
+                            </div>
+                            {% else %}
+                            <i class="fas fa-camera-retro fa-5x"></i>
+                            {% endif %}
+                        </a>
+                        {% if session.user|lower == "admin" %}
+                        <a href="{{ url_for('delete_cuisine', cuisine_id=cuisine._id ) }}"
+                            class="btn delete-button mt-2">Delete
+                            Cuisine</a>
+                        {% endif %}
+                    </div>
                 </div>
                 {% endfor %}
-                <div class="col-12 col-md-3 p-1 text-center">
-                    <a href="{{ url_for('findRecipe', cuisine='other', difficulty='all' ) }}"
-                        class="card dark-green-back mt-4 shadow-1-strong small-scale cuisine-item">
-                        <p class="text-shadow">Other</p>
-                    </a>
+                <div class="col-12 col-xs-6 col-md-4 col-lg-3 p-1 text-center">
+                    <div class="card dark-green-back small-scale">
+                        <a href="{{ url_for('findRecipe', cuisine='other', difficulty='all' ) }}">
+                            <h3 class="text-shadow">Other</h3>
+                            <div class="bg-image cuisine-image rounded">
+                                <img src="https://tse4.mm.bing.net/th?id=OIP.vlsUvv0K2bdz9rKKfjuVtQHaFj&pid=Api"
+                                    alt="other photo">
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 {% else %}
                 <h3 class="text-center">No Cuisines</h3>

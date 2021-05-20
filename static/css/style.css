@@ -297,6 +297,10 @@ p > a:hover {
     max-width: 300px;
 }
 
+.cuisine-image {
+    height: 200px;
+}
+
 @media only screen and (min-width: 576px) {
     .bg-image {
         max-width: 500px;

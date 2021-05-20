@@ -76,6 +76,25 @@ $(document).ready(function () {
         });
     });
 
+    // cloudinary widget 2
+    $(".photo-widget-2").click(e => {
+        e.preventDefault();
+        cloudinary.openUploadWidget({
+            cloud_name: 'dljklwibk',
+            upload_preset: 'veggie',
+            sources: ['local', 'url', 'google_drive', 'dropbox', 'shutterstock', 'instagram']
+        }, (error, result) => {
+            if (!error && result && result.event === "success") {
+                console.log(result.info.secure_url);
+                $("#cuisine_image").val(result.info.secure_url);
+                $(".cuisine-image-submit-div").append(`
+                    <p><i class="fas fa-check-circle"></i> ${result.info.secure_url}</p>
+                `)
+                $(".photo-widget-2").remove();
+            }
+        });
+    });
+
     // changes appearance of favorite button on hover
     $(".favorite").hover(
         function () {
