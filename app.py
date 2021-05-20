@@ -375,22 +375,23 @@ def delete_recipe(recipe_id):
     # gets session user
     if session.get("user"):
         user = mongo.db.users.find_one({"username": session["user"]})
-    else:
-        user = False
-    # checks if session user is the creator (or admin account)
-    if user["username"] == created_by or user["username"] == "admin":
-        # deletes all instances of recipe in user favorites
-        mongo.db.users.update(
-            {},
-            {"$pull": {"favorite": {"_id": ObjectId(recipe_id)}}},
-            upsert=False,
-            multi=True)
-        # deletes recipe
-        mongo.db.recipes.delete_one(recipe)
-        flash("Recipe Deleted")
-    # if no session user or incorrect user
+        # checks if session user is the creator (or admin account)
+        if user["username"] == created_by or user["username"] == "admin":
+            # deletes all instances of recipe in user favorites
+            mongo.db.users.update(
+                {},
+                {"$pull": {"favorite": {"_id": ObjectId(recipe_id)}}},
+                upsert=False,
+                multi=True)
+            # deletes recipe
+            mongo.db.recipes.delete_one(recipe)
+            flash("Recipe Deleted")
+        # if no session user or incorrect user
+        else:
+            flash("Only the recipe creator is allowed to delete this recipe")
     else:
         flash("Only the recipe creator is allowed to delete this recipe")
+
     return redirect(url_for("allRecipes"))
 
 
