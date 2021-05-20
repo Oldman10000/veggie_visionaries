@@ -196,10 +196,6 @@ p > a:hover {
     color: gold;
 }
 
-.veggie-info {
-    height: 50vh;
-}
-
 /* home hero section */
 
 .hero {
@@ -326,6 +322,10 @@ p > a:hover {
             bottom: 80;
         }
     }
+}
+
+.my-toggler:hover {
+    cursor: pointer;
 }
 
 /* Recipes page */
