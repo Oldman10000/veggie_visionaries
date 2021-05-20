@@ -20,7 +20,7 @@
                 {% for cuisine in cuisines %}
                 <div class="col-12 col-md-3 p-1 text-center">
                     <a href="{{ url_for('findRecipe', cuisine=cuisine.name, difficulty='all' ) }}"
-                        class="card dark-green-back mt-4 shadow-1-strong small-scale">
+                        class="card dark-green-back mt-4 shadow-1-strong small-scale cuisine-item">
                         <p class="text-shadow">{{ cuisine.name|capitalize }}</p>
                     </a>
                     {% if session.user|lower == "admin" %}
@@ -30,7 +30,7 @@
                 {% endfor %}
                 <div class="col-12 col-md-3 p-1 text-center">
                     <a href="{{ url_for('findRecipe', cuisine='other', difficulty='all' ) }}"
-                        class="card dark-green-back mt-4 shadow-1-strong small-scale">
+                        class="card dark-green-back mt-4 shadow-1-strong small-scale cuisine-item">
                         <p class="text-shadow">Other</p>
                     </a>
                 </div>
