@@ -65,6 +65,10 @@ option {
     font-size: 1.2em;
 }
 
+.cuisine-drop {
+    text-shadow: none;
+}
+
 .card a h3, .card a p:hover {
     color: #F0EBEF;
     text-decoration: none;

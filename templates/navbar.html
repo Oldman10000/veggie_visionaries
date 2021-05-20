@@ -32,6 +32,22 @@
                         <i class="fas fa-utensils"></i> All Recipes
                     </a>
                 </li>
+                {% if session.user|lower == 'admin' %}
+                <li class="nav-item dropdown">
+                    <div class="nav-link dropdown-toggle" id="cuisinesdrop" role="button" data-mdb-toggle="dropdown"
+                        aria-expanded="false">
+                        Cuisines
+                    </div>
+                    <ul class="dropdown-menu" aria-labelledby="cuisinesdrop">
+                        <li>
+                            <a class="dropdown-item cuisine-drop" href="{{ url_for('all_cuisines') }}">All Cuisines</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item cuisine-drop" href="{{ url_for('add_cuisine') }}">Add Cuisine</a>
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link scale" href="{{ url_for('add_recipe') }}">
                         <i class="fas fa-plus"></i> Add Recipe
