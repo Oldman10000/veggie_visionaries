@@ -324,10 +324,6 @@ p > a:hover {
     }
 }
 
-.my-toggler:hover {
-    cursor: pointer;
-}
-
 /* Recipes page */
 
 .delete-button {
