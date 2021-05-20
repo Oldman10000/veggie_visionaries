@@ -68,6 +68,13 @@
                             </li>
                             </ul>
                         </div>
+                        {% if session.user %}
+                        <a href="{{ url_for('add_recipe') }}">
+                            <button class="btn dark-button d-inline mt-2 mt-lg-0">
+                                Add Recipe
+                            </button>
+                        </a>
+                        {% endif %}
                     </div>
                     <!-- sort selector -->
                     <div class="custom-select mt-2 mb-2 col-12 col-md-4">
