@@ -71,13 +71,15 @@ def show_recipes(recipes, current_sorting, cuisine, difficulty):
     difficulty = difficulty
     recipes_paginated = paginated(recipes)
     pagination = pagination_args(recipes)
+    cuisines = list(mongo.db.cuisines.find().sort("name"))
 
     return render_template("recipes.html",
                            recipes=recipes_paginated,
                            pagination=pagination,
                            cuisine=cuisine,
                            difficulty=difficulty,
-                           current_sorting=current_sorting)
+                           current_sorting=current_sorting,
+                           cuisines=cuisines)
 
 
 # shows user favorites
@@ -490,6 +492,15 @@ def all_cuisines():
         flash("Cuisine Successfully Added")
         return redirect(url_for("all_cuisines"))
     return render_template("cuisines.html", cuisines=cuisines)
+
+
+# allows admin to delete a cuisine
+@app.route("/delete_cuisine/<cuisine_id>")
+def delete_cuisine(cuisine_id):
+    cuisine = mongo.db.cuisines.find_one({"_id": ObjectId(cuisine_id)})
+    mongo.db.cuisines.delete_one(cuisine)
+    flash("Cuisine Deleted")
+    return redirect(url_for("all_cuisines"))
 
 
 # runs application
