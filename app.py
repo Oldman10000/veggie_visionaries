@@ -72,19 +72,6 @@ def show_recipes(recipes, current_sorting, cuisine, difficulty):
     recipes_paginated = paginated(recipes)
     pagination = pagination_args(recipes)
 
-    # cycles through each recipe and updates average rating
-    for recipe in recipes:
-        recipe_id = recipe["_id"]
-        if recipe["rating"]:
-            recipe_avg = round(sum(recipe["rating"])/len(recipe["rating"]))
-            mongo.db.recipes.update(
-                {"_id": ObjectId(recipe_id)},
-                {"$set": {"avgrating": recipe_avg}})
-        else:
-            mongo.db.recipes.update(
-                {"_id": ObjectId(recipe_id)},
-                {"$set": {"avgrating": 0}})
-
     return render_template("recipes.html",
                            recipes=recipes_paginated,
                            pagination=pagination,
@@ -259,6 +246,9 @@ def show_recipe(recipe_id):
     if recipe["rating"]:
         ratings = recipe["rating"]
         avg = round(sum(ratings)/len(ratings))
+        mongo.db.recipes.update(
+                {"_id": ObjectId(recipe_id)},
+                {"$set": {"avgrating": avg}})
     else:
         avg = "No Reviews Yet!"
 
