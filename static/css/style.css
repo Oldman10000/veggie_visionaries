@@ -236,92 +236,11 @@ p > a:hover {
     }
 }
 
-/* bouncing 'next section button' */
-/* code copied and adapted from
-   https://forum.squarespace.com/topic/62680-how-can-i-create-a-bouncing-down-arrow/ */
-
-.bounce {
-    position: absolute;
-    left: 50%;
-    bottom: 50px;
-    margin-top: -25px;
-    -webkit-animation: bounce 1.5s infinite;
-    -moz-animation: bounce 1.5s infinite;
-    -o-animation: bounce 1.5s infinite;
-    animation: bounce 1.5s infinite;
-}
-
-.bounce-circle {
-    font-size: 1.5em;
-    border: 2.5px solid #008100;
+.next-section {
+    font-size: 1.25em;
     border-radius: 50%;
     background-color: #F0EBEF;
-    position: absolute;
-    transform: translate(-50%, -50%);
     padding: 8px;
-}
-
-@media only screen and (min-width: 992px) {
-
-    .bounce-circle {
-        font-size: 2em;
-    }
-
-    @-webkit-keyframes bounce {
-        0% {
-            bottom: 50px;
-        }
-
-        50% {
-            bottom: 65px;
-        }
-
-        100% {
-            bottom: 80;
-        }
-    }
-
-    @-moz-keyframes bounce {
-        0% {
-            bottom: 50px;
-        }
-
-        50% {
-            bottom: 65px;
-        }
-
-        100% {
-            bottom: 80;
-        }
-    }
-
-    @-o-keyframes bounce {
-        0% {
-            bottom: 50px;
-        }
-
-        50% {
-            bottom: 65px;
-        }
-
-        100% {
-            bottom: 80;
-        }
-    }
-
-    @keyframes bounce {
-        0% {
-            bottom: 50px;
-        }
-
-        50% {
-            bottom: 65px;
-        }
-
-        100% {
-            bottom: 80;
-        }
-    }
 }
 
 /* Recipes page */
