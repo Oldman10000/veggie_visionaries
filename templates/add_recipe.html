@@ -20,15 +20,10 @@
                 </div>
                 <p>Cuisine</p>
                 <select name="cuisine" id="cuisine" class="form-select mb-4" aria-label="cuisine-select" required>
-                    <option value="Other">Other</option>
-                    <option value="Chinese">Chinese</option>
-                    <option value="Indian">Indian</option>
-                    <option value="Italian">Italian</option>
-                    <option value="French">French</option>
-                    <option value="Japanese">Japanese</option>
-                    <option value="Thai">Thai</option>
-                    <option value="Mexican">Mexican</option>
-                    <option value="British">British</option>
+                    <option value="other">Other</option>
+                    {% for cuisine in cuisines %}
+                    <option value="{{ cuisine.name }}">{{ cuisine.name|capitalize }}</option>
+                    {% endfor %}
                 </select>
                 <p>Difficulty</p>
                 <div class="btn-group mb-4">

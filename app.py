@@ -318,6 +318,7 @@ def remove_favorite(recipe_id):
 # allows user to add recipe
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
+    cuisines = list(mongo.db.cuisines.find().sort("name"))
     if request.method == "POST":
         date = datetime.datetime.now()
         recipe = {
@@ -340,7 +341,7 @@ def add_recipe():
         flash("Recipe Successfully Added")
         return redirect(url_for("allRecipes"))
 
-    return render_template("add_recipe.html")
+    return render_template("add_recipe.html", cuisines=cuisines)
 
 
 # allows user to edit recipe
