@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% include 'navbar.html' %}
+
+<main>
+    <div class="container">
+        {% if session.user|lower == "admin" %}
+        <div class="mb-2 mt-4 justify-content-center">
+            <div class="row card light-back">
+                <h2 class="text-center mb-4 card-header">Cuisines</h2>
+                {% if cuisines|length > 0 %}
+                {% for cuisine in cuisines %}
+                <a href="{{ url_for('findRecipe', cuisine=cuisine.name, difficulty='all' ) }}"
+                    class="col-6 col-md-3 card dark-green-back mt-4 text-center shadow-1-strong small-scale">
+                    <h3 class="card-header text-shadow">{{ cuisine.name }}</h3>
+                </a>
+                {% endfor %}
+                {% else %}
+                <h3 class="text-center">No Cuisines</h3>
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+        <h3 class="text-center">Only the admin account may view this page</h3>
+        {% endif %}
+    </div>
+
+</main>
+{% endblock %}

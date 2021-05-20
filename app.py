@@ -480,6 +480,24 @@ def logout():
     return redirect(url_for("login"))
 
 
+# shows all cuisines
+@app.route("/cuisines")
+def all_cuisines():
+    cuisines = list(mongo.db.cuisines.find().sort("_id", -1))
+    return render_template("cuisines.html", cuisines=cuisines)
+
+
+# allows adding a cuisine
+@app.route("/add_cuisine", methods=["GET", "POST"])
+def add_cuisine():
+    if request.method == "POST":
+        mongo.db.cuisines.insert_one(
+            {"name": request.form.get("addcuisine").lower()})
+        flash("Cuisine Successfully Added")
+        return redirect(url_for("all_cuisines"))
+    return render_template("add_cuisine.html")
+
+
 # runs application
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
