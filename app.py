@@ -153,9 +153,6 @@ def allRecipes():
 @app.route("/recipes/<cuisine>/<difficulty>")
 def findRecipe(cuisine, difficulty):
 
-    print(cuisine)
-    print(difficulty)
-
     if cuisine == 'all':
         if difficulty == 'easy':
             recipes = mongo.db.recipes.find(
@@ -169,9 +166,10 @@ def findRecipe(cuisine, difficulty):
         elif difficulty == 'all':
             recipes = mongo.db.recipes.find().sort("_id", -1)
         else:
+            flash("No such difficulty exists")
             return redirect(url_for('allRecipes'))
 
-    else:
+    elif mongo.db.cuisines.find({"name": cuisine}).count():
         if difficulty == 'easy':
             recipes = mongo.db.recipes.find(
                 {"difficulty": "easy", "cuisine": cuisine}).sort("_id", -1)
@@ -185,7 +183,11 @@ def findRecipe(cuisine, difficulty):
             recipes = mongo.db.recipes.find(
                 {"cuisine": cuisine}).sort("_id", -1)
         else:
+            flash("No such difficulty exists")
             return redirect(url_for('allRecipes'))
+    else:
+        flash("This cuisine does not exist on our database")
+        return redirect(url_for('allRecipes'))
 
     sort = request.args.get("sort", None)
 
