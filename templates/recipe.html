@@ -190,7 +190,7 @@
             <div class="text-center">
                 <p class="card-title">{{ loop.index }}. <strong class="dark-green-letters">
                         {{ review.created_by }}</strong></p>
-                <p class="card-subtitle text-muted mb-2">{{ review.date }} {{ review.time }}</p>
+                <p class="card-subtitle text-muted mb-2">{{ review.date }} | {{ review.time }}</p>
                 <p class="card-text">
                     {% if review.rating == 1 %}
                     <i class="fas fa-star"></i>
