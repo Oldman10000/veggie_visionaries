@@ -23,7 +23,8 @@
                 <select name="cuisine" id="cuisine" class="form-select mb-4" aria-label="cuisine-select" required>
                     <option value="other" {% if recipe.cuisine == 'other' %}selected{% endif %}>Other</option>
                     {% for cuisine in cuisines %}
-                    <option value="{{ cuisine.name }}" {% if recipe.cuisine == cuisine.name %}selected{% endif %}>{{ cuisine.name|capitalize }}</option>
+                    <option value="{{ cuisine.name }}" {% if recipe.cuisine == cuisine.name %}selected{% endif %}>
+                        {{ cuisine.name|capitalize }}</option>
                     {% endfor %}
                 </select>
                 <p>Difficulty</p>
@@ -79,8 +80,9 @@
                 </div>
                 <div class="form-outline mb-4">
                     <textarea class="form-control" id="description" name="description" rows="4" maxlength="250"
-                        required>{{ recipe.description }}</textarea>
+                        data-mdb-showcounter="true" required>{{ recipe.description }}</textarea>
                     <label class="form-label" for="description">Description (max 250 char)</label>
+                    <div class="form-helper"></div>
                 </div>
                 <p>Edit Ingredients</p>
                 <div class="ingredient_field_wrapper wrapper">
@@ -125,8 +127,7 @@
                     <input type="hidden" id="image_submit" name="image_submit" value="{{ recipe.image }}" />
                 </div>
                 <button type="submit" class="btn dark-button mb-4">Edit</button>
-                <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}"
-                    class="btn delete-button">Cancel</a>
+                <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}" class="btn delete-button">Cancel</a>
             </div>
         </form>
         {% else %}
