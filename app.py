@@ -24,11 +24,13 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/index")
 def index():
+    # checks if there is a user saved in session
     if session.get("user"):
         user = mongo.db.users.find_one({"username": session["user"]})
     else:
         user = False
 
+    # gets list of all recipes to display top 5 rated on homepage
     allrecipes = list(mongo.db.recipes.find().sort("avgrating", -1))
     recipes = allrecipes[0:5]
 
@@ -95,10 +97,15 @@ def favorites():
 # allows user to search for recipe
 @app.route("/search",  methods=["GET", "POST"])
 def search():
+    # gets search query input
     query = request.form.get("query")
+    # finds any info in recipes collection that matches the search query
     recipes = mongo.db.recipes.find({"$text": {"$search": query}})
+    # default cuisine is all
     cuisine = "all"
+    # default difficulty is all
     difficulty = "all"
+    # allows user to sort results
     sort = request.args.get("sort", None)
     if sort:
         sorter(recipes, sort)
@@ -133,12 +140,14 @@ def sorter(recipes, sort):
 # gets all recipes
 @app.route("/recipes")
 def allRecipes():
+    # all recipes
     recipes = mongo.db.recipes.find().sort("_id", -1)
+    # default cusine is all
     cuisine = "all"
+    # default difficulty is all
     difficulty = "all"
-
+    # allows user to sort
     sort = request.args.get("sort", None)
-
     if sort:
         sorter(recipes, sort)
         current_sorting = sort
@@ -152,45 +161,58 @@ def allRecipes():
 # gets filtered recipes
 @app.route("/recipes/<cuisine>/<difficulty>")
 def findRecipe(cuisine, difficulty):
-
+    # first checks value of 'cuisine' from the url
+    # if cuisine is all
     if cuisine == 'all':
+        # display all easy recipes
         if difficulty == 'easy':
             recipes = mongo.db.recipes.find(
                 {"difficulty": "easy"}).sort("_id", -1)
+        # display all medium recipes
         elif difficulty == 'medium':
             recipes = mongo.db.recipes.find(
                 {"difficulty": "medium"}).sort("_id", -1)
+        # display all hard recipes
         elif difficulty == 'hard':
             recipes = mongo.db.recipes.find(
                 {"difficulty": "hard"}).sort("_id", -1)
+        # display all recipes
         elif difficulty == 'all':
             recipes = mongo.db.recipes.find().sort("_id", -1)
+        # if user enters another value in url then return to all recipes
         else:
             flash("No such difficulty exists")
             return redirect(url_for('allRecipes'))
 
+    # if cuisine is included in database
     elif mongo.db.cuisines.find({"name": cuisine}).count():
+        # display all easy recipes + cuisine
         if difficulty == 'easy':
             recipes = mongo.db.recipes.find(
                 {"difficulty": "easy", "cuisine": cuisine}).sort("_id", -1)
+        # display all medium recipes + cuisine
         elif difficulty == 'medium':
             recipes = mongo.db.recipes.find(
                 {"difficulty": "medium", "cuisine": cuisine}).sort("_id", -1)
+        # display all hard recipes + cuisine
         elif difficulty == 'hard':
             recipes = mongo.db.recipes.find(
                 {"difficulty": "hard", "cuisine": cuisine}).sort("_id", -1)
+        # display all recipes + cuisine
         elif difficulty == 'all':
             recipes = mongo.db.recipes.find(
                 {"cuisine": cuisine}).sort("_id", -1)
+        # in case user enters another value in url then return to all recipes
         else:
             flash("No such difficulty exists")
             return redirect(url_for('allRecipes'))
+    # in case user enters another value in url then return to all recipes
     else:
         flash("This cuisine does not exist on our database")
         return redirect(url_for('allRecipes'))
 
+    # allows user to sort
     sort = request.args.get("sort", None)
-
     if sort:
         sorter(recipes, sort)
         current_sorting = sort
@@ -240,19 +262,23 @@ def show_recipe(recipe_id):
         }
         mongo.db.reviews.insert_one(review)
 
-        # updates rating
+        # gets rating from form input
         rating = int(request.form.get("rating"))
+        # updates recipe document with the rating
         mongo.db.recipes.update_one(recipe, {"$push": {"rating": rating}})
         return redirect(url_for("show_recipe", recipe_id=recipe_id))
 
+    # gets recipe reviews
     reviews = mongo.db.reviews.find({"recipe": recipe_id})
-    # gets average rating
+    # gets average rating from reviews
     if recipe["rating"]:
         ratings = recipe["rating"]
+        # creates recipe average
         avg = round(sum(ratings)/len(ratings))
         mongo.db.recipes.update(
                 {"_id": ObjectId(recipe_id)},
                 {"$set": {"avgrating": avg}})
+    # if no reviews for this recipe
     else:
         avg = "No Reviews Yet!"
 
@@ -417,7 +443,7 @@ def register():
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("register"))
-
+        # gets form input data and updates db accordingly
         register = {
             "email": request.form.get("email").lower(),
             "username": request.form.get("username").lower(),
@@ -449,10 +475,10 @@ def login():
         if existing_user:
             # ensure password is correct
             if check_password_hash(
-                existing_user["password"], request.form.get("password")):
-                    session["user"] = existing_user["username"]
-                    return redirect(url_for(
-                        "loggedin", username=session["user"]))
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = existing_user["username"]
+                return redirect(url_for(
+                    "loggedin", username=session["user"]))
             else:
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
@@ -471,7 +497,7 @@ def loggedin(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     user = mongo.db.users.find_one({"username": session["user"]})
-
+    # gets top 5 rated recipes to display on homepage
     allrecipes = list(mongo.db.recipes.find().sort("avgrating", -1))
     recipes = allrecipes[0:5]
 
@@ -494,8 +520,10 @@ def logout():
 # shows all cuisines and allows admin to add cuisines
 @app.route("/cuisines", methods=["GET", "POST"])
 def all_cuisines():
+    # gets all cuisines
     cuisines = list(mongo.db.cuisines.find().sort("name"))
     if request.method == "POST":
+        # gets form input data and updates db accordingly
         cuisine = {
             "name": request.form.get("addcuisine").lower(),
             "image": request.form.get("cuisine_image")
