@@ -167,7 +167,7 @@
                                 <strong>Cook Time:</strong> {{ recipe.cook_time }} minutes
                             </p>
                             <p class="card-text">
-                                <strong>Serves:</strong> {{ recipe.serves }} people
+                                <strong>Serves:</strong> {{ recipe.serves }} {% if recipe.serves == 1 %}person{% else %}people{% endif %}
                             </p>
                         </div>
                         {% else %}
@@ -230,7 +230,7 @@
                                 <strong>Cook Time:</strong> {{ recipe.cook_time }} minutes
                             </p>
                             <p class="card-text">
-                                <strong>Serves:</strong> {{ recipe.serves }} people
+                                <strong>Serves:</strong> {{ recipe.serves }} {% if recipe.serves >= 1 %}people{% else %}person{% endif %}
                             </p>
                         </div>
                         {% endif %}
