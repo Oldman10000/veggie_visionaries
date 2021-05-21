@@ -87,7 +87,7 @@
                 <p>Edit Ingredients</p>
                 <div class="ingredient_field_wrapper wrapper">
                     {% for ingredient in recipe.ingredients %}
-                    <div class="form-outline mb-4">
+                    <div class="form-outline form-refresh mb-4">
                         <input type="text" name="ingredient" id="ingredient1" class="form-control ingredient"
                             value="{{ ingredient }}" required />
                         <label class="form-label" for="ingredient1">Ingredient {{ loop.index }}</label>
@@ -105,7 +105,7 @@
                 <p>Edit Instruction Steps</p>
                 <div class="instruction_field_wrapper wrapper">
                     {% for instruction in recipe.instructions %}
-                    <div class="form-outline mb-4">
+                    <div class="form-outline form-refresh mb-4">
                         <textarea name="instruction" id="instruction1" class="form-control instruction" rows=4
                             required>{{ instruction }}</textarea>
                         <label class="form-label" for="instruction1">Step {{ loop.index }}</label>

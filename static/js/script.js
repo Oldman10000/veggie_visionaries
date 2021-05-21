@@ -12,13 +12,13 @@ $(document).ready(function () {
         if (ingredientInputs < maxFieldIngredients) {
             ingredientInputs++; //Increment field counter
             $('.ingredient_field_wrapper').append(`
-            <div class="form-outline mb-4">
+            <div class="form-outline form-refresh mb-4">
                 <input type="text" name="ingredient" id="ingredient${ingredientInputs}" class="form-control ingredient" required />
                 <label class="form-label" for="ingredient${ingredientInputs}">Ingredient ${ingredientInputs}</label>
             </div>
             `)
             ingredientInputs = $(".ingredient").length;
-            document.querySelectorAll('.form-outline').forEach((formOutline) => {
+            document.querySelectorAll('.form-refresh').forEach((formOutline) => {
                 new mdb.Input(formOutline).init();
             });
         }
@@ -30,13 +30,13 @@ $(document).ready(function () {
         if (instructionInputs < maxFieldInstructions) {
             instructionInputs++; //Increment field counter
             $('.instruction_field_wrapper').append(`
-            <div class="form-outline mb-4">
+            <div class="form-outline form-refresh mb-4">
                 <textarea name="instruction" id="instruction${instructionInputs}" class="form-control instruction" rows=4 required></textarea>
                 <label class="form-label" for="instruction${instructionInputs}">Step ${instructionInputs}</label>
             </div>
             `)
             instructionInputs = $(".instruction").length;
-            document.querySelectorAll('.form-outline').forEach((formOutline) => {
+            document.querySelectorAll('.form-refresh').forEach((formOutline) => {
                 new mdb.Input(formOutline).init();
             });
         }
