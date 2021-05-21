@@ -19,6 +19,13 @@
                         required />
                     <label class="form-label" for="rname">Recipe Name</label>
                 </div>
+                <p>Cuisine</p>
+                <select name="cuisine" id="cuisine" class="form-select mb-4" aria-label="cuisine-select" required>
+                    <option value="other" {% if recipe.cuisine == 'other' %}selected{% endif %}>Other</option>
+                    {% for cuisine in cuisines %}
+                    <option value="{{ cuisine.name }}" {% if recipe.cuisine == cuisine.name %}selected{% endif %}>{{ cuisine.name|capitalize }}</option>
+                    {% endfor %}
+                </select>
                 <p>Difficulty</p>
                 <div class="btn-group mb-4">
                     {% if recipe.difficulty == "easy" %}

@@ -347,6 +347,7 @@ def add_recipe():
 # allows user to edit recipe
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
+    cuisines = list(mongo.db.cuisines.find().sort("name"))
     if request.method == "POST":
         edited = {
             "name": request.form.get("rname"),
@@ -365,7 +366,7 @@ def edit_recipe(recipe_id):
         return redirect(url_for("show_recipe", recipe_id=recipe_id))
 
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template("edit_recipe.html", recipe=recipe)
+    return render_template("edit_recipe.html", recipe=recipe, cuisines=cuisines)
 
 
 # allows user to delete recipe
