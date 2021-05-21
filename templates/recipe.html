@@ -36,6 +36,9 @@
                                     <strong>Added on</strong> {{ recipe.date }} at {{ recipe.time }}
                                 </p>
                                 <p class="card-text">
+                                    {{ recipe.description }}
+                                </p>
+                                <p class="card-text">
                                     <strong>Cuisine:</strong> {{ recipe.cuisine|capitalize }}
                                 </p>
                                 <p class="card-text">
@@ -49,9 +52,6 @@
                                 </p>
                                 <p class="card-text">
                                     <strong>Serves:</strong> {{ recipe.serves }} people
-                                </p>
-                                <p class="card-text">
-                                    {{ recipe.description }}
                                 </p>
                                 <p class="card-text">
                                     {% if avg == 1 %}
