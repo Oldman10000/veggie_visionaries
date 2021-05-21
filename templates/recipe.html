@@ -6,7 +6,7 @@
 <main>
     <div class="container mt-4 mb-4">
         <div class="div d-flex align-items-center mb-4">
-            <a href="{{ url_for('allRecipes') }}" class="btn dark-button btn-floating">
+            <a href="{{ url_for('allRecipes') }}" class="btn dark-button btn-floating" title="see-all-recipes">
                 <i class="fas fa-arrow-left"></i>
             </a>
             <span class="ms-2">Back to all recipes</span>
@@ -81,11 +81,11 @@
                                 {% if session.user %}
                                 {% if favorited %}
                                 <p class="card-text">Remove from favorites <a
-                                        href="{{ url_for('remove_favorite', recipe_id=recipe._id) }}"><i
+                                        href="{{ url_for('remove_favorite', recipe_id=recipe._id) }}" title="remove-from-favorites"><i
                                             class="fav-heart remove fas fa-heart"></i></a></p>
                                 {% else %}
                                 <p class="card-text">Add to favorites <a
-                                        href="{{ url_for('favorite', recipe_id=recipe._id) }}"><i
+                                        href="{{ url_for('favorite', recipe_id=recipe._id) }}" title="add-to-favorites"><i
                                             class="fav-heart favorite far fa-heart"></i></a></p>
                                 {% endif %}
                                 {% else %}
