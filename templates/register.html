@@ -9,7 +9,7 @@
         <h2 class="text-center">You are already logged in!!</h2>
         {% else %}
         <form class="md-form" method="POST" action="{{ url_for('register') }}">
-            <div class="card light-back shadow-1-strong">
+            <div class="card light-back shadow-1-strong mb-4">
                 <h2 class="text-center card-header mb-4">Register</h2>
                 <p class="text-center">
                     Already have an account with us? Login <a href="{{ url_for('login') }}">Here</a>

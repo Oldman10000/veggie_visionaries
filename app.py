@@ -366,7 +366,8 @@ def edit_recipe(recipe_id):
         return redirect(url_for("show_recipe", recipe_id=recipe_id))
 
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template("edit_recipe.html", recipe=recipe, cuisines=cuisines)
+    return render_template(
+        "edit_recipe.html", recipe=recipe, cuisines=cuisines)
 
 
 # allows user to delete recipe
@@ -389,6 +390,10 @@ def delete_recipe(recipe_id):
                 multi=True)
             # deletes recipe
             mongo.db.recipes.delete_one(recipe)
+            # deletes all associated reviews
+            mongo.db.reviews.delete_many(
+                {"recipe": recipe_id}
+            )
             flash("Recipe Deleted")
         # if no session user or incorrect user
         else:
