@@ -45,15 +45,19 @@ $(document).ready(function () {
     //Once remove ingredient button is clicked
     $(".delete_ingredient_button").click(function (e) {
         e.preventDefault();
-        $(this).parent().prev().children().last().remove(); //Remove field html
-        ingredientInputs = $(".ingredient").length;
+        if (ingredientInputs > 1) {
+            $(this).parent().prev().children().last().remove(); //Remove field html
+            ingredientInputs = $(".ingredient").length;
+        }
     });
 
     //Once remove instruciton button is clicked
     $(".delete_instruction_button").click(function (e) {
         e.preventDefault();
-        $(this).parent().prev().children().last().remove(); //Remove field html
-        instructionInputs = $(".instruction").length;
+        if (instructionInputs > 1) {
+            $(this).parent().prev().children().last().remove(); //Remove field html
+            instructionInputs = $(".instruction").length;
+        }
     });
 
 
