@@ -66,3 +66,9 @@ The website is built as a Minimum Viable Product, but with room for expansion.
   ![Wireframe for Desktop](documentation/wireframes/Desktop_Wireframe.jpg)
 
 ### Surface
+
+## Credits
+
+[ohmyveggies.com](https://ohmyveggies.com/reasons-to-become-vegetarian/) for the '7 reasons to become vegetarian' text
+[unsplash](https://unsplash.com/photos/4_jhDO54BYg) for hero image of vegetables. Photographer credit: Dan Gold
+[Colourmind](http://colormind.io/bootstrap/) used to create the colour scheme. Very useful tool as it shows you what the colour pallette looks like on a mock website
