@@ -106,6 +106,68 @@ The only image baked into the website is the main hero image as mentioned in abo
 
 Initially, as shown on the wireframes, I had intended to use the fonts 'Amatic SC' for the headings and 'Indie Flower' for the paragraphs. I felt the handwritten style fitted well within the context of a recipe page. However, after user feedback it was decided that it was difficult to read and looked somewhat amateurish. In the end I settled on 'Josefin Sans' for headings and 'Raleway' for the paragraphs as these are both distinctive texts, yet are clean and easy to read.
 
+## Database Model
+
+For this project the NoSQL database MongoDB was used. Within the database for this project I made four collections. Recipes, users, reviews and cuisines.
+
+### Recipes
+
+This concerns all recipes in the database and includes all details as entered by the user.
+
+Key | Data Type | Info
+----|-------|-------
+id | ObjectId | Recipe unique Id. Also used to generate url for each recipe page
+name | String | Recipe name e.g. Spaghetti
+cuisine | String | The associated cuisine for each recipe e.g. Italian
+difficulty | String | Recipe difficulty e.g. Easy
+prep_time | Int32 | Time taken to prepare recipe
+cook_time | Int32 | Time taken to cook recipe
+serves | Int32 | Number of people served by recipe
+description | String | Description of recipe, limited to 250 char
+ingredients | Array | Ingredients for this recipe (limited to 20)
+instructions | Array | Instruction steps for this recipe (limited to 10)
+image | String | Url for uploaded image for this recipe (not required)
+created_by | String | Name of current session user when recipe is created
+date | String | Date when recipe is created
+time | String | Time when recipe is created
+rating | Array | Array of review ratings for this recipe as added by users in 'Reviews' collection
+avgrating | Int32 | Mean average of all review ratings for this recipe
+
+### Users
+
+This concerns all users who have created an account on the website
+
+Key | Data Type | Info
+----|-------|-------
+id | ObjectId | User unique id
+email | String | User email address
+username | String | User username
+password | String | Hashed user password
+favorite | Array | List of all recipes favorited by the user in dict form
+
+### Reviews
+
+This concerns all reviews of recipes as entered by users
+
+Key | Data Type | Info
+----|-------|-------
+id | ObjectId | Review unique id
+recipe | String | The unique id of the associated recipe for this review
+rating | Int32 | Value of rating (1-5) 
+review | String | Text value of review (not required)
+date | String | Date when review is created
+time | String | Time when review is created
+
+### Cuisines
+
+This concerns all cuisines as created by admin
+
+Key | Data Type | Info
+----|-------|-------
+id | ObjectId | Cuisine unique id
+name | String | Name of the cuisine e.g. Italian
+image | String | Url for uploaded image for this cuisine (not required)
+
 ## Credits
 
 [ohmyveggies.com](https://ohmyveggies.com/reasons-to-become-vegetarian/) for the '7 reasons to become vegetarian' text
