@@ -281,6 +281,40 @@ If a user is logged in, they can add and view their favourite recipes. A recipe 
 ![favorites](documentation/images/favorites.jpg)
 A recipe can also be removed from the user's favourites from the recipe page by selecting the same 'heart' icon on a favourited recipe.
 
+### Cuisines
+
+Recipes are sorted by cuisine. Site users can visit the 'cuisines' page which lists all cuisines that have been added. These are shown in list format on cards, which display the cuisine name and an appropriate image. Only the site admin has the power to add/delete cuisines.
+  - If current user is not admin - same for loggedin and loggedout
+    ![cuisines](documentation/images/cuisines.jpg)
+  - If current user is admin. From here admin can also add cuisines (name and photo), and delete cuisines.
+    ![cuisines-admin](documentation/images/cuisinesadmin.jpg)
+If the admin deletes a cuisine and there are recipes in the database which have this cuisine name as their cuisine, their cuisine is changed to 'other' automatically. For example if we have the recipe 'Pizza' on the database withe the cuisine 'Italian', if admin deletes the 'Italian' cuisine, 'Pizza's cuisine will be changed to 'other'.
+
+### Add Recipe
+
+Any logged in user can add a recipe. This is done from the 'add recipe' page. If loggedout attempts to reach this page, they are prompted to log in. The form itself has several fields which update the recipe collection in the database when submitted.
+
+![add-recipe](documentation/images/addrecipe.jpg)
+
+1. Recipe Name - adds recipe name
+2. Cuisine - select menu which takes all cuisines from the cuisines collection. Default option is 'other'
+3. Difficulty - user must select recipe difficulty from easy/medium/hard. Easy by default.
+4. Prep Time - adds prep time
+5. Cook Time - adds cook time
+6. Serves - adds people served
+7. Description - short description of the recipe max 250 char
+8. Ingredients (max 20) - user can add up to 20 ingredients. By default only one input is shown, but it is easy for the user to add further inputs as needed using the 'add another ingredient' button. If the user changes their mind, the last input can be deleted just as easily.
+9. Instruction Steps (max 10) - this works in much the same way as the ingredient inputs
+10. Add photo - uses a Cloudinary widget to upload a photo to the Cloudinary storage on my account. Upon upload, Cloudinary generates a unique url for the image which is passed to a hidden input box on the form. Upon upload, the add photo button is removed from the window to make sure a user cannot add a second image. If an image upload is successful, there is positive feedback on the page.
+
+Finally, the user can submit the form. Alternatively, they can cancel and this redirects the user to the recipes page.
+
+### Edit Recipe
+
+This functions in much the same way as the add recipe page. The appearance is identical, the only difference being that the recipe data is passed into the form by default.
+
+![edit-recipe](documentation/images/editrecipe.jpg)
+
 ## Credits
 
 [ohmyveggies.com](https://ohmyveggies.com/reasons-to-become-vegetarian/) for the '7 reasons to become vegetarian' text
