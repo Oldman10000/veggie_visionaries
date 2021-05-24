@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% include 'navbar.html' %}
+
+<main>
+    <div class="container">
+        <div class="row mb-2 mt-4 justify-content-center">
+            <div class="col-11 col-md-12 card light-back mb-2 shadow-1-strong">
+                <h2 class="text-center mb-4 card-header">Search Results</h2>
+                <div class="row mb-2 justify-content-between">
+                    <div class="mt-2 mb-2 col-12">
+                        <form action="{{ url_for('search') }}" method="post" id="search">
+                            <div class="form-outline">
+                                <input type="text" id="query" name="query" class="form-control" required />
+                                <label class="form-label" for="query">Search for Recipe e.g. Stir Fry</label>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="mt-2 mb-2 col-12 col-md-8">
+                        <button type="submit" form="search" class="btn dark-button d-inline">
+                            Search
+                        </button>
+                        <a href="{{ url_for('allRecipes') }}">
+                            <button class="btn delete-button d-inline">
+                                Back to All Recipes
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <p class="text-center">Displaying Results For: <strong>{{ query }}</strong></p>
+                {{ pagination.info }}
+            </div>
+        </div>
+
+        {{ pagination.links }}
+        
+        <div class="row justify-content-center">
+            {% if recipes|length > 0 %}
+            {% for recipe in recipes %}
+
+            <div class="col-11 col-md-12 card light-back mb-4 shadow-1-strong">
+                <div class="card-body">
+                    <div class="row">
+                        {% if loop.index % 2 != 0 %}
+                        <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}"
+                            class="col-12 col-md-6 d-flex align-items-center justify-content-center mb-2">
+                            {% if recipe.image %}
+                            <div class="bg-image hover-zoom rounded">
+                                <img src="{{ recipe.image }}" alt="{{ recipe.name }} Photo">
+                            </div>
+                            {% else %}
+                            <i class="fas fa-camera-retro fa-5x"></i>
+                            {% endif %}
+                        </a>
+                        <div class="col-12 col-md-6 mt-4 mb-2">
+                            <h3 class="card-title mb-2 mb-md-2">{{ recipe.name }}</h3>
+                            <p class="card-text dark-green-letters">
+                                Created by {{ recipe.created_by }}
+                            </p>
+                            <p class="card-text">
+                                {% if recipe.avgrating == 1 %}
+                                <i class="fas fa-star"></i>
+                                {% elif recipe.avgrating == 2 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                {% elif recipe.avgrating == 3 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                {% elif recipe.avgrating == 4 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                {% elif recipe.avgrating == 5 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                {% else %}
+                                <strong>No rating yet</strong>
+                                {% endif %}
+                            </p>
+                            <p class="card-text text-muted">
+                                <strong>Created on</strong> {{ recipe.date }} at {{ recipe.time }}
+                            </p>
+                            <p class="card-text">
+                                {{ recipe.description }}
+                            </p>
+                            <p class="card-text">
+                                <strong>Cuisine:</strong> {{ recipe.cuisine|capitalize }}
+                            </p>
+                            <p class="card-text">
+                                <strong>Difficulty:</strong> {{ recipe.difficulty }}
+                            </p>
+                            <p class="card-text">
+                                <strong>Prep Time:</strong> {{ recipe.prep_time }} minutes
+                            </p>
+                            <p class="card-text">
+                                <strong>Cook Time:</strong> {{ recipe.cook_time }} minutes
+                            </p>
+                            <p class="card-text">
+                                <strong>Serves:</strong> {{ recipe.serves }}
+                                {% if recipe.serves == 1 %}person{% else %}people{% endif %}
+                            </p>
+                        </div>
+                        {% else %}
+                        <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}"
+                            class="col-12 col-md-6 order-md-2 d-flex align-items-center justify-content-center mb-2">
+                            {% if recipe.image %}
+                            <div class="bg-image hover-zoom rounded">
+                                <img src="{{ recipe.image }}" alt="{{ recipe.name }} Photo">
+                            </div>
+                            {% else %}
+                            <i class="fas fa-camera-retro fa-5x"></i>
+                            {% endif %}
+                        </a>
+                        <div class="col-12 col-md-6 order-md-1 mt-4 mb-2">
+                            <h3 class="card-title mb-2 mb-md-2">{{ recipe.name }}</h3>
+                            <p class="card-text dark-green-letters">
+                                Created by {{ recipe.created_by }}
+                            </p>
+                            <p class="card-text">
+                                {% if recipe.avgrating == 1 %}
+                                <i class="fas fa-star"></i>
+                                {% elif recipe.avgrating == 2 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                {% elif recipe.avgrating == 3 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                {% elif recipe.avgrating == 4 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                {% elif recipe.avgrating == 5 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                {% else %}
+                                <strong>No rating yet</strong>
+                                {% endif %}
+                            </p>
+                            <p class="card-text text-muted">
+                                <strong>Created on</strong> {{ recipe.date }} at {{ recipe.time }}
+                            </p>
+                            <p class="card-text">
+                                {{ recipe.description }}
+                            </p>
+                            <p class="card-text">
+                                <strong>Cuisine:</strong> {{ recipe.cuisine|capitalize }}
+                            </p>
+                            <p class="card-text">
+                                <strong>Difficulty:</strong> {{ recipe.difficulty }}
+                            </p>
+                            <p class="card-text">
+                                <strong>Prep Time:</strong> {{ recipe.prep_time }} minutes
+                            </p>
+                            <p class="card-text">
+                                <strong>Cook Time:</strong> {{ recipe.cook_time }} minutes
+                            </p>
+                            <p class="card-text">
+                                <strong>Serves:</strong> {{ recipe.serves }}
+                                {% if recipe.serves == 1 %}person{% else %}people{% endif %}
+                            </p>
+                        </div>
+                        {% endif %}
+                        {% if session.user|lower == recipe.created_by|lower or session.user == "admin" %}
+                        <div class="col-12 order-md-3">
+                            <div class="row justify-content-between mt-2 mb-2">
+                                <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}"
+                                    class="col-5 col-md-3 btn dark-button">Edit</a>
+                                <button class="col-5 col-md-3 btn delete-button" data-mdb-toggle="modal"
+                                    data-mdb-target="#deletemodal{{ recipe._id }}">Delete</a>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="deletemodal{{ recipe._id }}" tabindex="-1"
+                                aria-labelledby="deletemodalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p class="text-center mb-0">Are you sure you want to delete this recipe?
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer justify-content-center">
+                                            <button type="button" class="btn dark-button" data-mdb-dismiss="modal">
+                                                Cancel
+                                            </button>
+                                            <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" type="button"
+                                                class="btn delete-button">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="col-12 order-md-4">
+                            <div class="row justify-content-center">
+                                <a href="{{ url_for('show_recipe', recipe_id=recipe._id) }}"
+                                    class="col-12 btn dark-button mt-2">View Recipe</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+            {{ pagination.links }}
+            {% else %}
+            <h3 class="text-center">No Results Found</h3>
+            {% endif %}
+        </div>
+    </div>
+
+</main>
+{% endblock %}

@@ -100,19 +100,13 @@ def search():
     # gets search query input
     query = request.form.get("query")
     # finds any info in recipes collection that matches the search query
-    recipes = mongo.db.recipes.find({"$text": {"$search": query}})
-    # default cuisine is all
-    cuisine = "all"
-    # default difficulty is all
-    difficulty = "all"
-    # allows user to sort results
-    sort = request.args.get("sort", None)
-    if sort:
-        sorter(recipes, sort)
-        current_sorting = sort
-    else:
-        current_sorting = "Newer"
-    return show_recipes(recipes, current_sorting, cuisine, difficulty)
+    recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
+    recipes_paginated = paginated(recipes)
+    pagination = pagination_args(recipes)
+    return render_template("searchresults.html",
+                        recipes=recipes_paginated,
+                        pagination=pagination,
+                        query=query)
 
 
 # sorts recipes in particular orders
