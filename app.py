@@ -491,7 +491,7 @@ def login():
 
 
 # redirects logged in user to homepage
-@app.route("/index/<username>", methods=["GET", "POST"])
+@app.route("/<username>", methods=["GET", "POST"])
 def loggedin(username):
     # grabs session users username
     username = mongo.db.users.find_one(
@@ -549,6 +549,12 @@ def delete_cuisine(cuisine_id):
     mongo.db.cuisines.delete_one(cuisine)
     flash("Cuisine Deleted")
     return redirect(url_for("all_cuisines"))
+
+
+# for nonexistent urls allows user to safely return home
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('404.html')
 
 
 # runs application

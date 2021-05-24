@@ -365,7 +365,6 @@ label.star:before {
     font-family: FontAwesome;
 }
 
-
 .form-select {
     border-color: #008100;
 }
@@ -373,4 +372,8 @@ label.star:before {
 .form-select:focus {
     border-color: #008100;
     box-shadow: none;
+}
+
+.home-404:hover {
+    text-decoration: underline;
 }

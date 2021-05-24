@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% include 'navbar.html' %}
+
+<main>
+    <div class="container mt-5 text-center">
+        <h2><i class="far fa-frown"></i> Page not found</h2>
+        <h3><a class="home-404" href="{{ url_for('index') }}">Return Home</a></h3>
+    </div>
+</main>
+
+{% endblock %}
