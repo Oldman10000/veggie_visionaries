@@ -251,6 +251,36 @@ As can be seen below, this recipe was not created by 'elvis', and therefore cann
 ![loggedin-recipes2](documentation/images/loggedin-recipes2.jpg)
 If the logged in user is 'admin', then full control over edit/delete functions on this page
 
+### Recipe Page
+
+The page which displays all recipes has several sections.
+
+1. Recipe info - this displays all the same information as displayed on its card on the 'all recipes' page. A logged in user also has the option to add the recipe to their 'favourites'. More info will be given on this functionality later on.
+![recipe-info](documentation/images/recipeinfo-loggedin.jpg)
+
+2. A list of ingredients for this recipe in an unorderd list format.
+![ingredients](documentation/images/ingredients.jpg)
+
+3. A list of instructions for this recipe in an ordered list format.
+![instructions](documentation/images/instructions.jpg)
+
+4. Review Form
+  - If a user is logged in, an 'add review' form.
+    ![review-form](documentation/images/reviewform.jpg)
+  - If the session user is the recipe creator, they cannot review the recipe as their opinion would presumably be somewhat biased.
+    ![user-revier](documentation/images/userreview.jpg)
+  - If user is loggedout, this form is not visible and the user is prompted to log in or  register to leave a review.
+    ![review-loggedout](documentation/images/reviewloggedout.jpg)
+
+5. A list of all reviews for this recipe in order of newest first. Reviewer username, date, time, rating and review text is displayed.
+![reviews](documentation/images/reviews.jpg)
+
+### Favourites
+
+If a user is logged in, they can add and view their favourite recipes. A recipe can be added to favourites as described above, from the recipe page. A user can add their own added recipes to favourites as well, as there is no reason they shouldn't be allowed to like their own meals. Upon selecting the favourite 'heart' icon, the user is redirected to their favourites page. The favourites page shows a list of the user's favourites, and from here the user can either access the recipe's page or remove the recipe from their favourites.
+![favorites](documentation/images/favorites.jpg)
+A recipe can also be removed from the user's favourites from the recipe page by selecting the same 'heart' icon on a favourited recipe.
+
 ## Credits
 
 [ohmyveggies.com](https://ohmyveggies.com/reasons-to-become-vegetarian/) for the '7 reasons to become vegetarian' text
