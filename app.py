@@ -104,9 +104,9 @@ def search():
     recipes_paginated = paginated(recipes)
     pagination = pagination_args(recipes)
     return render_template("searchresults.html",
-                        recipes=recipes_paginated,
-                        pagination=pagination,
-                        query=query)
+                           recipes=recipes_paginated,
+                           pagination=pagination,
+                           query=query)
 
 
 # sorts recipes in particular orders

@@ -204,7 +204,7 @@ Below the main hero banner, there is further content. For all users, cards displ
 
 This page displays all recipes added to the website. This looks roughly the same for all users, with some small differences if one is logged in, logged out or an admin which I will describe in more detail when necessary. First, I will describe the functions all users can operate.
 
-#### Recipe List
+#### Recipe Filters
 
 The default display of the page is to display all recipes in descending order, with the most recently added recipe first. There are various ways a user can filter or sort the recipes as well as search. The user can also see which (if any) filters are applied.
 
@@ -216,19 +216,40 @@ The page makes use of Flask's pagination module, so only 5 recipes are displayed
 
 ##### Search
 
-The user can search through the database for any word contained in a recipe document within the recipe collection. For example, most obviously a user can search for the name of a recipe. They can also search for an ingredient or for the name of a recipe creator.
+The user can search through the database for any word contained in a recipe document within the recipe collection. For example, most obviously a user can search for the name of a recipe. They can also search for an ingredient or for the name of a recipe creator. The search results are shown in a seperate page. From here a user can either view the recipes or return to the main recipes page.
+
+![search results](documentation/images/searchresults.jpg)
 
 ##### Filters
 
 There are two filters a user can use for the recipes. Difficulty and cuisine. The difficulty options are baked into the website as 'easy', 'medium' and 'hard' and the user must choose one of these options when creating a recipe. The cuisines are taken from the database and can be added/deleted by the site admin from the website. These features will be discussed in more detail later. Both filters can be used in conjunction with each other, e.g. a user can filter by Easy/Mexican, Medium/Chinese recipes etc. Alternatively, each filter can be individually reset to display 'all' recipes, e.g. to show Easy/All, All/Chinese etc.
 
+##### Add Recipe
+
+If the user is logged in, there is also a button prompting them to add a new recipe.
+
+![filters logged in](documentation/images/filtersloggedin.jpg)
+
 ##### Sort
 
-A user can sort the displayed recipes into different orders, I have included 4 options with the default being newest first. The other 3 options are A-Z, Rating (top rated first) and Oldest First. Sorting can be done even when recipes are filtered. There is currently a bug whereby search results cannot be sorted.
+A user can sort the displayed recipes into different orders, I have included 4 options with the default being newest first. The other 3 options are A-Z, Rating (top rated first) and Oldest First. Sorting can be done even when recipes are filtered.
 
 ##### Reset
 
 The orange reset button resets the page to display all recipes in newest order, and can be operated at any time.
+
+#### Recipes List
+
+As stated above, by default all recipes are shown in descending order. The most important information for each recipe is displayed alongside an image of the recipe (if applicable). If no image url is to be found in the database, there is a default blank 'camera' icon which displays instead. If the current session user is the recipe creator or admin, they have the option to edit and delete their recipe from this screen.
+
+* Loggedout - when user is logged out, only the information is displayed. User can select either 'view recipe' or click on the image to open up more info to the recipe.
+![loggedout-recipes](documentation/images/loggedout-recipes.jpg)
+
+* Logged in - when user is logged in, their added recipes have the option to edit/delete their recipe as well. As can be seen below, the session user is 'elvis' and is able to edit/delete this recipe.
+![loggedin-recipes](documentation/images/loggedin-recipes.jpg)
+As can be seen below, this recipe was not created by 'elvis', and therefore cannot be edited/deleted by this user.
+![loggedin-recipes2](documentation/images/loggedin-recipes2.jpg)
+If the logged in user is 'admin', then full control over edit/delete functions on this page
 
 ## Credits
 
