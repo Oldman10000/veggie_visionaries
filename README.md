@@ -115,7 +115,7 @@ For this project the NoSQL database MongoDB was used. Within the database for th
 This concerns all recipes in the database and includes all details as entered by the user.
 
 Key | Data Type | Info
-----|-------|-------
+----|-----------|-------
 id | ObjectId | Recipe unique Id. Also used to generate url for each recipe page
 name | String | Recipe name e.g. Spaghetti
 cuisine | String | The associated cuisine for each recipe e.g. Italian
@@ -138,7 +138,7 @@ avgrating | Int32 | Mean average of all review ratings for this recipe
 This concerns all users who have created an account on the website
 
 Key | Data Type | Info
-----|-------|-------
+----|-----------|-------
 id | ObjectId | User unique id
 email | String | User email address
 username | String | User username
@@ -150,7 +150,7 @@ favorite | Array | List of all recipes favorited by the user in dict form
 This concerns all reviews of recipes as entered by users
 
 Key | Data Type | Info
-----|-------|-------
+----|-----------|-------
 id | ObjectId | Review unique id
 recipe | String | The unique id of the associated recipe for this review
 rating | Int32 | Value of rating (1-5) 
@@ -163,10 +163,72 @@ time | String | Time when review is created
 This concerns all cuisines as created by admin
 
 Key | Data Type | Info
-----|-------|-------
+----|-----------|-------
 id | ObjectId | Cuisine unique id
 name | String | Name of the cuisine e.g. Italian
 image | String | Url for uploaded image for this cuisine (not required)
+
+## Features
+
+I will go through the site features by page, displaying possible features for a 'non-logged in' user, a logged in user and the admin user. For brevity, I will henceforth refer to a 'non-logged in' user as 'loggedout' and a logged in user as 'loggedin'. All screenshots will be the desktop version of the site as the functionality is the same for all devices.
+
+### Navbar
+
+The navbar content differs depending on whether the user is loggedin or loggedout.
+
+* Loggedout - Links to home, all recipes, cuisines, to register and to log in.
+![loggedout-nav](documentation/images/loggedout-nav.jpg)
+
+* Loggedin - Links to home, user favourites, all recipes, to add a recipe, cuisines and to log out. This is the same for the admin account.
+![loggedin-nav](documentation/images/loggedin-nav.jpg)
+
+### Index Page
+
+Upon opening the main index page, the user is greeted by a large hero image displaying bowls of vegetables with a floating card above the image. The card contains the website name, a small text 'A place to share your favourite veggie meals!' and links to the most important pages on the site. There is also an arrow button below the links, informing the user there is more content below.
+
+* Loggedout - index hero image. Links take the user to browse all recipes, to register or to log in.
+![loggedout-hero](documentation/images/loggedout-home.jpg)
+
+* Loggedin - index hero image. Links take the user to browse all recipes, to add a recipe or to log out. There is also a welcome text for the user. This is the same for the admin account.
+![loggedin-hero](documentation/images/loggedin-nav.jpg)
+
+Below the main hero banner, there is further content. For all users, cards display information encouraging a user to 'go veggie', the option to search for a recipe, and a list of the top 5 rated recipes. Loggedout user can login from here, while loggedin can view their favourited recipes. This is the same for the admin account.
+
+* Loggedout
+![loggedout-home](documentation/images/loggedout-dash.jpg)
+
+* Loggedin
+![loggedin-home](documentation/images/loggedin-dash.jpg)
+
+### Recipes Page
+
+This page displays all recipes added to the website. This looks roughly the same for all users, with some small differences if one is logged in, logged out or an admin which I will describe in more detail when necessary. First, I will describe the functions all users can operate.
+
+#### Recipe List
+
+The default display of the page is to display all recipes in descending order, with the most recently added recipe first. There are various ways a user can filter or sort the recipes as well as search. The user can also see which (if any) filters are applied.
+
+![filters](documentation/images/filters.jpg)
+
+##### Pagination
+
+The page makes use of Flask's pagination module, so only 5 recipes are displayed at a time. The user is shown at the top of the page how many recipes there are in total, as well as which page they are currently on.
+
+##### Search
+
+The user can search through the database for any word contained in a recipe document within the recipe collection. For example, most obviously a user can search for the name of a recipe. They can also search for an ingredient or for the name of a recipe creator.
+
+##### Filters
+
+There are two filters a user can use for the recipes. Difficulty and cuisine. The difficulty options are baked into the website as 'easy', 'medium' and 'hard' and the user must choose one of these options when creating a recipe. The cuisines are taken from the database and can be added/deleted by the site admin from the website. These features will be discussed in more detail later. Both filters can be used in conjunction with each other, e.g. a user can filter by Easy/Mexican, Medium/Chinese recipes etc. Alternatively, each filter can be individually reset to display 'all' recipes, e.g. to show Easy/All, All/Chinese etc.
+
+##### Sort
+
+A user can sort the displayed recipes into different orders, I have included 4 options with the default being newest first. The other 3 options are A-Z, Rating (top rated first) and Oldest First. Sorting can be done even when recipes are filtered. There is currently a bug whereby search results cannot be sorted.
+
+##### Reset
+
+The orange reset button resets the page to display all recipes in newest order, and can be operated at any time.
 
 ## Credits
 
