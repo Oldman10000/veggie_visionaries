@@ -32,27 +32,6 @@
                                         {% if session.user|lower == recipe.created_by|lower %}
                                         (Your Recipe!){% endif %}</strong>
                                 </p>
-                                <p class="text-muted card-text dark-green-letters">
-                                    <strong>Added on</strong> {{ recipe.date }} at {{ recipe.time }}
-                                </p>
-                                <p class="card-text">
-                                    {{ recipe.description }}
-                                </p>
-                                <p class="card-text">
-                                    <strong>Cuisine:</strong> {{ recipe.cuisine|capitalize }}
-                                </p>
-                                <p class="card-text">
-                                    <strong>Difficulty:</strong> {{ recipe.difficulty }}
-                                </p>
-                                <p class="card-text">
-                                    <strong>Prep Time:</strong> {{ recipe.prep_time }} minutes
-                                </p>
-                                <p class="card-text">
-                                    <strong>Cook Time:</strong> {{ recipe.cook_time }} minutes
-                                </p>
-                                <p class="card-text">
-                                    <strong>Serves:</strong> {{ recipe.serves }} {% if recipe.serves == 1 %}person{% else %}people{% endif %}
-                                </p>
                                 <p class="card-text">
                                     {% if avg == 1 %}
                                     <i class="fas fa-star"></i>
@@ -77,6 +56,27 @@
                                     {% else %}
                                     <strong>{{ avg }}</strong>
                                     {% endif %}
+                                </p>
+                                <p class="text-muted card-text dark-green-letters">
+                                    <strong>Added on</strong> {{ recipe.date }} at {{ recipe.time }}
+                                </p>
+                                <p class="card-text">
+                                    {{ recipe.description }}
+                                </p>
+                                <p class="card-text">
+                                    <strong>Cuisine:</strong> {{ recipe.cuisine|capitalize }}
+                                </p>
+                                <p class="card-text">
+                                    <strong>Difficulty:</strong> {{ recipe.difficulty }}
+                                </p>
+                                <p class="card-text">
+                                    <strong>Prep Time:</strong> {{ recipe.prep_time }} minutes
+                                </p>
+                                <p class="card-text">
+                                    <strong>Cook Time:</strong> {{ recipe.cook_time }} minutes
+                                </p>
+                                <p class="card-text">
+                                    <strong>Serves:</strong> {{ recipe.serves }} {% if recipe.serves == 1 %}person{% else %}people{% endif %}
                                 </p>
                                 {% if session.user %}
                                 {% if favorited %}
