@@ -374,6 +374,10 @@ label.star:before {
     box-shadow: none;
 }
 
-.home-404:hover {
+.hover-underline {
+    font-weight: 700;
+}
+
+.hover-underline:hover {
     text-decoration: underline;
 }
