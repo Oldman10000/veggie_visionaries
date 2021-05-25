@@ -22,6 +22,9 @@
                     <input type="email" id="email" name="email" class="form-control" required />
                     <label class="form-label" for="email">e.g. cronaldo@juventus.com</label>
                 </div>
+                <div class="mb-2">
+                    <p id="emailvalid"></p>
+                </div>
                 <p>Username (5-15 characters, letters and numbers
                     only, no spaces)</p>
                 <div class="form-outline mb-4">
@@ -29,6 +32,9 @@
                         minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required />
                     <label class="form-label" for="username">e.g. cronaldo7</label>
                     <div class="form-helper"></div>
+                </div>
+                <div class="mb-2">
+                    <p id="usernamevalid"></p>
                 </div>
                 <p>Password (5-15 characters, letters and numbers
                     only, no spaces)</p>
@@ -50,7 +56,7 @@
                     <p id="passwordmatch"></p>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn dark-button" id ="register-submit">
+                    <button type="submit" class="btn dark-button" id="register-submit">
                         <i class="fas fa-user-plus"></i> Register
                     </button>
                 </div>
@@ -63,32 +69,100 @@
 <script type="text/javascript">
     // checks if passwords match on registration form
     $(document).ready(function () {
-        function checkPasswordMatch() {
+
+        function checkValid() {
+
+            let email = $("#email").val();
+            // regex for valid email format taken from
+            // https://www.w3resource.com/javascript/form/email-validation.php
+            let emailregex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            let validemail = false;
+
+            // if any text has been entered
+            if (email.length) {
+                // if email format is correct
+                if (email.match(emailregex)) {
+                    $("#emailvalid").html("Email Valid");
+                    $("#emailvalid").css("color", "#008100");
+                    validemail = true;
+                // if email format is incorrect
+                } else {
+                    $("#emailvalid").html("Email Invalid - enter valid email address");
+                    $("#emailvalid").css("color", "red");
+                    validemail = false;
+                }
+            // if no text entered this field is blank
+            } else {
+                $("#emailvalid").html("");
+                validemail = false;
+            }
+
+            let username = $("#username").val();
+            // regex for username and password formats
+            let generalregex = /^[a-zA-Z0-9]{5,15}$/;
+            let validusername = false;
+
+            // if any text has been entered
+            if (username.length) {
+                // if username format is correct
+                if (username.match(generalregex)) {
+                    $("#usernamevalid").html("Username Valid");
+                    $("#usernamevalid").css("color", "#008100");
+                    validusername = true;
+                // if username format is incorrect
+                } else {
+                    $("#usernamevalid").html("Username Invalid - check format");
+                    $("#usernamevalid").css("color", "red");
+                    validusername = false;
+                }
+            // if no text entered this field is blank
+            } else {
+                $("#usernamevalid").html("");
+                validusername = false;
+            }
+
             let password = $("#password").val();
             let confirmPassword = $("#passwordconfirm").val();
+            let validpassword = false;
 
-            if (password.length == 0) {
-                $("#passwordmatch").html("");
-                $("#passwordmatch").css("color", "red");
-                $("#register-submit").prop("disabled", true);
-            } else if (password != confirmPassword) {
-                $("#passwordmatch").html("Passwords do not match!");
-                $("#passwordmatch").css("color", "red");
-                $("#register-submit").prop("disabled", true);
-            } else if (password.length <= 4) {
-                $("#passwordmatch").html("Password must be at least 5 characters long");
-                $("#passwordmatch").css("color", "red");
-                $("#register-submit").prop("disabled", true);
+            // if any text has been entered
+            if (password.length) {
+                // if password format is correct and matches confirm input
+                if (password.match(generalregex) && password == confirmPassword) {
+                    $("#passwordmatch").html("Passwords match.");
+                    $("#passwordmatch").css("color", "#008100");
+                    validpassword = true;
+                // if password does not match confirm input
+                } else if (password != confirmPassword) {
+                    $("#passwordmatch").html("Passwords do not match - check spelling");
+                    $("#passwordmatch").css("color", "red");
+                    validpassword = false;
+                // if password format is incorrect
+                } else {
+                    $("#passwordmatch").html("Password Invalid - check format");
+                    $("#passwordmatch").css("color", "red");
+                    validpassword = false;
+                }
+            // if no text entered this field is blank
             } else {
-                $("#passwordmatch").html("Passwords match.");
-                $("#passwordmatch").css("color", "#008100");
-                $("#register-submit").prop("disabled", false);
+                $("#passwordmatch").html("");
+                validpassword = false;
             }
+
+            // checks to see if all fields are valid, if so enables submit button
+            if (validemail && validusername && validpassword) {
+                $("#register-submit").prop("disabled", false)
+            } else {
+                $("#register-submit").prop("disabled", true)
+            }
+
         }
 
-        checkPasswordMatch();
+        // triggers on page load
+        checkValid();
 
-        $("#password, #passwordconfirm").keyup(checkPasswordMatch);
+        // triggers every time a key is entered on input fields
+        $("#email, #username, #password, #passwordconfirm").keyup(checkValid);
     });
 </script>
 
