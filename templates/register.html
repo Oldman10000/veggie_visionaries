@@ -82,7 +82,7 @@
             if (email.length) {
                 // if email format is correct
                 if (email.match(emailregex)) {
-                    $("#emailvalid").html("Email Valid");
+                    $("#emailvalid").html("<p><i class='fas fa-check-circle'></i>");
                     $("#emailvalid").css("color", "#008100");
                     validemail = true;
                 // if email format is incorrect
@@ -106,7 +106,7 @@
             if (username.length) {
                 // if username format is correct
                 if (username.match(generalregex)) {
-                    $("#usernamevalid").html("Username Valid");
+                    $("#usernamevalid").html("<p><i class='fas fa-check-circle'></i>");
                     $("#usernamevalid").css("color", "#008100");
                     validusername = true;
                 // if username format is incorrect
@@ -129,7 +129,7 @@
             if (password.length) {
                 // if password format is correct and matches confirm input
                 if (password.match(generalregex) && password == confirmPassword) {
-                    $("#passwordmatch").html("Passwords match.");
+                    $("#passwordmatch").html("<p><i class='fas fa-check-circle'></i>");
                     $("#passwordmatch").css("color", "#008100");
                     validpassword = true;
                 // if password does not match confirm input
