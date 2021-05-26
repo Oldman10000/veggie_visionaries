@@ -92,13 +92,13 @@ For the most part, I stuck quite rigidly to these designs to begin with, but as 
 
 For the colour scheme I used [Colourmind](http://colormind.io/bootstrap/). This was an excellent tool as the website shows you the appearance of the colour pallette on a mock website.
 
-#F0EBEF light 'off-white' - used as card background colour and for text colour for darker backgrounds
-#008100 dark green - used for buttons, card background and navbar
-#87B679 light green - main background body colour
-#AAFFB4 lighter green - navbar footer to make this stand out
-#1D261E dark grey - text colour on dark backgrounds
-#FFD700 gold - stars
-#FF8C00 dark orange - 'delete' buttons
+* #F0EBEF light 'off-white' - used as card background colour and for text colour for darker backgrounds
+* #008100 dark green - used for buttons, card background and navbar
+* #87B679 light green - main background body colour
+* #AAFFB4 lighter green - navbar footer to make this stand out
+* #1D261E dark grey - text colour on dark backgrounds
+* #FFD700 gold - stars
+* #FF8C00 dark orange - 'delete' buttons
 
 ![Colour Pallette](documentation/veggie-pallette.png)
 
@@ -317,7 +317,7 @@ This functions in much the same way as the add recipe page. The appearance is id
 
 ### Register
 
-The register form is simple, asking a user for only their email address, and to create a user name and password. The password must be entered twice to confirm. The 'Register' button is inactive by default and is only available once all fields are valid. Textual information is provided upon typing in the box to help the user know when their info is valid.
+The register form is simple, asking a user for only their email address, and to create a user name and password. The password must be entered twice to confirm. The 'Register' button is inactive by default and is only available once all fields are valid. Textual information is provided upon typing in the box to help the user know when their info is valid. Once the form has been submitted, the data is added to the 'users' collection in the database and the new user is immediately logged in as the current session user. If the username is already taken, then the form submit fails and the username is alerted to this fact by a flash message.
 
 * Empty form
 ![register](documentation/images/register.jpg)
@@ -327,7 +327,35 @@ The register form is simple, asking a user for only their email address, and to 
 
 ### Log In
 
-The login form is almost identical in appearance to the register screen. There are two inputs, one for username/email and one for the password. It was decided to allow users to login using either their username or email as we often don't remember our usernames and the email is a simple alternative which appears to have become a web standard for login forms.
+The login form is almost identical in appearance to the register screen. There are two inputs, one for username/email and one for the password. It was decided to allow users to login using either their username or email as we often don't remember our usernames and the email address is a simple alternative which appears to have become a web standard for login forms. Upon successful login the user is added to the session cookie.
+
+![login](documentation/images/login.jpg)
+
+### Potential Future Features
+
+As described in the Scope section of this writeup, there are a few extra features which could be added to the website in future. For example it may be possible to use an API to pull nutritional information for all food ingredients, and add these as options on a searchable ingredients list when a user creates a new recipe. 
+
+It would be nice to have a few more filters to use on the recipe page, perhaps a user could filter by cooking/prep time. If the above method to add nutritional data could be implemented, recipes could be filtered by nutritional value. Other filters used could be 'contains nuts', 'vegan' etc in case users have more specific dietary requirements.
+
+## Technologies Used
+
+### Languages Used
+
+* HTML5
+* CSS3
+* JavaScript
+* Python 3
+
+### Frameworks, Libraries and Programs Used
+
+* [MDB - Material Design for Bootstrap](https://mdbootstrap.com/) - Used for responsive layout, flexbox, and for several components on the site e.g. responsive navbar, cards and accordion.
+* [jQuery](https://jquery.com/) - Used for interactive elements on the DOM and to simplify JavaScript use
+* [Fontawesome](https://fontawesome.com/) - This was used for all icons on the page
+* [Google Fonts](https://fonts.google.com/) - I used the fonts Josefin Sans and Raleway
+* [Git](https://git-scm.com/) - Used for version control
+* [Gitpod](https://gitpod.io/) - Text editor used to write all code
+* [Github](https://github.com/) - GitHub is used to store the project's code after being pushed from Git
+* [Heroku](https://id.heroku.com/) - Used to deploy website
 
 ## Credits
 
