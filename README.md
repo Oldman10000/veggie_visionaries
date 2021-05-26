@@ -37,6 +37,7 @@ I am the website owner and I want:
 
 1. To encourage first time visitors to return to the site
 2. To encourage visitors to consider a vegetarian diet
+3. To have full administrative control over the site so I can delete/edit recipes as necessary easily
 
 ### Scope
 
@@ -336,6 +337,102 @@ The login form is almost identical in appearance to the register screen. There a
 As described in the Scope section of this writeup, there are a few extra features which could be added to the website in future. For example it may be possible to use an API to pull nutritional information for all food ingredients, and add these as options on a searchable ingredients list when a user creates a new recipe. 
 
 It would be nice to have a few more filters to use on the recipe page, perhaps a user could filter by cooking/prep time. If the above method to add nutritional data could be implemented, recipes could be filtered by nutritional value. Other filters used could be 'contains nuts', 'vegan' etc in case users have more specific dietary requirements.
+
+## Testing
+
+### User Story Testing
+
+I am a first time visitor and I want:
+
+1. To know what the website is for
+  - The app is called 'Veggie Visionaries', the title of which is instantly visible on the homepage and navigation elements.
+  - The landing page includes a short text 'A place to share your favourite veggie meals'
+  - The landing page has a large hero image featuring various vegetables and dishes
+  ![homepage](documentation/images/loggedout-home.jpg)
+
+2. To be able to quickly access recipes
+  - Recipes can be accessed from the splash page and from the navbar - also from the footer navbar if using mobile
+
+3. To be able to easily register an account
+  - A user can register from the splash page or from the navbar - also from the footer navbar if using mobile
+
+4. To be able to easily navigate
+  - A user can navigate using either the navbar or the footer navbar if using mobile. All links are relevant and only open available page - i.e. a logged in user cannot access the 'login' or 'register' pages from the navbar. Equally, a loggedout user cannot access the 'add recipe' page from the navbar.
+
+    - Logged in
+    ![navbar-loggedin](documentation/images/loggedin-nav.jpg)
+
+    - Logged out
+    ![navbar-loggedout](documentation/images/loggedout-nav.jpg)
+
+5. To be able to use the site on all device types
+  - The app was created with a mobile first design in mind, however is responsive and can be used on all design types.
+  - Navigation is made easier on small devices using both a hamburger menu and a footer navigation menu.
+  - Bootstrap grid system is used for responsive design. In most cases columns will fill the screen for small devices while on larger devices these will be more spaced out on the x plane. Examples below from the cuisines page:
+
+    - Mobile
+    ![responsive-mobile](documentation/images/responsive-mobile.jpg)
+
+    - Tablet
+    ![responsive-mobile](documentation/images/responsive-tablet.jpg)
+
+    - Laptop
+    ![responsive-mobile](documentation/images/responsive-laptop.jpg)
+
+I am a returning visitor/member and I want:
+
+1. To be able to save my favourite recipes to my account
+  - Recipes can be saved from the recipe page
+  ![favorite](documentation/images/favorite.jpg)
+
+2. To be able to easily accessed saved recipes
+  - Favourited recipes can be accessed at any time by the logged in user directly from the navbar
+  ![favorites](documentation/images/favorites.jpg)
+
+3. To be able to easily add my own recipes
+  - The add recipe page is easily accessible from the navbar and the splash screen for a logged in user.
+  - The page itself is easy to follow and contains all relevant information so the user does not enter invalid data, for example specifying units of time, specifying how many ingredients are allowed, or how many characters can be entered into the description text box.
+  ![add-recipe](documentation/images/addrecipe.jpg)
+
+4. To be able to edit and delete my own recipes
+  - A user can access the edit/delete buttons for their added recipes from either the recipe page itself or from the recipe list page.
+
+    - A logged in user looking at a recipe they have created on the recipe list
+    ![loggedin-recipes](documentation/images/loggedin-recipes.jpg)
+
+    - A logged in user looking at a recipe they have created on the recipe page
+    
+
+5. To be able to see which recipes are highly rated/well reviewed
+  - Any user is able to see the top rated recipes from both the home page and from the recipes page.
+    - The home page features the top 5 most highly rated recipes
+    ![recipe-info](documentation/images/loggedout-dash.jpg)
+    - The recipes can be sorted by top rated first on the recipes page
+    ![toprated](documentation/images/toprated.jpg)
+
+6. To be able to review recipes
+  - A logged in user can review a recipe from the recipes page as well as view all reviews that have been previously made
+    - Review form
+    ![review-form](documentation/images/reviewform.jpg)
+    - Reviews
+    ![reviews](documentation/images/reviews.jpg)
+
+I am the website owner and I want:
+
+1. To encourage first time visitors to return to the site
+  - Beauty is in the eye of the beholder, but general feedback from people who have helped me test this app has been overwhelmingly positive in terms of the visual design and UX. The app is pleasing to the eye and easy to use. Bright bold colours and clear information lend a very pleasant user experience. 
+
+2. To encourage visitors to consider a vegetarian diet
+  - Information has been included on the homepage which is intended to encourage visitors to eat less meat in the '7 Reasons to go Veggie' card
+  ![7reasons](documentation/images/7reasons.jpg)
+
+3. To have full administrative control over the site so I can delete/edit recipes as necessary easily
+  - The admin account has full authority to delete/edit all recipes on the website - see image below recipe is created by user 'uncleroger', admin is logged in and the edit/delete buttons are visible
+  ![recipe-admin](documentation/images/adminrecipe.jpg)
+  - Admin can also delete reviews - see image below review is created by user 'elvis', admin is logged in and the delete button is visible
+  ![review-admin](documentation/images/adminreview.jpg)
+  - Admin can add/edit/delete cuisines.
+  ![cuisines-admin](documentation/images/cuisinesadmin.jpg)
 
 ## Technologies Used
 
