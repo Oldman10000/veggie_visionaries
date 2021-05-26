@@ -356,10 +356,58 @@ It would be nice to have a few more filters to use on the recipe page, perhaps a
 * [Gitpod](https://gitpod.io/) - Text editor used to write all code
 * [Github](https://github.com/) - GitHub is used to store the project's code after being pushed from Git
 * [Heroku](https://id.heroku.com/) - Used to deploy website
+* [Figma](https://www.figma.com/) - used to create the wireframe
+* [Colourmind](http://colormind.io/bootstrap/) used to create the colour scheme. Very useful tool as it shows you what the colour pallette looks like on a mock website
+* [Coolors](https://coolors.co) used to show pallette
+* [Compressjpeg](https://compressjpeg.com/) - used to compress hero image
+* [favicon.io](https://favicon.io/) - used to create favicon image
+
+## Deployment
+
+### Cloning the repository
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/)
+2. Under the repository name, click "Clone or download".
+3. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
+4. Open Git Bash
+5. Change the current working directory to the location where you want the cloned directory to be made.
+6. Type `git clone`, and then paste the URL you copied in Step 3.
+
+### Working with local copy
+
+1. Create environment variables by signing up to a MongoDB account and then creating a cluster and a database. Create 4 collections within the database for 'Users', 'Recipes', 'Reviews' and 'Cuisines'.
+2. Create an env.py file in the root directory and enter the following content so as to link the project to the database and to ensure you can view the project using a local port. Use the environment variables from your MongoDB database:
+
+  ```
+  import os
+
+  os.environ.setdefault("IP", "0.0.0.0")
+  os.environ.setdefault("PORT", "5000")
+  os.environ.setdefault("SECRET_KEY", "secret_key")
+  os.environ.setdefault("MONGO_URI", "mongo_uri")
+  os.environ.setdefault("MONGO_DBNAME", "mongo_dbname")
+  ````
+
+3. Add the env.py file to .gitignore to ensure that this information is not pushed to the repo
+4. Install all required modules by entering command 'pip3 install -r requirements.txt' to the terminal
+5. To run the app locally type 'python3 app.py 'to the command terminal
+
+### Deploying to Heroku
+
+1. Create a github repository for the app
+2. Initialize git for the app by using the 'git init' command in the terminal
+3. To link the app to your repository use the following command in the terminal 'git remote add origin <https://github.com/><your-username>/<your-repo-name>.gitgit push -u origin master'. From now on any further pushes will be automatically pushed to this location
+4. Create file 'Procfile' within the root directory and enter the content 'web: python app.py'
+5. Ensure requirements are up to date by entering command 'pip3 freeze > requirements.txt' to the terminal
+6. Push both files to the repository
+7. Create/Sign in to a Heroku account and create a new app, selecting your local region.
+8. Within the Heroku app settings, add config vars. These must have the same values as what is included in the env.py file.
+9. Under the Heroku app 'deployment' section, select github as the deployment method. Choose the repo under your account
+10. Find your github account and enter the repo name to connect to your github repo
+11. To set automatic deployment, select a repo branch in the deployment section and enable automatic deployment
+12. To manually deploy the app, scroll to the bottom of the deployment section 
 
 ## Credits
 
 [ohmyveggies.com](https://ohmyveggies.com/reasons-to-become-vegetarian/) for the '7 reasons to become vegetarian' text
 [unsplash](https://unsplash.com/photos/4_jhDO54BYg) for hero image of vegetables. Photographer credit: Dan Gold
-[Colourmind](http://colormind.io/bootstrap/) used to create the colour scheme. Very useful tool as it shows you what the colour pallette looks like on a mock website
-[Coolors](https://coolors.co) used to show pallette
