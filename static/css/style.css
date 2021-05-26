@@ -373,10 +373,7 @@ label.star:before {
     footer {
         height: 25px;
     }
-}
 
-/* anchor effects on larger screens only */
-@media only screen and (min-width: 992px) {
     .scale, .small-scale {
         transition: transform 0.4s;
     }
