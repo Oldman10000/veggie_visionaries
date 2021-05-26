@@ -22,11 +22,9 @@
                         <button type="submit" form="search" class="btn dark-button d-inline">
                             Search
                         </button>
-                        <button class="btn delete-button d-inline mt-2 mt-md-0">
-                            <a href="{{ url_for('allRecipes') }}">
-                                Reset
-                            </a>
-                        </button>
+                        <a href="{{ url_for('allRecipes') }}" class="btn delete-button mt-2 mt-md-0">
+                            Reset
+                        </a>
                         <div class="dropdown d-inline">
                             <button class="btn dark-button dropdown-toggle mt-2 mt-md-0" type="button"
                                 id="difficultybutton" data-mdb-toggle="dropdown" aria-expanded="false">
