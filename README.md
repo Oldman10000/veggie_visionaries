@@ -8,6 +8,10 @@ This project is an online cookbook where users can access and share vegetarian r
 
 The purpose is also to demonstrate to visitors that a vegetarian diet can be delicious, varied and well balanced. Information to this end is displayed to the user, providing facts and myth busting about a vegetarian diet. Users are encouraged to share their recipes and lifestyle to social media, hopefully encouraging more people to choose this diet.
 
+### Mockup
+
+![Mockup](documentation/mockup.jpg)
+
 ## UXD
 
 ### Strategy
@@ -471,6 +475,14 @@ The only bug I was able to find while testing was that the images did not always
 
 Chrome dev tools lighthouse was used to test the site for performance, accessibility, best practices and SEO. Tests were run in incognito mode on Chrome to prevent stored data from affecting loading performances.
 
+Performance was good on all pages for both mobile and desktop, generally scoring in the 90s on each test.
+
+Accessibility also scored well, scoring 95+ on all pages. Points were deducted for insufficient contrast ratio between background and foreground colours on the navbar and button elements. After user testing this, no users found the colour contrast problematic so I made no changes to this.
+
+The best practices score also scored in the 90s, generally only losing points for the inclusion of the jQuery CDN which according to the report has 'known security vulnerabilities'.
+
+The SEO score tended to be around 90. This was due to the exclusion of a 'robots.txt' file, which provides instructions to search engine bots and helps web crawling. Another issue was the templated pagination links on the recipes page, which were uncrawlable due to having no href attribute. As these are added using a Jinja template rather than being hardcoded, I was unable to add this within the source code.
+
 ## Technologies Used
 
 ### Languages Used
@@ -495,6 +507,9 @@ Chrome dev tools lighthouse was used to test the site for performance, accessibi
 * [Coolors](https://coolors.co) used to show pallette
 * [Compressjpeg](https://compressjpeg.com/) - used to compress hero image
 * [favicon.io](https://favicon.io/) - used to create favicon image
+* [W3C Validator](https://validator.w3.org/) - used to validate HTML file
+* [W3C Validator](https://jigsaw.w3.org/css-validator/) - used to validate CSS file
+* [JS Hint](https://jshint.com/) - used to check JavaScript file
 
 ## Deployment
 
