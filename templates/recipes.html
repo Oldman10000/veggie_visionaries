@@ -22,11 +22,11 @@
                         <button type="submit" form="search" class="btn dark-button d-inline">
                             Search
                         </button>
-                        <a href="{{ url_for('allRecipes') }}">
-                            <button class="btn delete-button d-inline mt-2 mt-md-0">
+                        <button class="btn delete-button d-inline mt-2 mt-md-0">
+                            <a href="{{ url_for('allRecipes') }}">
                                 Reset
-                            </button>
-                        </a>
+                            </a>
+                        </button>
                         <div class="dropdown d-inline">
                             <button class="btn dark-button dropdown-toggle mt-2 mt-md-0" type="button"
                                 id="difficultybutton" data-mdb-toggle="dropdown" aria-expanded="false">
@@ -42,7 +42,9 @@
                                 <li><a class="dropdown-item"
                                         href="{{ url_for('findRecipe', cuisine=cuisine, difficulty = 'hard') }}">Hard</a>
                                 </li>
-                                <li><hr class="dropdown-divider" /></li>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
                                 <li><a class="dropdown-item"
                                         href="{{ url_for('findRecipe', cuisine=cuisine, difficulty = 'all') }}">All</a>
                                 </li>
@@ -62,10 +64,12 @@
                                 <li><a class="dropdown-item"
                                         href="{{ url_for('findRecipe', difficulty=difficulty, cuisine = 'other') }}">Other</a>
                                 </li>
-                                <li><hr class="dropdown-divider" /></li>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
                                 <li><a class="dropdown-item"
-                                    href="{{ url_for('findRecipe', difficulty=difficulty, cuisine = 'all') }}">All</a>
-                            </li>
+                                        href="{{ url_for('findRecipe', difficulty=difficulty, cuisine = 'all') }}">All</a>
+                                </li>
                             </ul>
                         </div>
                         {% if session.user %}
@@ -167,7 +171,8 @@
                                 <strong>Cook Time:</strong> {{ recipe.cook_time }} minutes
                             </p>
                             <p class="card-text">
-                                <strong>Serves:</strong> {{ recipe.serves }} {% if recipe.serves == 1 %}person{% else %}people{% endif %}
+                                <strong>Serves:</strong> {{ recipe.serves }}
+                                {% if recipe.serves == 1 %}person{% else %}people{% endif %}
                             </p>
                         </div>
                         {% else %}
@@ -230,7 +235,8 @@
                                 <strong>Cook Time:</strong> {{ recipe.cook_time }} minutes
                             </p>
                             <p class="card-text">
-                                <strong>Serves:</strong> {{ recipe.serves }} {% if recipe.serves == 1 %}person{% else %}people{% endif %}
+                                <strong>Serves:</strong> {{ recipe.serves }}
+                                {% if recipe.serves == 1 %}person{% else %}people{% endif %}
                             </p>
                         </div>
                         {% endif %}

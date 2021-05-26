@@ -22,11 +22,11 @@
                         <button type="submit" form="search" class="btn dark-button d-inline">
                             Search
                         </button>
-                        <a href="{{ url_for('allRecipes') }}">
-                            <button class="btn delete-button d-inline mt-2 mt-md-0">
+                        <button class="btn delete-button d-inline mt-2 mt-md-0">
+                            <a href="{{ url_for('allRecipes') }}">
                                 Back to All Recipes
-                            </button>
-                        </a>
+                            </a>
+                        </button>
                     </div>
                 </div>
                 <p class="text-center">Displaying Results For: <strong>{{ query }}</strong></p>
@@ -35,7 +35,7 @@
         </div>
 
         {{ pagination.links }}
-        
+
         <div class="row justify-content-center">
             {% if recipes|length > 0 %}
             {% for recipe in recipes %}
