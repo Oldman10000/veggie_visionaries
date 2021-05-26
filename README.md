@@ -434,6 +434,29 @@ I am the website owner and I want:
   - Admin can add/edit/delete cuisines.
   ![cuisines-admin](documentation/images/cuisinesadmin.jpg)
 
+### Device and Browser Testing
+
+* Chrome developer tools used throughout development to check usability on different devices/sizes. Devices "used" on dev tools include:
+  - Moto G4 and iPhone 6/7/8, as these are fairly standard sizes for mobile devices
+  - iPhone 5/SE and Samsung Galaxy Fold, as these are relatively narrow mobile devices
+  - Pixel 2 XL and iPhone X, as these are larger mobile devices
+  - Ipad and Surface Pro, as these are standard sizes for tablet devices
+  - Ipad Pro, as this is a higher resolution tablet device
+
+* Personal devices used to check usability after deployment
+  - OnePlus Nord mobile phone
+  - Huawei Mediapad M5 10" tablet
+  - Dell Inspiron 7577 laptop
+  - Dell U2520D monitor
+
+* Friends and family asked to check usability on their Apple mobile, laptop, desktop, and tablet devices, particularly to check usability on Safari browser
+
+* Browsers checked were Chrome, Firefox, Edge, Opera, and Safari on all device types
+
+#### Bugs
+
+The only bug I was able to find while testing was that the images did not always display correctly on the Safari browser. This was only an issue on one device, on all other Apple devices tested, this issue did not persist so it could simply be an issue with permissions/settings that that user had on their browser.
+
 ## Technologies Used
 
 ### Languages Used
