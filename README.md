@@ -10,7 +10,7 @@ The purpose is also to demonstrate to visitors that a vegetarian diet can be del
 
 ### Mockup
 
-![Mockup](documentation/mockup.jpg)
+![Mockup](documentation/images/mockup.jpg)
 
 ## UXD
 
