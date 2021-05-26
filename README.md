@@ -559,5 +559,41 @@ The SEO score tended to be around 90. This was due to the exclusion of a 'robots
 
 ## Credits
 
-[ohmyveggies.com](https://ohmyveggies.com/reasons-to-become-vegetarian/) for the '7 reasons to become vegetarian' text
-[unsplash](https://unsplash.com/photos/4_jhDO54BYg) for hero image of vegetables. Photographer credit: Dan Gold
+### Code
+
+#### CSS
+
+* Star rating system copied and adapted from [Code Convey](https://codeconvey.com/html-star-rating-system/)
+
+#### JavaScript
+
+* Dynamic input function taken and adapted from [Codex World](https://www.codexworld.com/add-remove-input-fields-dynamically-using-jquery/)
+* Sort function copied and adapted from [Code Institute Tutorial](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FSF_102+Q1_2020/courseware/4201818c00aa4ba3a0dae243725f6e32/252883608f734d96ac352ca483451968/?child=first)
+
+#### Python
+
+* Pagination function copied and adapted from [Github user Mozilla ZG](https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9)
+
+### Images
+
+* [unsplash](https://unsplash.com/photos/4_jhDO54BYg) for hero image of vegetables. Photographer credit: Dan Gold
+* All recipe images and cuisine images were taken from the [BBC Good Food Website](https://www.bbcgoodfood.com/)
+
+### Text
+
+* [ohmyveggies.com](https://ohmyveggies.com/reasons-to-become-vegetarian/) for the '7 reasons to become vegetarian' text
+* All recipe text was taken from the [BBC Good Food Website](https://www.bbcgoodfood.com/)
+
+### Acknowledgements
+
+* Thanks to my mentor Arnold Kyeza for his generosity in providing me with his time, tips and feedback on the site
+* Thanks to the Code Institute Slack community for providing resources and tips as well as peer-reviewing the project
+* Thanks to Code Institute Tutor Igor for his patience in helping me find a way to sort the recipes and providing me with the link above for the sort function
+* Thanks to friends and family for taking the time to look at the site and give advice on both content and user stories, in particular thanks to Robert Smith for his UX and content ideas and feedback
+* [W3 Schools](https://www.w3schools.com/) and [Stackoverflow](https://stackoverflow.com/) were useful as always to double check things and get the correct syntax for functions.
+* [MongoDB Manual](https://docs.mongodb.com/manual/) was useful for developing the database
+* Chrome Dev Tools
+  - Testing and adjusting CSS styles
+  - Testing my JavaScript using the console
+  - Testing local storage in the Application section
+  - Testing using the Lighthouse
