@@ -396,7 +396,7 @@ It would be nice to have a few more filters to use on the recipe page, perhaps a
 
 1. Create a github repository for the app
 2. Initialize git for the app by using the 'git init' command in the terminal
-3. To link the app to your repository use the following command in the terminal 'git remote add origin <https://github.com/><your-username>/<your-repo-name>.gitgit push -u origin master'. From now on any further pushes will be automatically pushed to this location
+3. To link the app to your repository use the following command in the terminal 'git remote add origin <https://github.com/>USERNAME/REPONAME.gitgit push -u origin master'. From now on any further pushes will be automatically pushed to this location
 4. Create file 'Procfile' within the root directory and enter the content 'web: python app.py'
 5. Ensure requirements are up to date by entering command 'pip3 freeze > requirements.txt' to the terminal
 6. Push both files to the repository
@@ -405,7 +405,8 @@ It would be nice to have a few more filters to use on the recipe page, perhaps a
 9. Under the Heroku app 'deployment' section, select github as the deployment method. Choose the repo under your account
 10. Find your github account and enter the repo name to connect to your github repo
 11. To set automatic deployment, select a repo branch in the deployment section and enable automatic deployment
-12. To manually deploy the app, scroll to the bottom of the deployment section 
+12. To manually deploy the app, scroll to the bottom of the deployment section and select 'Deploy Branch'
+13. The app should now be deployed, enjoy!
 
 ## Credits
 
