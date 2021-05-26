@@ -10,20 +10,23 @@ footer {
     height: 60px;
 }
 
-#footer-links a {
-    font-size: 1.1em;
-    padding: 5px;
+a {
+    color: inherit;
 }
 
-@media only screen and (min-width: 992px) {
-    #footer-links {
-        display: none;
-    }
-
-    footer {
-        height: 25px;
-    }
+a:hover {
+    color: inherit;
 }
+
+p > a {
+    font-weight: 600;
+}
+
+p > a:hover {
+    text-decoration: underline;
+}
+
+/* fonts */
 
 h1,
 h2,
@@ -37,10 +40,6 @@ button,
     font-family: 'Josefin Sans', sans-serif;
 }
 
-.text-shadow {
-    text-shadow: 2px 2px 0px #1D261E;
-}
-
 p,
 input,
 label,
@@ -52,25 +51,14 @@ option {
     font-family: 'Raleway', sans-serif;
 }
 
-.navbar-brand h1 {
-    margin-bottom: 0;
+.text-shadow {
+    text-shadow: 2px 2px 0px #1D261E;
 }
 
-.nav-link {
-    text-transform: uppercase;
-    font-size: 0.8em;
-}
+/* cards */
 
-.navbar-brand > h1 {
-    font-size: 1.2em;
-}
-
-.cuisine-drop {
-    text-shadow: none;
-}
-
-.cuisines-card {
-    flex-direction: row;
+.card {
+    padding: 20px;
 }
 
 .card a h3, .card a p:hover, .cuisine-item:hover {
@@ -81,6 +69,8 @@ option {
 .card-text {
     margin-bottom: 8px;
 }
+
+/* colours */
 
 .dark-green-back {
     background-color: #008100;
@@ -102,40 +92,7 @@ option {
     color: #1D261E;
 }
 
-a {
-    color: inherit;
-}
-
-a:hover {
-    color: inherit;
-}
-
-p > a {
-    font-weight: 600;
-}
-
-p > a:hover {
-    text-decoration: underline;
-}
-
-/* anchor effects on larger screens only */
-@media only screen and (min-width: 992px) {
-    .scale, .small-scale {
-        transition: transform 0.4s;
-    }
-
-    .scale:hover {
-        transform: scale(1.1);
-    }
-
-    .small-scale:hover {
-        transform: scale(1.025);
-    }
-}
-
-.card {
-    padding: 20px;
-}
+/* buttons */
 
 .my-button {
     background: #AAFFB4;
@@ -144,6 +101,11 @@ p > a:hover {
 
 .dark-button {
     background: #008100;
+    color: #F0EBEF;
+}
+
+.delete-button {
+    background: #ff8c00 ;
     color: #F0EBEF;
 }
 
@@ -191,6 +153,8 @@ p > a:hover {
     line-height: 2;
 }
 
+/* rating stars */
+
 .rating>i {
     font-size: 1.5em;
     color: gold;
@@ -226,14 +190,19 @@ p > a:hover {
     font-size: 1.2em;
 }
 
-@media only screen and (min-width: 768px) {
-    .hero-content p {
-        font-size: 1.2em;
-    }
-    
-    .hero-content h2 {
-        font-size: 1.8em;
-    }
+/* Navbar */
+
+.navbar-brand h1 {
+    margin-bottom: 0;
+}
+
+.nav-link {
+    text-transform: uppercase;
+    font-size: 0.8em;
+}
+
+.navbar-brand > h1 {
+    font-size: 1.2em;
 }
 
 .next-section {
@@ -241,13 +210,6 @@ p > a:hover {
     border-radius: 50%;
     background-color: #F0EBEF;
     padding: 8px;
-}
-
-/* Recipes page */
-
-.delete-button {
-    background: #ff8c00 ;
-    color: #F0EBEF;
 }
 
 /* pagination */
@@ -289,26 +251,10 @@ p > a:hover {
     background-color: #008100;
 }
 
+/* icons */
+
 .fa-check-circle {
     color: #008100;
-}
-
-.bg-image {
-    max-width: 300px;
-}
-
-.cuisine-image {
-    height: 200px;
-}
-
-@media only screen and (min-width: 576px) {
-    .bg-image {
-        max-width: 500px;
-    }
-}
-
-.bg-image>img {
-    max-width: 100%;
 }
 
 .fav-heart {
@@ -318,6 +264,16 @@ p > a:hover {
 .fa-star {
     color: gold;
     text-shadow: 1px 1px 0px #1D261E;
+}
+
+/* images */
+
+.bg-image {
+    max-width: 300px;
+}
+
+.bg-image>img {
+    max-width: 100%;
 }
 
 /* star rating system copied and adapted from https://codeconvey.com/html-star-rating-system/ */
@@ -365,6 +321,8 @@ label.star:before {
     font-family: FontAwesome;
 }
 
+/* form select elements */
+
 .form-select {
     border-color: #008100;
 }
@@ -374,10 +332,75 @@ label.star:before {
     box-shadow: none;
 }
 
+/* specific hover classes for some anchor elements */
+
 .hover-underline {
     font-weight: 700;
 }
 
 .hover-underline:hover {
     text-decoration: underline;
+}
+
+/* cuisines page */
+
+.cuisine-drop {
+    text-shadow: none;
+}
+
+.cuisines-card {
+    flex-direction: row;
+}
+
+.cuisine-image {
+    height: 200px;
+}
+
+/* footer */
+
+#footer-links a {
+    font-size: 1.1em;
+    padding: 5px;
+}
+
+/* Media Queries */
+
+@media only screen and (min-width: 992px) {
+    #footer-links {
+        display: none;
+    }
+
+    footer {
+        height: 25px;
+    }
+}
+
+/* anchor effects on larger screens only */
+@media only screen and (min-width: 992px) {
+    .scale, .small-scale {
+        transition: transform 0.4s;
+    }
+
+    .scale:hover {
+        transform: scale(1.1);
+    }
+
+    .small-scale:hover {
+        transform: scale(1.025);
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .hero-content p {
+        font-size: 1.2em;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.8em;
+    }
+}
+@media only screen and (min-width: 576px) {
+    .bg-image {
+        max-width: 500px;
+    }
 }
