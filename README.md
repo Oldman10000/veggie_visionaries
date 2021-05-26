@@ -457,6 +457,20 @@ I am the website owner and I want:
 
 The only bug I was able to find while testing was that the images did not always display correctly on the Safari browser. This was only an issue on one device, on all other Apple devices tested, this issue did not persist so it could simply be an issue with permissions/settings that that user had on their browser.
 
+### Code Validation
+
+* HTML code validator found no major errors on any pages
+
+* CSS code validator found no errors in my CSS file
+
+* JS Hint found no errors in my JavaScript file
+
+* There are a few warnings on my app.py python file regarding unbalanced tuple unpacking and unused variables in my pagination functions. However, these are necessary for the functions to work and can be disregarded
+
+### Chrome Dev Tools Lighthouse
+
+Chrome dev tools lighthouse was used to test the site for performance, accessibility, best practices and SEO. Tests were run in incognito mode on Chrome to prevent stored data from affecting loading performances.
+
 ## Technologies Used
 
 ### Languages Used
