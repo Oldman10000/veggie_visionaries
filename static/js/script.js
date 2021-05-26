@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
-    // Dynamic input function taken and adapted from https://www.codexworld.com/add-remove-input-fields-dynamically-using-jquery/
+    // Dynamic input function taken and adapted from
+    // https://www.codexworld.com/add-remove-input-fields-dynamically-using-jquery/
     const maxFieldIngredients = 20; //Input fields increment limitation
     const maxFieldInstructions = 10; //Input fields increment limitation
     let ingredientInputs = $(".ingredient").length; //Initial field counter is amount of nodes
@@ -11,14 +12,14 @@ $(document).ready(function () {
         //Check maximum number of input fields
         if (ingredientInputs < maxFieldIngredients) {
             ingredientInputs++; //Increment field counter
-            $('.ingredient_field_wrapper').append(`
+            $(".ingredient_field_wrapper").append(`
             <div class="form-outline form-refresh mb-4">
                 <input type="text" name="ingredient" id="ingredient${ingredientInputs}" class="form-control ingredient" required />
                 <label class="form-label" for="ingredient${ingredientInputs}">Ingredient ${ingredientInputs}</label>
             </div>
-            `)
+            `);
             ingredientInputs = $(".ingredient").length;
-            document.querySelectorAll('.form-refresh').forEach((formOutline) => {
+            document.querySelectorAll(".form-refresh").forEach((formOutline) => {
                 new mdb.Input(formOutline).init();
             });
         }
@@ -29,14 +30,14 @@ $(document).ready(function () {
         //Check maximum number of input fields
         if (instructionInputs < maxFieldInstructions) {
             instructionInputs++; //Increment field counter
-            $('.instruction_field_wrapper').append(`
+            $(".instruction_field_wrapper").append(`
             <div class="form-outline form-refresh mb-4">
                 <textarea name="instruction" id="instruction${instructionInputs}" class="form-control instruction" rows=4 required></textarea>
                 <label class="form-label" for="instruction${instructionInputs}">Step ${instructionInputs}</label>
             </div>
-            `)
+            `);
             instructionInputs = $(".instruction").length;
-            document.querySelectorAll('.form-refresh').forEach((formOutline) => {
+            document.querySelectorAll(".form-refresh").forEach((formOutline) => {
                 new mdb.Input(formOutline).init();
             });
         }
@@ -65,16 +66,16 @@ $(document).ready(function () {
     $(".photo-widget").click(e => {
         e.preventDefault();
         cloudinary.openUploadWidget({
-            cloud_name: 'dljklwibk',
-            upload_preset: 'veggie',
-            sources: ['local', 'url', 'google_drive', 'dropbox', 'shutterstock', 'instagram']
+            cloud_name: "dljklwibk",
+            upload_preset: "veggie",
+            sources: ["local", "url", "google_drive", "dropbox", "shutterstock", "instagram"]
         }, (error, result) => {
             if (!error && result && result.event === "success") {
                 console.log(result.info.secure_url);
                 $("#image_submit").val(result.info.secure_url);
                 $(".image-submit-div").append(`
                     <p><i class="fas fa-check-circle"></i> ${result.info.secure_url}</p>
-                `)
+                `);
                 $(".photo-widget").remove();
             }
         });
@@ -84,16 +85,16 @@ $(document).ready(function () {
     $(".photo-widget-2").click(e => {
         e.preventDefault();
         cloudinary.openUploadWidget({
-            cloud_name: 'dljklwibk',
-            upload_preset: 'veggie',
-            sources: ['local', 'url', 'google_drive', 'dropbox', 'shutterstock', 'instagram']
+            cloud_name: "dljklwibk",
+            upload_preset: "veggie",
+            sources: ["local", "url", "google_drive", "dropbox", "shutterstock", "instagram"]
         }, (error, result) => {
             if (!error && result && result.event === "success") {
                 console.log(result.info.secure_url);
                 $("#cuisine_image").val(result.info.secure_url);
                 $(".cuisine-image-submit-div").append(`
                     <p><i class="fas fa-check-circle"></i> ${result.info.secure_url}</p>
-                `)
+                `);
                 $(".photo-widget-2").remove();
             }
         });
