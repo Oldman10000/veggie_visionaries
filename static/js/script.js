@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     // Dynamic input function taken and adapted from
     // https://www.codexworld.com/add-remove-input-fields-dynamically-using-jquery/
     const maxFieldIngredients = 20; //Input fields increment limitation
@@ -61,43 +60,48 @@ $(document).ready(function () {
         }
     });
 
-
     // cloudinary widget
-    $(".photo-widget").click(e => {
+    $(".photo-widget").click((e) => {
         e.preventDefault();
-        cloudinary.openUploadWidget({
-            cloud_name: "dljklwibk",
-            upload_preset: "veggie",
-            sources: ["local", "url", "google_drive", "dropbox", "shutterstock", "instagram"]
-        }, (error, result) => {
-            if (!error && result && result.event === "success") {
-                console.log(result.info.secure_url);
-                $("#image_submit").val(result.info.secure_url);
-                $(".image-submit-div").append(`
+        cloudinary.openUploadWidget(
+            {
+                cloud_name: "dljklwibk",
+                upload_preset: "veggie",
+                sources: ["local", "url", "google_drive", "dropbox", "shutterstock", "instagram"],
+            },
+            (error, result) => {
+                if (!error && result && result.event === "success") {
+                    console.log(result.info.secure_url);
+                    $("#image_submit").val(result.info.secure_url);
+                    $(".image-submit-div").append(`
                     <p><i class="fas fa-check-circle"></i> ${result.info.secure_url}</p>
                 `);
-                $(".photo-widget").remove();
+                    $(".photo-widget").remove();
+                }
             }
-        });
+        );
     });
 
     // cloudinary widget 2
-    $(".photo-widget-2").click(e => {
+    $(".photo-widget-2").click((e) => {
         e.preventDefault();
-        cloudinary.openUploadWidget({
-            cloud_name: "dljklwibk",
-            upload_preset: "veggie",
-            sources: ["local", "url", "google_drive", "dropbox", "shutterstock", "instagram"]
-        }, (error, result) => {
-            if (!error && result && result.event === "success") {
-                console.log(result.info.secure_url);
-                $("#cuisine_image").val(result.info.secure_url);
-                $(".cuisine-image-submit-div").append(`
+        cloudinary.openUploadWidget(
+            {
+                cloud_name: "dljklwibk",
+                upload_preset: "veggie",
+                sources: ["local", "url", "google_drive", "dropbox", "shutterstock", "instagram"],
+            },
+            (error, result) => {
+                if (!error && result && result.event === "success") {
+                    console.log(result.info.secure_url);
+                    $("#cuisine_image").val(result.info.secure_url);
+                    $(".cuisine-image-submit-div").append(`
                     <p><i class="fas fa-check-circle"></i> ${result.info.secure_url}</p>
                 `);
-                $(".photo-widget-2").remove();
+                    $(".photo-widget-2").remove();
+                }
             }
-        });
+        );
     });
 
     // changes appearance of favorite button on hover
@@ -107,7 +111,8 @@ $(document).ready(function () {
         },
         function () {
             $(this).removeClass("fas");
-        });
+        }
+    );
 
     $(".remove").hover(
         function () {
@@ -117,5 +122,6 @@ $(document).ready(function () {
         function () {
             $(this).removeClass("far");
             $(this).addClass("fas");
-        });
+        }
+    );
 });
