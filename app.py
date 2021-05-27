@@ -156,6 +156,7 @@ def allRecipes():
 @app.route("/recipes/<cuisine>/<difficulty>")
 def findRecipe(cuisine, difficulty):
     # first checks value of 'cuisine' from the url
+
     # if cuisine is all
     if cuisine == 'all':
         # display all easy recipes
@@ -174,6 +175,29 @@ def findRecipe(cuisine, difficulty):
         elif difficulty == 'all':
             recipes = mongo.db.recipes.find().sort("_id", -1)
         # if user enters another value in url then return to all recipes
+        else:
+            flash("No such difficulty exists")
+            return redirect(url_for('allRecipes'))
+
+    # if cuisine is 'other'
+    elif cuisine == 'other':
+        # display all easy recipes + other
+        if difficulty == 'easy':
+            recipes = mongo.db.recipes.find(
+                {"difficulty": "easy", "cuisine": "other"}).sort("_id", -1)
+        # display all medium recipes + other
+        elif difficulty == 'medium':
+            recipes = mongo.db.recipes.find(
+                {"difficulty": "medium", "cuisine": "other"}).sort("_id", -1)
+        # display all hard recipes + other
+        elif difficulty == 'hard':
+            recipes = mongo.db.recipes.find(
+                {"difficulty": "hard", "cuisine": "other"}).sort("_id", -1)
+        # display all recipes + other
+        elif difficulty == 'all':
+            recipes = mongo.db.recipes.find(
+                {"cuisine": "other"}).sort("_id", -1)
+        # in case user enters another value in url then return to all recipes
         else:
             flash("No such difficulty exists")
             return redirect(url_for('allRecipes'))
