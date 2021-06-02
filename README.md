@@ -195,7 +195,7 @@ Upon opening the main index page, the user is greeted by a large hero image disp
 ![loggedout-hero](documentation/images/loggedout-home.jpg)
 
 * Loggedin - index hero image. Links take the user to browse all recipes, to add a recipe or to log out. There is also a welcome text for the user. This is the same for the admin account.
-![loggedin-hero](documentation/images/loggedin-nav.jpg)
+![loggedin-hero](documentation/images/loggedin-home.jpg)
 
 Below the main hero banner, there is further content. For all users, cards display information encouraging a user to 'go veggie', the option to search for a recipe, and a list of the top 5 rated recipes. Loggedout user can log in from here, while loggedin can view their favourited recipes. This is the same for the admin account.
 
