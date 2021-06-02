@@ -254,7 +254,7 @@ As stated above, by default all recipes are shown in descending order. The most 
 ![loggedin-recipes](documentation/images/loggedin-recipes.jpg)
 As can be seen below, this recipe was not created by 'elvis', and therefore cannot be edited/deleted by this user.
 ![loggedin-recipes2](documentation/images/loggedin-recipes2.jpg)
-If the logged-in user is 'admin', then full control over edit/delete functions on this page
+If the logged-in user is 'admin', then full control over edit/delete functions on this page is provided.
 
 ### Recipe Page
 
@@ -405,7 +405,7 @@ I am a returning visitor/member and I want:
     ![loggedin-recipes](documentation/images/loggedin-recipes.jpg)
 
     - A logged-in user looking at a recipe they have created on the recipe page
-    
+    ![loggedin-recipe](documentation/images/loggedin-recipe.jpg)
 
 5. To be able to see which recipes are highly rated/well-reviewed
   - Any user can see the top-rated recipes from both the home page and from the recipes page.
