@@ -517,7 +517,8 @@ The SEO score tended to be around 90. This was due to the exclusion of a 'robots
 * [favicon.io](https://favicon.io/) - used to create favicon image
 * [W3C Validator](https://validator.w3.org/) - used to validate HTML file
 * [W3C Validator](https://jigsaw.w3.org/css-validator/) - used to validate CSS file
-* [JS Hint](https://jshint.com/) - used to check JavaScript file
+* [JS Hint](https://jshint.com/) - used to check JavaScript code
+* [PEP8](http://pep8online.com/) - used to check Python code)
 
 ## Deployment
 
