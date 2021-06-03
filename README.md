@@ -336,6 +336,12 @@ The login form is almost identical in appearance to the register screen. There a
 
 ![login](documentation/images/login.jpg)
 
+### 404 Page
+
+If a user enters an invalid url, they are redirected to an internal 404 error handler which allows them to safely return to the homepage.
+
+![404](documentation/images/404.jpg)
+
 ### Potential Future Features
 
 As described in the Scope section of this writeup, there are a few extra features that could be added to the website in future. For example, it may be possible to use an API to pull nutritional information for all food ingredients and add these as options on a searchable ingredients list when a user creates a new recipe. 
