@@ -24,6 +24,11 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/index")
 def index():
+    """
+    This function returns the main website homepage
+    It needs to check if there is a user 'logged in'
+    It also checks for the top rated recipes to display the top 5
+    """
     # checks if there is a user saved in session
     if session.get("user"):
         user = mongo.db.users.find_one({"username": session["user"]})
@@ -68,6 +73,15 @@ def pagination_args(recipes):
 
 # general recipes page template
 def show_recipes(recipes, current_sorting, cuisine, difficulty):
+    """
+    This function compiles all the necessary information to render the recipes template
+    It gets the recipes cursor and converts this to a list so it can be rendered
+    It gets the currently selected cuisine
+    It gets the currently selected difficulty
+    It paginates the recipes
+    It gets the pagination args for the recipes
+    It gets all of the cuisines from the database
+    """
     recipes = list(recipes)
     cuisine = cuisine
     difficulty = difficulty
@@ -87,6 +101,10 @@ def show_recipes(recipes, current_sorting, cuisine, difficulty):
 # shows user favorites
 @app.route("/favorites")
 def favorites():
+    """
+    This function checks if there is a user logged in
+    and finds their favourited recipes to render to the template
+    """
     if session.get("user"):
         user = mongo.db.users.find_one({"username": session["user"]})
     else:
@@ -97,6 +115,11 @@ def favorites():
 # allows user to search for recipe
 @app.route("/search",  methods=["GET", "POST"])
 def search():
+    """
+    This function allows a user to search for a recipe
+    It creates a query from the search input and searches
+    the index for any matching items
+    """
     # gets search query input
     query = request.form.get("query")
     # finds any info in recipes collection that matches the search query
@@ -111,6 +134,10 @@ def search():
 
 # sorts recipes in particular orders
 def sorter(recipes, sort):
+    """
+    This function takes the value from the recipe sort selector
+    and returns the respective value
+    """
     # sorts alphabetically
     if sort == "A-Z":
         recipes.sort("name")
@@ -134,6 +161,10 @@ def sorter(recipes, sort):
 # gets all recipes
 @app.route("/recipes")
 def allRecipes():
+    """
+    This function finds all of the recipes on the database
+    and automatically sorts by newest first
+    """
     # all recipes
     recipes = mongo.db.recipes.find().sort("_id", -1)
     # default cusine is all
@@ -155,8 +186,10 @@ def allRecipes():
 # gets filtered recipes
 @app.route("/recipes/<cuisine>/<difficulty>")
 def findRecipe(cuisine, difficulty):
+    """
+    This function returns filtered recipes depending on user selection
+    """
     # first checks value of 'cuisine' from the url
-
     # if cuisine is all
     if cuisine == 'all':
         # display all easy recipes
@@ -244,6 +277,12 @@ def findRecipe(cuisine, difficulty):
 # allows user to delete review
 @app.route("/delete_review/<review_id>/<recipe_id>")
 def delete_review(review_id, recipe_id):
+    """
+    This function allows a user to delete their review
+    It needs to find and delete the review
+    The rating needs to also be deleted from the ratings array
+    from the relevant recipe in order to correctly calculate the average
+    """
     # removes rating from recipe rating array
     # gets review
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
@@ -266,6 +305,12 @@ def delete_review(review_id, recipe_id):
 # gets specific recipe as selected by user
 @app.route("/recipe/<recipe_id>", methods=["GET", "POST"])
 def show_recipe(recipe_id):
+    """
+    This function displays the full recipe information
+    This includes all the recipe data itself as well as all the reviews
+    The post method allows a user to post a review if they are logged in
+    The post input is hidden to users if they are not logged in
+    """
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     # review submission
     if request.method == "POST":
@@ -326,6 +371,10 @@ def show_recipe(recipe_id):
 # Allows user to favorite a particular recipe
 @app.route("/favorite/<recipe_id>")
 def favorite(recipe_id):
+    """
+    This function allows a user to favourite a recipe if
+    they are currently logged in
+    """
     # gets session user
     user = mongo.db.users.find_one({"username": session["user"]})
     # gets current recipe
@@ -339,6 +388,10 @@ def favorite(recipe_id):
 # allows user to remove recipe from favorites
 @app.route("/remove_favorite/<recipe_id>")
 def remove_favorite(recipe_id):
+    """
+    This function allows a user to remove a recipe from
+    their favourites if they are logged in
+    """
     # gets session user
     user = mongo.db.users.find_one({"username": session["user"]})
     # gets current recipe
@@ -364,6 +417,11 @@ def remove_favorite(recipe_id):
 # allows user to add recipe
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
+    """
+    This function allows a user to add a recipe
+    The post method includes all of the necessary recipe information
+    Validation is on the html form
+    """
     cuisines = list(mongo.db.cuisines.find().sort("name"))
     if request.method == "POST":
         date = datetime.datetime.now()
@@ -393,6 +451,10 @@ def add_recipe():
 # allows user to edit recipe
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
+    """
+    This function allows a user to edit a review they have created
+    The form data is pulled from the database to pre fill in the inputs
+    """
     cuisines = list(mongo.db.cuisines.find().sort("name"))
     if request.method == "POST":
         edited = {
@@ -419,6 +481,10 @@ def edit_recipe(recipe_id):
 # allows user to delete recipe
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
+    """
+    This function allows a user to delete a recipe they have created
+    This also allows an admin user to delete a recipe
+    """
     # gets recipe
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     # gets recipe creator
@@ -453,6 +519,12 @@ def delete_recipe(recipe_id):
 # allows user to register
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    """
+    This function allows a user to register an account
+    The post method adds user data to the database
+    The user is then automatically added to the session cookie
+    and redirected to the home page
+    """
     if request.method == "POST":
         # if username exists in db
         existing_user = mongo.db.users.find_one(
@@ -480,6 +552,10 @@ def register():
 # allows user to login
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    """
+    This function allows a user to log in using an existing account
+    Validation exists on the html form and also using Javascript
+    """
     if request.method == "POST":
         # check if username exists
         existing_user = mongo.db.users.find_one(
@@ -511,6 +587,10 @@ def login():
 # redirects logged in user to homepage
 @app.route("/<username>", methods=["GET", "POST"])
 def loggedin(username):
+    """
+    This function redirects a logged in user to the homepage
+    and renders the top 5 recipes to display
+    """
     # grabs session users username
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
@@ -529,6 +609,10 @@ def loggedin(username):
 # logs out user
 @app.route("/logout")
 def logout():
+    """
+    This function allows a user to log out and removes them from
+    the session cookie
+    """
     # remove user from session cookies
     flash("Logged Out")
     session.pop("user")
@@ -538,6 +622,12 @@ def logout():
 # shows all cuisines and allows admin to add cuisines
 @app.route("/cuisines", methods=["GET", "POST"])
 def all_cuisines():
+    """
+    This function displays all cuisines from the database
+    The post method allows admin to add more cuisines to the database
+    The add form is made to be only visible to admin account using
+    Jinja template language on the html page
+    """
     # gets all cuisines
     cuisines = list(mongo.db.cuisines.find().sort("name"))
     if request.method == "POST":
@@ -557,6 +647,10 @@ def all_cuisines():
 # allows admin to delete a cuisine
 @app.route("/delete_cuisine/<cuisine_id>")
 def delete_cuisine(cuisine_id):
+    """
+    This function allows admin to delete a cuisine
+    It also sets all recipes of the deleted cuisine to 'other' cuisine instead
+    """
     # gets cuisine
     cuisine = mongo.db.cuisines.find_one({"_id": ObjectId(cuisine_id)})
     # if any recipes have been set with this cuisine,
@@ -572,11 +666,17 @@ def delete_cuisine(cuisine_id):
 # for nonexistent urls allows user to safely return home
 @app.errorhandler(404)
 def not_found(e):
+    """
+    For an invalid url this allows user to safely return home
+    """
     return render_template('404.html')
 
 
 # runs application
 if __name__ == "__main__":
+    """
+    Runs app
+    """
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=os.environ.get("DEBUG"))
