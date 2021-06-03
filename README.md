@@ -472,10 +472,12 @@ The only bug I was able to find while testing was that the images did not always
 * HTML code validator found no major errors on any pages
 
 * CSS code validator found no errors in my CSS file
+  ![css-validator](documentation/images/css.jpg)
 
-* JS Hint found no errors in my JavaScript file
+* JS Hint found no errors in my JavaScript file or in any of the embedded JavaScript in my html templates.
 
-* There are a few warnings on my app.py python file regarding unbalanced tuple unpacking and unused variables in my pagination functions. However, these are necessary for the functions to work and can be disregarded
+* There are a few warnings on my app.py python file regarding unbalanced tuple unpacking and unused variables in my pagination functions. However, these are necessary for the functions to work and can be disregarded. PEP8 online check found no errors in the code.
+  ![python-validator](documentation/images/python.jpg)
 
 ### Chrome Dev Tools Lighthouse
 
