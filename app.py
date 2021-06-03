@@ -74,8 +74,10 @@ def pagination_args(recipes):
 # general recipes page template
 def show_recipes(recipes, current_sorting, cuisine, difficulty):
     """
-    This function compiles all the necessary information to render the recipes template
-    It gets the recipes cursor and converts this to a list so it can be rendered
+    This function compiles all the necessary information
+    to render the recipes template
+    It gets the recipes cursor and converts this
+    to a list so it can be rendered
     It gets the currently selected cuisine
     It gets the currently selected difficulty
     It paginates the recipes
